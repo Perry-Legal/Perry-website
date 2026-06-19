@@ -27,24 +27,35 @@ export type PlatformLayer = {
   placeholderLabel: string;
   /** Isometric layer image — 3D perspective is baked into the asset */
   imageSrc: string;
+  imageWidth?: number;
+  imageHeight?: number;
   /** Vertical position in the stack — higher values sit further up */
   elevation: number;
   /** When true, render as a dense foundation slab instead of a tile grid */
   isFoundation?: boolean;
+  /** Accent color for glass panel tint — matches the layer isometric palette */
+  panelTint: string;
   gridRows: number;
   gridCols: number;
   tiles: PlatformTile[];
 };
+
+export const platformInactiveLayerImageSrc = "/platform-layers/inactive-layer.png";
+export const platformInactiveLayerWidth = 1100;
+export const platformInactiveLayerHeight = 512;
 
 export const platformLayers: PlatformLayer[] = [
   {
     id: "fund-lifecycle",
     label: "Fund Lifecycle",
     placeholderLabel: "Fund Lifecycle",
-    imageSrc: "/platform-layers/fund-lifecycle.svg",
+    imageSrc: "/platform-layers/fund-lifecycle.png",
+    imageWidth: 4400,
+    imageHeight: 2046,
     sidebarDescription:
       "End-to-end workflows across formation, capital deployment, portfolio management, and exit — organized around how funds actually operate.",
     elevation: 4,
+    panelTint: "#0D4B33",
     gridRows: 1,
     gridCols: 1,
     tiles: [
@@ -65,10 +76,13 @@ export const platformLayers: PlatformLayer[] = [
     id: "collaboration-layer",
     label: "Collaboration Layer",
     placeholderLabel: "Collaboration",
-    imageSrc: "/platform-layers/collaboration-layer.svg",
+    imageSrc: "/platform-layers/collaboration-layer.png",
+    imageWidth: 4400,
+    imageHeight: 2046,
     sidebarDescription:
       "Connect legal teams, fund operations, external counsel, and stakeholders in a shared workspace with clear ownership and audit trails.",
     elevation: 3,
+    panelTint: "#594128",
     gridRows: 1,
     gridCols: 1,
     tiles: [
@@ -89,10 +103,13 @@ export const platformLayers: PlatformLayer[] = [
     id: "legal-engineering-layer",
     label: "Legal Engineering Layer",
     placeholderLabel: "Legal Engineering",
-    imageSrc: "/platform-layers/legal-engineering-layer.svg",
+    imageSrc: "/platform-layers/legal-engineering-layer.png",
+    imageWidth: 4400,
+    imageHeight: 2046,
     sidebarDescription:
       "Extract, structure, and analyse legal documents and entity data — turning unstructured inputs into obligations, insights, and completed work.",
     elevation: 2,
+    panelTint: "#452D52",
     gridRows: 1,
     gridCols: 1,
     tiles: [
@@ -112,10 +129,13 @@ export const platformLayers: PlatformLayer[] = [
     id: "fund-entity-layer",
     label: "Fund Entity Layer",
     placeholderLabel: "Fund Entities",
-    imageSrc: "/platform-layers/fund-entity-layer.svg",
+    imageSrc: "/platform-layers/fund-entity-layer.png",
+    imageWidth: 4400,
+    imageHeight: 2040,
     sidebarDescription:
       "A structured system of record for fund entities, investor relationships, commitments, and portfolio-level legal obligations.",
     elevation: 1,
+    panelTint: "#1E3A4F",
     gridRows: 1,
     gridCols: 1,
     tiles: [
@@ -135,11 +155,14 @@ export const platformLayers: PlatformLayer[] = [
     id: "security-layer",
     label: "Security Layer",
     placeholderLabel: "Security",
-    imageSrc: "/platform-layers/security-layer.svg",
+    imageSrc: "/platform-layers/security-layer.png",
+    imageWidth: 4400,
+    imageHeight: 2040,
     sidebarDescription:
       "Enterprise-grade security, access control, and compliance infrastructure that underpins every workflow on the platform.",
     elevation: 0,
     isFoundation: true,
+    panelTint: "#000000",
     gridRows: 1,
     gridCols: 1,
     tiles: [
@@ -182,4 +205,49 @@ export function getAllTiles() {
 
 export function getPrimaryTile(layer: PlatformLayer) {
   return layer.tiles.find((tile) => tile.id === layer.id) ?? layer.tiles[0];
+}
+
+function hexToRgb(hex: string) {
+  const normalized = hex.replace("#", "");
+  const value = Number.parseInt(normalized, 16);
+  return {
+    r: (value >> 16) & 255,
+    g: (value >> 8) & 255,
+    b: value & 255,
+  };
+}
+
+function lerpChannel(a: number, b: number, t: number) {
+  return Math.round(a + (b - a) * t);
+}
+
+/** Blend panel tints while scrolling between layers (floatIndex is fractional). */
+export function getBlendedPanelTint(floatIndex: number) {
+  const maxIndex = platformLayersByElevation.length - 1;
+  const clamped = Math.max(0, Math.min(floatIndex, maxIndex));
+  const lower = Math.floor(clamped);
+  const upper = Math.min(Math.ceil(clamped), maxIndex);
+  const t = clamped - lower;
+
+  if (lower === upper) {
+    return platformLayersByElevation[lower].panelTint;
+  }
+
+  const from = hexToRgb(platformLayersByElevation[lower].panelTint);
+  const to = hexToRgb(platformLayersByElevation[upper].panelTint);
+  const r = lerpChannel(from.r, to.r, t);
+  const g = lerpChannel(from.g, to.g, t);
+  const b = lerpChannel(from.b, to.b, t);
+
+  return `rgb(${r} ${g} ${b})`;
+}
+
+/** Panel tint as an rgba overlay string. */
+export function panelTintOverlay(color: string, alpha = 0.05) {
+  if (color.startsWith("rgb(")) {
+    return color.replace("rgb(", "rgba(").replace(")", ` / ${alpha})`);
+  }
+
+  const { r, g, b } = hexToRgb(color);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
 }

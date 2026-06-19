@@ -1,15 +1,27 @@
+import { platformIntelligenceProductImages } from "@/lib/platform-intelligence-product-images";
+
 export type ProductFeature = {
   slug: string;
   label: string;
+  eyebrow?: string;
   description: string;
-  outcomes: string[];
+  items?: string[];
+  itemsLabel?: string;
+  itemGroups?: { label?: string; items: string[] }[];
+  outcome?: string;
+  outcomes?: string[];
+  imageSrc?: string;
 };
 
 export type ProductLifecycle = {
   slug: string;
   label: string;
+  headline: string;
   description: string;
+  kpis?: string[];
   heroImageSrc: string;
+  ctaHeadline?: string;
+  ctaLabel?: string;
   features: ProductFeature[];
 };
 
@@ -17,211 +29,317 @@ export const productLifecycle: ProductLifecycle[] = [
   {
     slug: "fund-formation",
     label: "Fund Formation",
+    headline: "Turn fund documents into a structured operating record",
     description:
-      "Every new fund begins with structure, documents, and filings scattered across spreadsheets and email. Perry connects each formation step into one traceable workflow — from entity design through final investor terms.",
-    heroImageSrc: "/platform-layers/fund-lifecycle.svg",
+      "Review side letters, consolidate investor terms, manage MFN elections and convert fund documents into ongoing obligations. Perry preserves every negotiation position and investor-specific commitment for the life of the fund.",
+    kpis: [
+      "Reduce time to find an investor term by 70%",
+      "Cut MFN election cycle time by 50%",
+      "Reduce missed or late fund obligations by 80%",
+      "100% of negotiated terms captured in a searchable precedent record for future funds",
+    ],
+    heroImageSrc: platformIntelligenceProductImages.formation.negotiationReview,
+    ctaHeadline: "Build the fund record once. Operate from it throughout the fund lifecycle.",
+    ctaLabel: "Book a fund formation walkthrough",
     features: [
       {
-        slug: "entity-structuring",
-        label: "Entity structuring",
+        slug: "fund-document-review",
+        label: "Know whether a side-letter term is acceptable before you agree to it",
         description:
-          "Model fund entities, blockers, and carry vehicles in one place — with relationships, ownership, and jurisdiction context that stays current as the structure evolves.",
-        outcomes: [
-          "Single source of truth for fund entity hierarchies",
-          "Fewer errors when structures change mid-formation",
-          "Clear handoff from structuring into document generation",
+          "Perry reviews each proposed side letter against the LPA, existing investor terms and the fund's historical negotiation positions. It helps the legal team understand whether a provision is standard, operationally burdensome or inconsistent with existing commitments.",
+        imageSrc: platformIntelligenceProductImages.formation.negotiationReview,
+        itemsLabel: "Capabilities",
+        items: [
+          "Compare proposed terms against the LPA",
+          "Benchmark terms against prior side letters",
+          "Identify unusual or operationally difficult provisions",
+          "Suggest negotiation positions based on fund history",
+          "Preserve comments and decisions for future negotiations",
+        ],
+        outcome:
+          "Make more consistent negotiation decisions without manually reconstructing precedent.",
+      },
+      {
+        slug: "master-investor-terms",
+        label: "See similar terms, differences and commitments across all side letters",
+        description:
+          "Perry consolidates negotiated side-letter provisions into a structured master record. Similar terms are grouped together, differences are highlighted and each provision remains linked to the relevant investor and source document.",
+        imageSrc: platformIntelligenceProductImages.formation.termConsolidation,
+        itemsLabel: "Outputs",
+        items: [
+          "Consolidated term library",
+          "Similarity and variance analysis",
+          "Investor-specific rights",
+          "Exceptions and non-standard terms",
+          "Searchable negotiation history",
+        ],
+        outcome:
+          "Replace fragmented side-letter summaries with one connected view across the fund.",
+      },
+      {
+        slug: "mfn-workflow",
+        label: "Run the full MFN process in one workspace",
+        description:
+          "Perry identifies which terms may be available to each LP, supports the legal review of eligible provisions and manages the communication and confirmation process.",
+        imageSrc: platformIntelligenceProductImages.formation.mfnWorkflow,
+        itemsLabel: "Workflow",
+        items: [
+          "Identify eligible terms",
+          "Review availability",
+          "Prepare investor options",
+          "Share with the LP",
+          "Record elections",
+          "Update obligations",
+        ],
+        outcome:
+          "Maintain a clear record of what was offered, selected and ultimately applied.",
+      },
+      {
+        slug: "operational-obligations",
+        label: "Turn LPAs and side letters into active operational tasks",
+        description:
+          "Perry identifies provisions that require action, notice, approval, reporting or recurring monitoring. Each requirement can be assigned, scheduled, tracked and reported without losing the underlying legal context.",
+        imageSrc: platformIntelligenceProductImages.formation.operationalHandoff,
+        itemsLabel: "Outputs",
+        items: [
+          "Recurring reporting obligations",
+          "Notice requirements",
+          "Consent workflows",
+          "Key dates and deadlines",
+          "Investor-specific restrictions",
+          "Assigned operational tasks",
+        ],
+        outcome: "Move from static fund documents to a live obligation system.",
+      },
+      {
+        slug: "collaboration",
+        label: "Coordinate legal, investor relations and fund operations around the same terms",
+        description:
+          "Share selected provisions, review issues, investor records and actions with internal teams and external counsel. Each team sees the information relevant to its role, while legal retains control of the central record.",
+        imageSrc: platformIntelligenceProductImages.management.teamCollaboration,
+      },
+    ],
+  },
+  {
+    slug: "capital-deployment",
+    label: "Capital Deployment",
+    headline: "Review, negotiate and execute transactions with the full fund context",
+    description:
+      "Perry connects diligence, document review, negotiation and post-closing obligations in one legal workspace. Every deal benefits from the fund documents, prior decisions and transaction history already held in the platform.",
+    kpis: [
+      "Improve transaction consistency by 60%",
+      "Reduce diligence review time by 50%",
+      "Reduce time to surface fund restrictions by 90%",
+      "Reduce missed post-closing obligations by 75%",
+    ],
+    heroImageSrc: platformIntelligenceProductImages.deployment.transactionWorkflow,
+    ctaHeadline: "Run every deal with the legal context already in place",
+    ctaLabel: "Book a capital deployment walkthrough",
+    features: [
+      {
+        slug: "review-negotiation",
+        label: "Manage every transaction document through review, negotiation and approval",
+        description:
+          "Perry keeps comments, review issues, negotiation positions and approvals linked to the transaction. Because the platform understands prior transactions, it can help the team assess whether proposed terms are consistent with previous deals.",
+        imageSrc: platformIntelligenceProductImages.deployment.transactionWorkflow,
+        itemGroups: [
+          {
+            label: "Workflow",
+            items: ["Review", "Compare", "Negotiate", "Approve", "Sign"],
+          },
+          {
+            label: "Capabilities",
+            items: [
+              "Identify material deviations",
+              "Compare against prior transactions",
+              "Suggest accepted negotiation positions",
+              "Assign review issues",
+              "Track unresolved points",
+              "Preserve final legal decisions",
+            ],
+          },
+        ],
+        outcome:
+          "Maintain consistency without treating every deal as entirely new.",
+      },
+      {
+        slug: "due-diligence",
+        label: "Turn diligence materials into clear findings and actions",
+        description:
+          "Perry reviews legal documents, connects findings to the relevant target entities and organises issues according to severity, workstream and required action.",
+        imageSrc: platformIntelligenceProductImages.deployment.diligenceToAction,
+        itemsLabel: "Outputs",
+        items: [
+          "Review findings",
+          "Legal risks",
+          "Missing information",
+          "Required follow-up",
+          "Conditions to investment",
+          "Diligence report",
         ],
       },
       {
-        slug: "lpa-generation",
-        label: "LPA generation",
+        slug: "post-closing-obligations",
+        eyebrow: "Closing is not the end",
+        label: "Turn transaction terms into long-term actions",
         description:
-          "Draft and iterate fund documents with version control built in. Compare drafts, track redlines, and keep the master agreement authoritative while side negotiations continue.",
-        outcomes: [
-          "Version history on every material term change",
-          "Faster iteration between legal and fund ops",
-          "Master agreement stays the anchor for all downstream docs",
-        ],
-      },
-      {
-        slug: "regulatory-filings",
-        label: "Regulatory filings",
-        description:
-          "Track formation filings and deadlines across jurisdictions. Know what is due, who owns it, and what evidence sits behind each submission.",
-        outcomes: [
-          "Deadline visibility across multiple regulators",
-          "Audit-ready filing records from day one",
-          "No last-minute scramble before first close",
-        ],
-      },
-      {
-        slug: "side-letters",
-        label: "Side letters",
-        description:
-          "Manage investor-specific terms without losing the master agreement. Map side letter provisions back to the LPA and surface conflicts before they become operational risk.",
-        outcomes: [
-          "Side letter terms linked to master fund docs",
-          "Conflict detection before commitments go live",
-          "Consistent treatment across subsequent closings",
+          "Perry identifies covenants, information rights, consent rights, governance requirements and other post-closing obligations. These become owned, dated and trackable tasks linked to the deal and portfolio company.",
+        imageSrc: platformIntelligenceProductImages.deployment.postClosingObligations,
+        itemsLabel: "Outputs",
+        items: [
+          "Governance rights",
+          "Reporting requirements",
+          "Consent obligations",
+          "Covenants",
+          "Renewal and notice dates",
+          "Follow-on actions",
         ],
       },
     ],
   },
   {
-    slug: "investment-period",
-    label: "Investment Period",
+    slug: "fund-portfolio-management",
+    label: "Fund & Portfolio Management",
+    headline: "Turn legal history into continuous oversight",
     description:
-      "The investment window moves fast — subscriptions, closings, capital calls, and post-close obligations all compete for attention. Perry keeps each handoff visible so nothing falls through the cracks between legal, finance, and operations.",
-    heroImageSrc: "/platform-layers/collaboration-layer.svg",
-    features: [
-      {
-        slug: "investor-onboarding",
-        label: "Investor onboarding",
-        description:
-          "Guide LPs through subscription with a single source of truth. Track KYC status, document collection, and approval steps in one coordinated workflow.",
-        outcomes: [
-          "LPs see exactly what is outstanding and why",
-          "Legal and ops work from the same subscription record",
-          "Faster closes with fewer back-and-forth emails",
-        ],
-      },
-      {
-        slug: "deal-execution",
-        label: "Deal execution",
-        description:
-          "Move from term sheet to closing with coordinated checklists and approvals. Assign owners, track conditions precedent, and keep every party aligned through signing.",
-        outcomes: [
-          "Closing checklists with clear ownership and status",
-          "Condition tracking that survives team changes",
-          "Complete closing binder without manual assembly",
-        ],
-      },
-      {
-        slug: "capital-calls",
-        label: "Capital calls",
-        description:
-          "Issue notices, track funding, and reconcile commitments in one workflow. Tie each call back to the fund docs and LP records that authorize it.",
-        outcomes: [
-          "Notices generated from authoritative fund data",
-          "Real-time funding status across all LPs",
-          "Reconciliation that matches legal and finance records",
-        ],
-      },
-      {
-        slug: "post-close-filings",
-        label: "Post-close filings",
-        description:
-          "Capture filing obligations triggered at closing. Route ownership, set deadlines, and store evidence so regulatory follow-up does not depend on memory.",
-        outcomes: [
-          "Closing-triggered obligations captured automatically",
-          "Clear accountability for each filing requirement",
-          "Evidence stored alongside the deal record",
-        ],
-      },
+      "Perry brings together obligations, transaction rights, legal decisions and portfolio information in one active operating view. Know what needs attention, what rights exist and what the fund has previously decided.",
+    kpis: [
+      "Cut legal question response time by 65%",
+      "Reduce manual legal research by 70%",
+      "100% of obligations visible in one operating view",
+      "100% of legal decisions preserved in a searchable fund record",
     ],
-  },
-  {
-    slug: "portfolio-management",
-    label: "Portfolio Management",
-    description:
-      "After close, obligations do not pause — covenants renew, boards meet, filings recur, and LPs expect updates. Perry turns ongoing portfolio work into a predictable rhythm with one shared record.",
-    heroImageSrc: "/platform-layers/fund-entity-layer.svg",
+    heroImageSrc: platformIntelligenceProductImages.management.ongoingWork,
+    ctaHeadline: "Make the fund's legal context usable every day",
+    ctaLabel: "Book a fund management walkthrough",
     features: [
       {
-        slug: "covenant-tracking",
-        label: "Covenant tracking",
+        slug: "obligation-management",
+        eyebrow: "One obligation system",
+        label: "Manage ongoing work created during formation and investment",
         description:
-          "Monitor portfolio company covenants and breach notifications. Surface upcoming tests, waivers, and amendments before they become surprises.",
-        outcomes: [
-          "Proactive alerts before covenant deadlines",
-          "Full history of waivers and amendments",
-          "Legal and deal teams aligned on portfolio risk",
+          "Perry brings together tasks created from LPAs, side letters, transaction documents and portfolio agreements. Every task stays connected to the provision, document, entity and legal decision that created it.",
+        imageSrc: platformIntelligenceProductImages.management.ongoingWork,
+        itemsLabel: "Capabilities",
+        items: [
+          "Track recurring and one-off obligations",
+          "Assign owners and deadlines",
+          "Manage approvals and evidence of completion",
+          "Escalate overdue actions",
+          "Filter by fund, investor, deal or entity",
+          "Report across the full obligation portfolio",
         ],
+        outcome: "Replace separate legal trackers with one connected system.",
       },
       {
-        slug: "board-consents",
-        label: "Board consents",
+        slug: "legal-decision-dashboard",
+        label: "Understand rights, restrictions and decisions across the portfolio",
         description:
-          "Route, execute, and store consents with full audit trails. From draft resolution through signature collection, every step is visible and attributable.",
-        outcomes: [
-          "Consent workflows with defined approval paths",
-          "Executed documents linked to the company record",
-          "Audit trail for governance and LP reporting",
+          "Perry turns legal documents and transaction history into dashboards that help legal and investment teams see the fund's current position.",
+        imageSrc: platformIntelligenceProductImages.management.portfolioVisibility,
+        itemsLabel: "Example views",
+        items: [
+          "Transaction rights heatmap",
+          "Consent and approval map",
+          "Investor restriction overview",
+          "Governance rights by portfolio company",
+          "Upcoming legal deadlines",
+          "Open review issues",
+          "Historical legal decisions",
         ],
+        outcome:
+          "Make legal context visible without repeatedly rereading the underlying documents.",
       },
       {
-        slug: "regulatory-reporting",
-        label: "Regulatory reporting",
+        slug: "legal-question-centre",
+        eyebrow: "Answers grounded in the fund record",
+        label: "Give teams fast answers without turning legal into a help desk",
         description:
-          "Prepare recurring filings with reusable data and templates. Pull from portfolio records instead of rebuilding spreadsheets each quarter.",
-        outcomes: [
-          "Reusable data models across reporting cycles",
-          "Template-driven filings with less manual rework",
-          "Consistent submissions across the portfolio",
+          "Internal teams can ask questions across the fund's documents, entities, transactions and obligations. Perry searches the relevant legal record, generates a grounded response and shows the source material behind the answer.",
+        imageSrc: platformIntelligenceProductImages.management.legalQAndA,
+        itemGroups: [
+          {
+            label: "Example questions",
+            items: [
+              "Does this transaction require LPAC consent?",
+              "Which investors have this reporting right?",
+              "What board rights do we hold in this company?",
+              "Has the fund previously accepted this provision?",
+              "What obligations are due this quarter?",
+            ],
+          },
+          {
+            label: "Controls",
+            items: [
+              "Source-linked answers",
+              "Role-based access",
+              "Legal review where required",
+              "Preserved question and response history",
+              "Escalation of uncertain questions",
+            ],
+          },
         ],
-      },
-      {
-        slug: "portfolio-reporting",
-        label: "Portfolio reporting",
-        description:
-          "Consolidate company updates, valuations, and LP reporting inputs. Give fund ops and legal a shared view of what goes into each LP update.",
-        outcomes: [
-          "Single pipeline from company data to LP materials",
-          "Less duplication between legal and investor relations",
-          "Timely reporting without last-minute data hunts",
-        ],
+        outcome:
+          "Scale access to legal knowledge while keeping the legal team in control.",
       },
     ],
   },
   {
     slug: "exit",
     label: "Exit",
+    headline: "Enter every exit with the legal record already prepared",
     description:
-      "Exit events compress months of work into weeks — sale processes, distribution calculations, wind-down checklists, and final LP communications must stay in sync. Perry orchestrates the full exit arc in one place.",
-    heroImageSrc: "/platform-layers/legal-engineering-layer.svg",
+      "Perry carries documents, entity records, legal decisions, obligations and transaction history from acquisition through ownership and into exit. Know what is ready, what is missing and what needs attention before diligence begins.",
+    kpis: [
+      "Reduce legal gaps before exit by 80%",
+      "Cut exit diligence prep time by 55%",
+      "Reduce buyer diligence response time by 65%",
+      "Track 100% of post-exit obligations from close",
+    ],
+    heroImageSrc: platformIntelligenceProductImages.exit.legalContinuity,
+    ctaHeadline: "Make exit readiness part of the investment lifecycle",
+    ctaLabel: "Book an exit readiness walkthrough",
     features: [
       {
-        slug: "exit-workflows",
-        label: "Exit workflows",
+        slug: "exit-readiness",
+        eyebrow: "Prepare before the process starts",
+        label: "Assess the legal readiness of every portfolio company",
         description:
-          "Coordinate sale processes, approvals, and closing documentation. Track milestones from LOI through signing with the same rigor as initial deal closings.",
-        outcomes: [
-          "Structured exit process with clear milestones",
-          "Approvals and docs tied to the transaction record",
-          "Smooth transition from sale close to distribution",
+          "Perry reviews the existing entity and legal record to identify missing documents, unresolved obligations, approval requirements and potential transaction issues.",
+        imageSrc: platformIntelligenceProductImages.exit.exitReadiness,
+        itemsLabel: "Outputs",
+        items: [
+          "Missing document list",
+          "Outstanding corporate actions",
+          "Unresolved legal issues",
+          "Required consents",
+          "Open obligations",
+          "Recommended next steps",
         ],
+        outcome: "Identify legal gaps before they slow down the transaction.",
       },
       {
-        slug: "distributions",
-        label: "Distributions",
+        slug: "transaction-document-review",
+        label: "Make sure you have a clean exit",
         description:
-          "Calculate and communicate LP distributions with full audit trails. Connect waterfall logic to fund docs and produce notices that match the numbers.",
-        outcomes: [
-          "Distribution calculations traceable to fund terms",
-          "LP notices generated from authoritative data",
-          "Finance and legal reconciled before funds move",
-        ],
+          "Perry reviews exit transaction documents against the fund's legal record, prior decisions and outstanding obligations — surfacing issues before they reach the buyer.",
+        imageSrc: platformIntelligenceProductImages.exit.continuationNegotiation,
       },
       {
-        slug: "fund-wind-down",
-        label: "Fund wind-down",
+        slug: "post-exit-tracking",
+        eyebrow: "Continue after completion",
+        label: "Track retained obligations after the transaction closes",
         description:
-          "Run dissolution checklists and final regulatory obligations. Track every remaining task from final audit through entity dissolution.",
-        outcomes: [
-          "Complete wind-down checklist with ownership",
-          "Final regulatory filings captured and stored",
-          "Clean close with nothing left in email threads",
-        ],
-      },
-      {
-        slug: "lp-communications",
-        label: "LP communications",
-        description:
-          "Deliver exit notices and final reporting through a secure portal. LPs get timely, consistent updates without relying on ad hoc distribution lists.",
-        outcomes: [
-          "Secure delivery of exit and final fund materials",
-          "Consistent messaging across all limited partners",
-          "Complete communication history for the fund record",
+          "Perry turns warranties, indemnities, escrow terms, earn-outs and retained responsibilities into trackable post-exit actions.",
+        imageSrc: platformIntelligenceProductImages.exit.obligationTracking,
+        itemsLabel: "Outputs",
+        items: [
+          "Warranty and indemnity periods",
+          "Escrow deadlines",
+          "Earn-out milestones",
+          "Claims and notices",
+          "Retained liabilities",
+          "Post-completion deliverables",
         ],
       },
     ],

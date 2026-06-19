@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   useCallback,
   useEffect,
+  useLayoutEffect,
   useMemo,
   useRef,
   useState,
@@ -14,130 +15,414 @@ import {
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
+  getBlendedPanelTint,
   getPrimaryTile,
+  panelTintOverlay,
+  platformInactiveLayerHeight,
+  platformInactiveLayerImageSrc,
+  platformInactiveLayerWidth,
   platformLayers,
   platformLayersByElevation,
   type PlatformLayer,
-  type PlatformTile,
 } from "@/lib/platform-architecture";
 import { primaryProductLifecycleHref } from "@/lib/product-navigation";
+
+/* -------------------------------------------------------------------------- */
+/*  Tunable constants                                                         */
+/* -------------------------------------------------------------------------- */
 
 /** Matches site-header `h-16` — sticky pins below the nav bar. */
 const SITE_HEADER_OFFSET = "4rem";
 const SITE_HEADER_OFFSET_PX = 64;
-/** Extra document scroll while the pinned block stays fixed (layer transitions). */
-const SCROLL_HIJACK_DISTANCE = "200vh";
-/** Runway height = available viewport (below header) + hijack distance. */
-const SCROLL_RUNWAY_HEIGHT = `calc(100vh - ${SITE_HEADER_OFFSET} + ${SCROLL_HIJACK_DISTANCE})`;
-/** Negative overlap between stacked layer images (fraction of container width). */
-const LAYER_OVERLAP_RATIO = 0.62;
+/** Document scroll budget per layer transition (vh). Bigger = longer slide. */
+const PER_LAYER_VH = 95;
+/** Scroll dead zone at runway start/end where floatIndex stays pinned (px). */
+const SCROLL_BUFFER_PX = 400;
+/** Gap from active bottom to first inactive slab (× inactive height). */
+const ACTIVE_INACTIVE_GAP = -0.7;
+/** Vertical step between inactive slabs (× inactive height). */
+const INACTIVE_STEP = 0.16;
+/** Push the whole stack down in the center column (× container width). 0 = rely on grid centering. */
+const STACK_OFFSET_Y = 0;
+/** Upward travel while a layer exits (fraction of its own height). */
+const EXIT_TRAVEL = 0.55;
+/** Exit fade rate — higher = transparent sooner within the same scroll span (1 = linear). */
+const EXIT_FADE_SPEED = 2;
+/** Sidebar nav vertical drift per index away from the scroll position (px). */
+const NAV_ITEM_SLIDE_PX = 20;
+/** Gap between title block and three-column grid (Tailwind margin-bottom classes). */
+const HEADER_GRID_GAP = "mb-16";
+/** Max width of the center layer stack — smaller = shorter stack height. */
+const LAYER_STACK_MAX_WIDTH = "max-w-2xl";
+/** Vertical padding on the three-column glass panel grid. */
+const GRID_SECTION_PY = "py-8";
+/** Opacity of inactive layer slabs at rest (0–1). */
+const INACTIVE_LAYER_OPACITY = 0.6;
+/** Glass panel layer-tint overlay strength (0–1). */
+const PANEL_TINT_ALPHA = 0.09;
+/** Fraction of bottom slack applied as downward offset at the final layer (0–1). */
+const END_STACK_CENTER_BIAS = 0.5;
 
-function getRunwayScrollProgress(runway: HTMLElement) {
-  const viewportHeight = window.innerHeight;
-  const scrollable = runway.offsetHeight - viewportHeight + SITE_HEADER_OFFSET_PX;
+const LAYER_COUNT = platformLayersByElevation.length;
+
+const INACTIVE_ASPECT =
+  platformInactiveLayerHeight / platformInactiveLayerWidth;
+
+/* -------------------------------------------------------------------------- */
+/*  Helpers                                                                   */
+/* -------------------------------------------------------------------------- */
+
+function easeInOutCubic(t: number) {
+  return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
+}
+
+function clamp(value: number, min: number, max: number) {
+  return Math.min(max, Math.max(min, value));
+}
+
+function getLayerAspectRatio(layer: PlatformLayer) {
+  const width = layer.imageWidth ?? 1024;
+  const height = layer.imageHeight ?? 480;
+  return height / width;
+}
+
+/** Total document scroll while the runway is pinned. */
+function getRunwayScrollable(runway: HTMLElement) {
+  return runway.offsetHeight - window.innerHeight + SITE_HEADER_OFFSET_PX;
+}
+
+/** Map 0..1 animation progress to raw scrolled px (includes start/end buffers). */
+function animationProgressToScrolled(progress: number, scrollable: number) {
+  const activeScrollable = scrollable - 2 * SCROLL_BUFFER_PX;
+  if (activeScrollable <= 0) {
+    return clamp(progress, 0, 1) * scrollable;
+  }
+  return SCROLL_BUFFER_PX + clamp(progress, 0, 1) * activeScrollable;
+}
+
+/** Map raw scrolled px to 0..1 animation progress (buffers hold at 0 and 1). */
+function scrolledToAnimationProgress(scrolled: number, scrollable: number) {
+  const activeScrollable = scrollable - 2 * SCROLL_BUFFER_PX;
+  if (activeScrollable <= 0) {
+    return clamp(scrolled / Math.max(scrollable, 1), 0, 1);
+  }
+  if (scrolled <= SCROLL_BUFFER_PX) return 0;
+  if (scrolled >= scrollable - SCROLL_BUFFER_PX) return 1;
+  return (scrolled - SCROLL_BUFFER_PX) / activeScrollable;
+}
+
+/** Document scroll position that lands the runway at a given 0..1 progress. */
+function getScrollYForProgress(runway: HTMLElement, progress: number) {
+  const scrollable = getRunwayScrollable(runway);
+  const scrolled = animationProgressToScrolled(progress, scrollable);
+  return runway.offsetTop - SITE_HEADER_OFFSET_PX + scrolled;
+}
+
+/** Current 0..1 progress of the runway through its pinned travel. */
+function getRunwayProgress(runway: HTMLElement) {
+  const scrollable = getRunwayScrollable(runway);
   if (scrollable <= 0) return 0;
-
   const rect = runway.getBoundingClientRect();
-  const scrolled = Math.min(
-    Math.max(SITE_HEADER_OFFSET_PX - rect.top, 0),
-    scrollable,
-  );
-  return scrolled / scrollable;
+  const scrolled = clamp(SITE_HEADER_OFFSET_PX - rect.top, 0, scrollable);
+  return scrolledToAnimationProgress(scrolled, scrollable);
 }
 
-function getScrollYForRunwayProgress(runway: HTMLElement, progress: number) {
-  const scrollable = runway.offsetHeight - window.innerHeight + SITE_HEADER_OFFSET_PX;
-  return runway.offsetTop - SITE_HEADER_OFFSET_PX + progress * scrollable;
-}
-
-type LayerImageProps = {
-  layer: PlatformLayer;
-  isActive: boolean;
-  opacity: number;
-  scale: number;
-  onSelect: () => void;
+type SlotVisualState = {
+  contentOpacity: number;
+  baseOpacity: number;
+  hidden: boolean;
 };
 
-function LayerImage({ layer, isActive, opacity, scale, onSelect }: LayerImageProps) {
+function getContentAspect(layer: PlatformLayer) {
+  return Math.max(getLayerAspectRatio(layer), INACTIVE_ASPECT);
+}
+
+/** Slot height — inactive slab at rest; interpolates to full content while rising. */
+function getSlotAspect(layer: PlatformLayer, rel: number) {
+  const fullAspect = getContentAspect(layer);
+  if (rel >= 1) return INACTIVE_ASPECT;
+  if (rel <= 0) return fullAspect;
+  const t = easeInOutCubic(1 - rel);
+  return INACTIVE_ASPECT + (fullAspect - INACTIVE_ASPECT) * t;
+}
+
+/**
+ * Layer whose active slot defines inactive-stack spacing for the current scroll
+ * segment. Locked to floor(floatIndex) so firstInactiveY stays stable while
+ * the next layer rises from its inactive anchor.
+ */
+function getAnchorLayer(floatIndex: number) {
+  const clamped = clamp(floatIndex, 0, LAYER_COUNT - 1);
+  const anchorIndex = Math.min(Math.floor(clamped), LAYER_COUNT - 1);
+  return platformLayersByElevation[anchorIndex];
+}
+
+function getFirstInactiveY(floatIndex: number, width: number) {
+  const anchorLayer = getAnchorLayer(floatIndex);
+  const activeBottom = width * getContentAspect(anchorLayer);
+  const inactiveHeight = width * INACTIVE_ASPECT;
+  return activeBottom + ACTIVE_INACTIVE_GAP * inactiveHeight;
+}
+
+/** Vertical offset in px — spacing anchored to inactive positions for the segment. */
+function getStackOffsetY(
+  rel: number,
+  layer: PlatformLayer,
+  floatIndex: number,
+  width: number,
+) {
+  const inactiveHeight = width * INACTIVE_ASPECT;
+  const firstInactiveY = getFirstInactiveY(floatIndex, width);
+
+  if (rel < 0) {
+    const exitHeight = width * getContentAspect(layer);
+    return rel * EXIT_TRAVEL * exitHeight;
+  }
+
+  if (rel <= 1) return easeInOutCubic(rel) * firstInactiveY;
+
+  return firstInactiveY + (rel - 1) * INACTIVE_STEP * inactiveHeight;
+}
+
+/** Opacity for content vs inactive base from scroll position in the stack. */
+function getSlotVisualState(rel: number, animate: boolean): SlotVisualState {
+  if (!animate) {
+    const active = Math.abs(rel) < 0.01;
+    return {
+      contentOpacity: active ? 1 : 0,
+      baseOpacity: active ? 0 : 1,
+      hidden: rel <= -1,
+    };
+  }
+
+  if (rel <= -1) {
+    return { contentOpacity: 0, baseOpacity: 0, hidden: true };
+  }
+
+  // Exiting — full layer slides up and fades (does not morph into inactive).
+  if (rel < 0) {
+    return {
+      contentOpacity: Math.max(0, 1 + rel * EXIT_FADE_SPEED),
+      baseOpacity: 0,
+      hidden: false,
+    };
+  }
+
+  // Active peak.
+  if (Math.abs(rel) < 0.0001) {
+    return { contentOpacity: 1, baseOpacity: 0, hidden: false };
+  }
+
+  // Rising from inactive stack into active slot — content crossfades onto base.
+  if (rel <= 1) {
+    const t = easeInOutCubic(1 - rel);
+    return {
+      contentOpacity: t,
+      baseOpacity: 1 - t,
+      hidden: false,
+    };
+  }
+
+  // Deep inactive — thin slab only.
+  return { contentOpacity: 0, baseOpacity: 1, hidden: false };
+}
+
+/** Layers still on screen (exiting layer kept until rel <= -1). */
+function getVisibleLayers(floatIndex: number) {
+  const clamped = clamp(floatIndex, 0, LAYER_COUNT - 1);
+  return platformLayersByElevation
+    .map((layer, layerIndex) => ({
+      layer,
+      layerIndex,
+      rel: layerIndex - clamped,
+    }))
+    .filter(({ rel }) => rel > -1);
+}
+
+/** Container height to fit the current stack without clipping. */
+function getStackHeight(width: number, floatIndex: number) {
+  const clamped = clamp(floatIndex, 0, LAYER_COUNT - 1);
+  const bottomIndex = LAYER_COUNT - 1;
+  const bottomRel = bottomIndex - clamped;
+  if (bottomRel <= -1) {
+    return width * getContentAspect(getAnchorLayer(clamped));
+  }
+
+  const bottomLayer = platformLayersByElevation[bottomIndex];
+  const bottomOffset = getStackOffsetY(bottomRel, bottomLayer, clamped, width);
+  const bottomHeight = width * getSlotAspect(bottomLayer, bottomRel);
+  return bottomOffset + bottomHeight;
+}
+
+/** Tallest stack (floatIndex 0 — active + full inactive deck). Fixed middle column height. */
+function getMaxStackHeight(width: number) {
+  return getStackHeight(width, 0);
+}
+
+/** Push the stack down as inactive layers disappear — keeps the last layer centered. */
+function getStackVerticalOffset(floatIndex: number, width: number) {
+  if (LAYER_COUNT <= 1 || width <= 0) return 0;
+
+  const maxHeight = getMaxStackHeight(width);
+  const currentHeight = getStackHeight(width, floatIndex);
+  const slack = Math.max(0, maxHeight - currentHeight);
+  const progress = clamp(floatIndex / (LAYER_COUNT - 1), 0, 1);
+
+  return slack * easeInOutCubic(progress) * END_STACK_CENTER_BIAS;
+}
+
+function getMaxStackAspect() {
+  return getStackHeight(1, 0);
+}
+
+type LayerSlotProps = {
+  layer: PlatformLayer;
+  layerIndex: number;
+  rel: number;
+  floatIndex: number;
+  width: number;
+  animate: boolean;
+};
+
+function LayerSlot({
+  layer,
+  layerIndex,
+  rel,
+  floatIndex,
+  width,
+  animate,
+}: LayerSlotProps) {
+  const { contentOpacity, baseOpacity, hidden } = getSlotVisualState(rel, animate);
+  const offsetY = width > 0 ? getStackOffsetY(rel, layer, floatIndex, width) : 0;
+  const slotAspect = getSlotAspect(layer, rel);
+
+  if (hidden) return null;
+
   return (
-    <button
-      type="button"
-      onClick={onSelect}
-      aria-label={layer.label}
-      aria-pressed={isActive}
-      className="group/layer relative block w-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/60"
+    <div
+      className="absolute top-0 left-0 w-full overflow-visible"
       style={{
-        opacity,
-        transform: `scale(${scale})`,
-        transition: "opacity 0.45s ease, transform 0.45s ease",
+        paddingBottom: `${slotAspect * 100}%`,
+        transform: `translateY(${offsetY}px)`,
+        zIndex: LAYER_COUNT - layerIndex,
       }}
     >
       <Image
-        src={layer.imageSrc}
+        src={platformInactiveLayerImageSrc}
         alt=""
-        width={560}
-        height={280}
+        width={platformInactiveLayerWidth}
+        height={platformInactiveLayerHeight}
+        unoptimized
         draggable={false}
-        className={cn(
-          "h-auto w-full select-none",
-          isActive && "drop-shadow-[0_12px_40px_rgba(200,184,240,0.15)]",
-        )}
+        aria-hidden
+        className="absolute bottom-0 left-0 h-auto w-full select-none"
+        style={{ opacity: baseOpacity * INACTIVE_LAYER_OPACITY }}
       />
-    </button>
+
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{ opacity: contentOpacity }}
+      >
+        <Image
+          src={layer.imageSrc}
+          alt=""
+          width={layer.imageWidth ?? 1024}
+          height={layer.imageHeight ?? 480}
+          unoptimized
+          draggable={false}
+          aria-hidden
+          className="h-full w-full select-none object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
+type UnifiedLayerStackProps = {
+  floatIndex: number;
+  animate: boolean;
+};
+
+/**
+ * Continuous sliding deck — scroll drives every layer's vertical position via
+ * `rel = layerIndex - floatIndex`. Active layer at rel≈0, inactive stack below,
+ * exiting layer slides upward at rel<0 (same motion as the reference sequence).
+ */
+function UnifiedLayerStack({ floatIndex, animate }: UnifiedLayerStackProps) {
+  const stackRef = useRef<HTMLDivElement>(null);
+  const [width, setWidth] = useState(0);
+
+  const clamped = clamp(floatIndex, 0, LAYER_COUNT - 1);
+  const visibleLayers = getVisibleLayers(clamped);
+
+  useLayoutEffect(() => {
+    const el = stackRef.current;
+    if (!el) return;
+
+    const update = () => {
+      if (el.offsetWidth > 0) setWidth(el.offsetWidth);
+    };
+
+    update();
+    const observer = new ResizeObserver(update);
+    observer.observe(el);
+    window.addEventListener("resize", update);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", update);
+    };
+  }, [clamped]);
+
+  if (visibleLayers.length === 0) return null;
+
+  const fixedStackHeight = width > 0 ? getMaxStackHeight(width) : undefined;
+  const centeringOffset =
+    width > 0 ? getStackVerticalOffset(floatIndex, width) : 0;
+
+  return (
+    <div
+      ref={stackRef}
+      className="relative w-full overflow-visible"
+      style={{
+        height: fixedStackHeight,
+        minHeight: fixedStackHeight,
+        paddingBottom: width <= 0 ? `${getMaxStackAspect() * 100}%` : undefined,
+        transform:
+          width > 0
+            ? `translateY(${STACK_OFFSET_Y * width + centeringOffset}px)`
+            : undefined,
+      }}
+    >
+      {visibleLayers.map(({ layer, layerIndex, rel }) => (
+        <LayerSlot
+          key={layer.id}
+          layer={layer}
+          layerIndex={layerIndex}
+          rel={rel}
+          floatIndex={clamped}
+          width={width}
+          animate={animate}
+        />
+      ))}
+    </div>
   );
 }
 
 type LayerStackProps = {
-  activeLayerId: string;
-  scrollFloatIndex: number;
-  onSelectLayer: (layerId: string) => void;
+  floatIndex: number;
+  animate: boolean;
 };
 
-function LayerStack({ activeLayerId, scrollFloatIndex, onSelectLayer }: LayerStackProps) {
-  const sortedLayers = useMemo(
-    () => [...platformLayers].sort((a, b) => a.elevation - b.elevation),
-    [],
-  );
-
-  const layerIndexById = useMemo(() => {
-    const map = new Map<string, number>();
-    platformLayersByElevation.forEach((layer, index) => {
-      map.set(layer.id, index);
-    });
-    return map;
-  }, []);
-
+function LayerStack({ floatIndex, animate }: LayerStackProps) {
   return (
-    <div className="relative flex w-full min-h-[360px] flex-col items-center justify-center pb-4 sm:min-h-[400px]">
-      <div className="flex w-full max-w-md flex-col items-center sm:max-w-lg">
-        {sortedLayers.map((layer, stackIndex) => {
-          const sidebarIndex = layerIndexById.get(layer.id) ?? 0;
-          const distance = Math.max(0, sidebarIndex - scrollFloatIndex);
-          const isPassedLayer = sidebarIndex < scrollFloatIndex;
-          const isActiveLayer = layer.id === activeLayerId;
-          const opacity = isPassedLayer ? 0 : Math.max(0.6, 1 - distance * 0.05);
-          const scale = Math.max(0.94, 1 - distance * 0.02);
-
-          return (
-            <div
-              key={layer.id}
-              className="relative w-full"
-              style={{
-                marginTop: stackIndex === 0 ? 0 : `-${LAYER_OVERLAP_RATIO * 100}%`,
-                zIndex: isActiveLayer ? 20 : stackIndex + 1,
-                transition: "z-index 0s",
-              }}
-            >
-              <LayerImage
-                layer={layer}
-                isActive={isActiveLayer}
-                opacity={opacity}
-                scale={scale}
-                onSelect={() => onSelectLayer(layer.id)}
-              />
-            </div>
-          );
-        })}
+    <div className="relative flex w-full flex-col items-center justify-center pb-2">
+      <div
+        className={cn(
+          "relative flex w-full flex-col items-center",
+          LAYER_STACK_MAX_WIDTH,
+        )}
+      >
+        <UnifiedLayerStack floatIndex={floatIndex} animate={animate} />
       </div>
 
       <div
@@ -148,46 +433,56 @@ function LayerStack({ activeLayerId, scrollFloatIndex, onSelectLayer }: LayerSta
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*  Sidebar — nav items drift + crossfade in sync with floatIndex             */
+/* -------------------------------------------------------------------------- */
+
 type SidebarProps = {
-  activeLayerId: string;
+  floatIndex: number;
   onSelectLayer: (layerId: string) => void;
 };
 
-function Sidebar({ activeLayerId, onSelectLayer }: SidebarProps) {
+function Sidebar({ floatIndex, onSelectLayer }: SidebarProps) {
+  const clamped = clamp(floatIndex, 0, LAYER_COUNT - 1);
+
   return (
-    <nav aria-label="Platform layers" className="flex flex-col gap-1">
-      {platformLayersByElevation.map((layer) => {
-        const isActive = layer.id === activeLayerId;
+    <nav aria-label="Platform layers" className="flex flex-col gap-0">
+      {platformLayersByElevation.map((layer, index) => {
+        const rel = index - clamped;
+        const translateY = rel * NAV_ITEM_SLIDE_PX;
+        const dist = Math.abs(rel);
+        const emphasis = dist >= 1 ? 0 : 1 - easeInOutCubic(dist);
+
+        const lineWidth = 12 + emphasis * 12;
+        const opacity = 0.5 + emphasis * 0.5;
+
         return (
           <button
             key={layer.id}
             type="button"
             onClick={() => onSelectLayer(layer.id)}
             className="group text-left"
+            style={{ transform: `translateY(${translateY}px)` }}
           >
-            <div className="flex items-start gap-3 py-2.5">
+            <div className="flex items-start gap-3 py-0">
               <div
-                className={cn(
-                  "mt-2 h-px shrink-0 transition-all duration-300",
-                  isActive
-                    ? "w-6 bg-white"
-                    : "w-3 bg-white/30 group-hover:w-5 group-hover:bg-white/50",
-                )}
+                className="mt-2 h-px shrink-0 bg-white"
+                style={{ width: lineWidth, opacity }}
               />
               <div className="min-w-0">
-                <p
-                  className={cn(
-                    "text-sm font-medium transition-colors",
-                    isActive ? "text-white" : "text-white/50 group-hover:text-white/80",
-                  )}
-                >
+                <p className="text-sm font-medium text-white" style={{ opacity }}>
                   {layer.label}
                 </p>
-                {isActive && (
-                  <p className="mt-1.5 text-sm leading-relaxed text-white/45">
-                    {layer.sidebarDescription}
-                  </p>
-                )}
+                <p
+                  className="overflow-hidden text-sm leading-relaxed text-white/45"
+                  style={{
+                    opacity: emphasis * 0.9,
+                    maxHeight: `${emphasis * 88}px`,
+                    marginTop: `${emphasis * 4}px`,
+                  }}
+                >
+                  {layer.sidebarDescription}
+                </p>
               </div>
             </div>
           </button>
@@ -197,66 +492,64 @@ function Sidebar({ activeLayerId, onSelectLayer }: SidebarProps) {
   );
 }
 
+/* -------------------------------------------------------------------------- */
+/*  Detail panel                                                              */
+/* -------------------------------------------------------------------------- */
+
 type DetailPanelProps = {
   layer: PlatformLayer;
-  tile: PlatformTile;
 };
 
-function DetailPanel({ layer, tile }: DetailPanelProps) {
+function DetailPanel({ layer }: DetailPanelProps) {
+  const tile = getPrimaryTile(layer);
   const Icon = tile.icon;
   const isLayerPrimary = tile.id === layer.id;
+  const href = tile.href ?? primaryProductLifecycleHref;
 
   return (
     <div className="flex flex-col">
       <div className="flex size-9 items-center justify-center rounded-lg border border-white/10 bg-white/5">
         <Icon className="size-4 text-white/80" strokeWidth={1.5} />
       </div>
-      <p className="mt-5 text-[11px] font-medium tracking-wide text-white/40 uppercase">
+      <p className="mt-4 text-[11px] font-medium tracking-wide text-white/40 uppercase">
         {layer.label}
       </p>
-      <h3 className="mt-1 text-lg font-medium text-white">
+      <h3 className="mt-1 text-base font-medium text-white">
         {isLayerPrimary ? layer.label : tile.label}
       </h3>
-      <p className="mt-2 text-sm leading-relaxed text-white/50">
+      <p className="mt-1.5 text-sm leading-snug text-white/50">
         {isLayerPrimary ? layer.sidebarDescription : tile.description}
       </p>
-      {tile.href ? (
-        <Button
-          variant="outline"
-          size="sm"
-          className="mt-6 w-fit border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
-          render={<Link href={tile.href} />}
-        >
-          Learn more
-        </Button>
-      ) : (
-        <Button
-          variant="outline"
-          size="sm"
-          className="mt-6 w-fit border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
-          render={<Link href={primaryProductLifecycleHref} />}
-        >
-          Learn more
-        </Button>
-      )}
+      <Button
+        variant="outline"
+        size="sm"
+        className="mt-4 w-fit border-white/20 bg-transparent text-white hover:bg-white/10 hover:text-white"
+        render={<Link href={href} />}
+      >
+        Learn more
+      </Button>
     </div>
   );
 }
 
-type PlatformArchitectureHeaderProps = {
-  className?: string;
-};
+/* -------------------------------------------------------------------------- */
+/*  Header                                                                    */
+/* -------------------------------------------------------------------------- */
 
-function PlatformArchitectureHeader({ className }: PlatformArchitectureHeaderProps) {
+function PlatformArchitectureHeader({ className }: { className?: string }) {
   return (
     <div className={cn("mx-auto max-w-2xl shrink-0 text-center", className)}>
+      <p className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-white/60">
+        <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
+        The architecture
+      </p>
       <h2
         id="platform-architecture-heading"
-        className="font-source-serif text-3xl font-medium tracking-tight text-balance text-white sm:text-4xl md:text-5xl"
+        className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance text-white sm:text-4xl md:text-5xl"
       >
         The Perry Platform
       </h2>
-      <p className="mt-5 text-base leading-relaxed text-white/50 text-pretty sm:text-lg">
+      <p className="mt-3 text-base leading-relaxed text-white/50 text-pretty sm:text-base">
         Private capital legal work sits at the center of every fund lifecycle event.
         Perry was built from first principles for in-house legal teams managing
         formation, deals, portfolio, and exit.
@@ -264,6 +557,10 @@ function PlatformArchitectureHeader({ className }: PlatformArchitectureHeaderPro
     </div>
   );
 }
+
+/* -------------------------------------------------------------------------- */
+/*  Explorer                                                                  */
+/* -------------------------------------------------------------------------- */
 
 type PlatformArchitectureExplorerProps = {
   sectionRef: RefObject<HTMLElement | null>;
@@ -276,133 +573,142 @@ export function PlatformArchitectureExplorer({
   showHeader = true,
   className,
 }: PlatformArchitectureExplorerProps) {
-  const scrollRunwayRef = useRef<HTMLDivElement>(null);
-  const [activeLayerId, setActiveLayerId] = useState(platformLayersByElevation[0].id);
-  const [scrollFloatIndex, setScrollFloatIndex] = useState(0);
-  const [scrollEnabled, setScrollEnabled] = useState(true);
+  const runwayRef = useRef<HTMLDivElement>(null);
+  const [floatIndex, setFloatIndex] = useState(0);
+  const [animate, setAnimate] = useState(true);
 
-  const layerCount = platformLayersByElevation.length;
+  const activeIndex = clamp(Math.round(floatIndex), 0, LAYER_COUNT - 1);
+  const activeLayer = platformLayersByElevation[activeIndex];
 
-  const activeLayer = useMemo(
-    () => platformLayers.find((layer) => layer.id === activeLayerId) ?? platformLayersByElevation[0],
-    [activeLayerId],
+  const panelTint = useMemo(
+    () => panelTintOverlay(getBlendedPanelTint(floatIndex), PANEL_TINT_ALPHA),
+    [floatIndex],
   );
-
-  const activeTile = useMemo(() => getPrimaryTile(activeLayer), [activeLayer]);
 
   const scrollToLayer = useCallback(
     (layerId: string) => {
-      const runway = scrollRunwayRef.current;
-      if (!runway || !scrollEnabled) return;
-
-      const index = platformLayersByElevation.findIndex((layer) => layer.id === layerId);
+      const index = platformLayersByElevation.findIndex((l) => l.id === layerId);
       if (index < 0) return;
 
-      const progress = layerCount <= 1 ? 0 : index / (layerCount - 1);
-      const targetTop = getScrollYForRunwayProgress(runway, progress);
+      const runway = runwayRef.current;
+      if (!runway || !animate) {
+        setFloatIndex(index);
+        return;
+      }
 
-      window.scrollTo({ top: targetTop, behavior: "smooth" });
+      const progress = LAYER_COUNT <= 1 ? 0 : index / (LAYER_COUNT - 1);
+      window.scrollTo({
+        top: getScrollYForProgress(runway, progress),
+        behavior: "smooth",
+      });
     },
-    [layerCount, scrollEnabled],
+    [animate],
   );
 
-  const handleSelectLayer = useCallback(
-    (layerId: string) => {
-      setActiveLayerId(layerId);
-      const index = platformLayersByElevation.findIndex((layer) => layer.id === layerId);
-      if (index >= 0) setScrollFloatIndex(index);
-      scrollToLayer(layerId);
-    },
-    [scrollToLayer],
-  );
-
+  // Disable scroll-hijack when the user prefers reduced motion.
   useEffect(() => {
-    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) {
-      setScrollEnabled(false);
-      return;
-    }
-    setScrollEnabled(true);
+    setAnimate(!window.matchMedia("(prefers-reduced-motion: reduce)").matches);
   }, []);
 
+  // Drive floatIndex from scroll progress while the section is in view.
   useEffect(() => {
-    if (!scrollEnabled) return;
+    if (!animate) return;
 
-    const updateFromScroll = () => {
-      const runway = scrollRunwayRef.current;
+    const update = () => {
+      const runway = runwayRef.current;
       const section = sectionRef.current;
       if (!runway || !section) return;
 
-      // Only drive layers once the section has entered the viewport.
-      const sectionRect = section.getBoundingClientRect();
-      if (sectionRect.bottom <= 0 || sectionRect.top >= window.innerHeight) return;
+      const rect = section.getBoundingClientRect();
+      if (rect.bottom <= 0 || rect.top >= window.innerHeight) return;
 
-      const progress = getRunwayScrollProgress(runway);
-      const floatIndex = progress * Math.max(layerCount - 1, 0);
-      const index = Math.min(layerCount - 1, Math.round(floatIndex));
-
-      setScrollFloatIndex(floatIndex);
-      setActiveLayerId(platformLayersByElevation[index].id);
+      const progress = getRunwayProgress(runway);
+      setFloatIndex(progress * (LAYER_COUNT - 1));
     };
 
-    updateFromScroll();
-    window.addEventListener("scroll", updateFromScroll, { passive: true });
-    window.addEventListener("resize", updateFromScroll);
-
+    update();
+    window.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", update);
     return () => {
-      window.removeEventListener("scroll", updateFromScroll);
-      window.removeEventListener("resize", updateFromScroll);
+      window.removeEventListener("scroll", update);
+      window.removeEventListener("resize", update);
     };
-  }, [layerCount, scrollEnabled, sectionRef]);
+  }, [animate, sectionRef]);
 
   const explorerContent = (
-    <div
-      className={cn(
-        "grid flex-1 items-start gap-10 lg:grid-cols-[minmax(0,220px)_1fr_minmax(0,240px)] lg:gap-8 xl:gap-12",
-        className,
-      )}
-    >
-      <Sidebar activeLayerId={activeLayerId} onSelectLayer={handleSelectLayer} />
-
-      <div className="flex w-full justify-start items-start overflow-visible">
-        <LayerStack
-          activeLayerId={activeLayerId}
-          scrollFloatIndex={scrollFloatIndex}
-          onSelectLayer={handleSelectLayer}
+    <div className="relative isolate mx-auto w-full max-w-8xl overflow-visible rounded-md border border-white/10">
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 overflow-hidden rounded-md"
+      >
+        <Image
+          src="/images/architecture/section-background.jpg"
+          alt=""
+          fill
+          className="object-cover"
+          sizes="(max-width: 1280px) 100vw, 1280px"
         />
+        <div className="absolute inset-0 bg-[#111113]/55" />
+        <div
+          className="absolute inset-0 transition-[background-color] duration-200 ease-in-out"
+          style={{ backgroundColor: panelTint }}
+        />
+        <div className="absolute inset-0 backdrop-blur-md" />
+        <div className="absolute inset-0 rounded-md ring-1 ring-inset ring-white/10" />
       </div>
 
-      <div className="hidden lg:block">
-        <DetailPanel layer={activeLayer} tile={activeTile} />
-      </div>
+      <div
+        className={cn(
+          "relative grid min-h-0 flex-1 items-start gap-6 px-6 lg:grid-cols-[minmax(0,180px)_1fr_minmax(0,200px)] lg:gap-6 lg:px-8 xl:gap-8 xl:px-10",
+          GRID_SECTION_PY,
+          className,
+        )}
+      >
+        <div className="self-center">
+          <Sidebar floatIndex={floatIndex} onSelectLayer={scrollToLayer} />
+        </div>
 
-      <div className="rounded-xl border border-white/10 bg-white/[0.03] p-5 lg:hidden">
-        <DetailPanel layer={activeLayer} tile={activeTile} />
+        <div className="flex w-full items-center justify-center self-center overflow-visible">
+          <LayerStack floatIndex={floatIndex} animate={animate} />
+        </div>
+
+        <div className="hidden self-center lg:block">
+          <DetailPanel layer={activeLayer} />
+        </div>
+
+        <div className="border-t border-white/10 pt-6 lg:hidden">
+          <DetailPanel layer={activeLayer} />
+        </div>
       </div>
     </div>
   );
 
-  if (!scrollEnabled) {
+  if (!animate) {
     return (
       <>
-        {showHeader && <PlatformArchitectureHeader className="mb-16" />}
+        {showHeader && <PlatformArchitectureHeader className={HEADER_GRID_GAP} />}
         {explorerContent}
       </>
     );
   }
 
+  // Runway height = viewport + per-layer travel + start/end scroll buffers.
+  const runwayHeight = `calc(100vh - ${SITE_HEADER_OFFSET} + ${
+    PER_LAYER_VH * (LAYER_COUNT - 1)
+  }vh + ${2 * SCROLL_BUFFER_PX}px)`;
+
   return (
-    <div ref={scrollRunwayRef} className="relative" style={{ height: SCROLL_RUNWAY_HEIGHT }}>
+    <div ref={runwayRef} className="relative" style={{ height: runwayHeight }}>
       <div
-        className="sticky flex flex-col overflow-hidden pt-24"
+        className="sticky flex flex-col overflow-visible pt-4"
         style={{
           top: SITE_HEADER_OFFSET,
           height: `calc(100vh - ${SITE_HEADER_OFFSET})`,
           maxHeight: `calc(100vh - ${SITE_HEADER_OFFSET})`,
         }}
       >
-        {showHeader && <PlatformArchitectureHeader className="mb-12 sm:mb-16" />}
-        <div className="min-h-0 flex-1 overflow-show">{explorerContent}</div>
+        {showHeader && <PlatformArchitectureHeader className={HEADER_GRID_GAP} />}
+        <div className="min-h-0 flex-1 overflow-visible">{explorerContent}</div>
       </div>
     </div>
   );

@@ -5,38 +5,41 @@ import { cn } from "@/lib/utils";
 
 const bentoItems = [
   {
-    slug: "fund-formation/lpa-generation",
-    label: "LPA generation",
-    description: "Draft and iterate fund documents with version control built in.",
+    slug: "fund-formation/fund-document-review",
+    label: "Fund document review",
+    description:
+      "Know whether a side-letter term is acceptable before you agree to it.",
     icon: FileText,
     className: "sm:col-span-2 sm:row-span-2",
     featured: true,
   },
   {
-    slug: "investment-period/deal-execution",
-    label: "Deal execution",
-    description: "Move from term sheet to closing with coordinated checklists.",
+    slug: "capital-deployment/review-negotiation",
+    label: "Review and negotiation",
+    description:
+      "Manage every transaction document through review, negotiation and approval.",
     icon: Zap,
     className: "sm:col-span-1",
   },
   {
-    slug: "portfolio-management/covenant-tracking",
-    label: "Covenant tracking",
-    description: "Monitor portfolio covenants and breach notifications.",
+    slug: "fund-portfolio-management/obligation-management",
+    label: "Obligation management",
+    description: "Manage ongoing work created during formation and investment.",
     icon: Shield,
     className: "sm:col-span-1",
   },
   {
-    slug: "investment-period/capital-calls",
-    label: "Capital calls",
-    description: "Issue notices, track funding, and reconcile commitments.",
+    slug: "fund-formation/mfn-workflow",
+    label: "MFN workflow",
+    description: "Run the full MFN process in one workspace.",
     icon: GitBranch,
     className: "sm:col-span-1",
   },
   {
-    slug: "investment-period/investor-onboarding",
-    label: "Investor onboarding",
-    description: "Guide LPs through subscription with a single source of truth.",
+    slug: "fund-portfolio-management/legal-question-centre",
+    label: "Legal question centre",
+    description:
+      "Give teams fast answers without turning legal into a help desk.",
     icon: Users,
     className: "sm:col-span-1",
   },
@@ -45,7 +48,7 @@ const bentoItems = [
 export function ProductFeatureBentoSection() {
   return (
     <section className="border-y border-border/60 bg-muted/20 px-6 py-24">
-      <div className="mx-auto max-w-7xl">
+      <div className="section-container">
         <div className="max-w-2xl">
           <p className="text-sm font-medium tracking-wide text-muted-foreground uppercase">
             Features

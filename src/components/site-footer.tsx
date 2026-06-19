@@ -1,31 +1,89 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
 import { footerNavLinks } from "@/lib/navigation";
+import { legalPages } from "@/lib/legal-pages";
 
 export function SiteFooter() {
   return (
     <footer id="contact" className="border-t border-border/60 bg-muted/30">
-      <div className="mx-auto max-w-7xl px-6 py-12">
-        <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
+      <div className="section-container px-6 py-12">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,2fr)] lg:items-start">
           <div>
-            <p className="text-lg font-semibold tracking-tight">Perry</p>
+            <Link href="/" className="inline-flex h-6 shrink-0 items-center">
+              <Image
+                src="/perry-logo.png"
+                alt="Perry"
+                width={355}
+                height={96}
+                className="h-6 w-auto"
+              />
+            </Link>
             <p className="mt-2 max-w-sm text-sm text-muted-foreground">
-              Building products that help teams move faster with clarity and confidence.
+              Perry is the Legal OS for high velocity funds
             </p>
+            <div className="mt-6 flex items-center gap-4">
+              <Image
+                src="/compliance/gdpr.png"
+                alt="GDPR compliance"
+                width={48}
+                height={48}
+                className="size-12 object-contain"
+              />
+              <Image
+                src="/compliance/iso-27001.png"
+                alt="ISO 27001 compliance"
+                width={48}
+                height={48}
+                className="size-12 object-contain"
+              />
+            </div>
           </div>
 
-          <nav className="flex flex-wrap gap-x-6 gap-y-2">
-            {footerNavLinks.map((link) => (
-              <Link
-                key={link.label}
-                href={link.href}
-                className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
+          <div className="grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-sm font-medium">Product</p>
+              <nav className="mt-3 flex flex-col gap-2">
+                <Link
+                  href="/"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  Home
+                </Link>
+              </nav>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium">Navigation</p>
+              <nav className="mt-3 flex flex-col gap-2">
+                {footerNavLinks.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+
+            <div>
+              <p className="text-sm font-medium">Legal</p>
+              <nav className="mt-3 flex flex-col gap-2">
+                {legalPages.map((page) => (
+                  <Link
+                    key={page.slug}
+                    href={page.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
+                    {page.title}
+                  </Link>
+                ))}
+              </nav>
+            </div>
+          </div>
         </div>
 
         <Separator className="my-8" />

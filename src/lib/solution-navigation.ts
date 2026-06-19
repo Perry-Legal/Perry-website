@@ -1,84 +1,191 @@
 export type SolutionStoryChapter = {
+  eyebrow?: string;
   title: string;
   body: string;
+  items?: string[];
+  itemsLabel?: string;
+  imageSrc?: string;
 };
 
 export type SolutionPage = {
   slug: string;
   label: string;
+  headline: string;
   description: string;
+  kpis?: string[];
+  heroImageSrc: string;
+  cardImageSrc: string;
   chapters: SolutionStoryChapter[];
+  ctaHeadline?: string;
+  ctaLabel?: string;
 };
 
 export const solutionByRole: SolutionPage[] = [
   {
     slug: "in-house-lawyer",
     label: "In-house lawyer",
+    headline: "Run legal across every fund, deal and portfolio company",
     description:
-      "Run fund legal operations from a single workspace — fewer tools, fewer handoffs, full visibility.",
+      "Perry gives private capital legal teams one connected view of documents, entities, obligations, legal decisions and external collaboration.",
+    kpis: [
+      "Less repeated legal research",
+      "More consistent negotiation positions",
+      "Fewer missed obligations",
+      "Faster responses to the business",
+      "Better control of external counsel",
+      "Stronger institutional knowledge",
+    ],
+    heroImageSrc: "/images/solutions/in-house-lawyer.jpg",
+    cardImageSrc: "/images/solutions/cards/in-house-lawyer.jpg",
     chapters: [
       {
-        title: "Centralize fund documents and approvals",
+        title: "Make consistent legal decisions",
         body:
-          "Stop chasing versions across email and shared drives. Perry gives in-house legal teams one workspace for fund docs, approval chains, and execution status — so you always know which version is live and who signed off.",
+          "Use prior negotiations, fund terms and transaction history when reviewing new legal work.",
+        imageSrc: "/images/chapters/legal-documents.jpg",
       },
       {
-        title: "Automate recurring compliance workflows",
+        title: "Stay ahead of obligations",
         body:
-          "Formation filings, recurring regulatory submissions, and portfolio obligations follow predictable patterns. Perry turns them into repeatable workflows with deadlines, owners, and evidence — reducing manual tracking without losing control.",
+          "Turn legal terms into owned, trackable and reportable actions.",
+        imageSrc: "/images/chapters/obligations.jpg",
       },
       {
-        title: "Collaborate with finance and operations in one system",
+        title: "Scale access to legal knowledge",
         body:
-          "Capital calls, distributions, and LP communications depend on legal accuracy. When finance and ops work from the same fund record, reconciliations happen faster and disputes about terms become rare.",
+          "Give teams fast, grounded answers while preserving legal oversight.",
+        imageSrc: "/images/chapters/knowledge.jpg",
+      },
+      {
+        eyebrow: "How teams use Perry",
+        title: "How in-house legal teams use Perry",
+        body: "",
+        imageSrc: "/images/chapters/collaboration.jpg",
+        items: [
+          "Review side letters and fund documents",
+          "Run MFN processes",
+          "Review and negotiate transaction documents",
+          "Review diligence materials",
+          "Check investments against fund restrictions",
+          "Manage ongoing obligations",
+          "Answer internal legal questions",
+          "Coordinate external counsel",
+          "Prepare for exit",
+        ],
       },
     ],
+    ctaHeadline: "Give your legal team one connected system for every fund and deal",
+    ctaLabel: "Book a legal team walkthrough",
   },
   {
     slug: "portfolio-company",
     label: "Portfolio company",
+    headline: "Complete investor legal work without the email chain",
     description:
-      "Respond to investor requests, consents, and reporting obligations without email chaos.",
+      "Respond to requests, share entity records, complete approvals and prepare for transactions through one controlled workspace.",
+    heroImageSrc: "/images/solutions/portfolio-company.jpg",
+    cardImageSrc: "/images/solutions/cards/portfolio-company.jpg",
     chapters: [
       {
-        title: "Clear portals for document requests and signatures",
-        body:
-          "Investors send requests; legal teams need responses. Portfolio companies get structured portals for document uploads, consent execution, and status tracking — no more lost attachments or unclear deadlines.",
+        eyebrow: "Core use cases",
+        title: "Everything your investors need, in one place",
+        body: "",
+        imageSrc: "/images/chapters/governance.jpg",
+        items: [
+          "Upload corporate records",
+          "Respond to legal questions",
+          "Complete consent requests",
+          "Manage board and shareholder actions",
+          "Track investor reporting obligations",
+          "Prepare documents for financing or exit",
+        ],
       },
       {
-        title: "Track covenant and reporting deadlines",
-        body:
-          "Loan covenants and investor reporting obligations pile up quietly. Perry surfaces upcoming deadlines with context on what is due and who needs to act, so portfolio teams stay ahead of breaches and missed submissions.",
+        eyebrow: "Focused workspace",
+        title: "Show only what matters",
+        body: "",
+        imageSrc: "/images/chapters/collaboration.jpg",
+        itemsLabel: "Show only",
+        items: [
+          "Requests",
+          "Documents",
+          "Entities",
+          "Approvals",
+          "Tasks",
+          "Questions",
+          "Completed actions",
+        ],
       },
       {
-        title: "Maintain a shared record with your investors",
-        body:
-          "Every consent, filing, and report becomes part of a shared record accessible to authorized stakeholders. When investors ask what happened and when, the answer is already documented.",
+        eyebrow: "Outcomes",
+        title: "Clearer governance, faster responses",
+        body: "",
+        imageSrc: "/images/chapters/deal.jpg",
+        items: [
+          "Clearer requests",
+          "Faster responses",
+          "Fewer repeated uploads",
+          "Better governance records",
+          "Stronger transaction readiness",
+        ],
       },
     ],
+    ctaHeadline: "Respond to investor legal work without the back-and-forth",
+    ctaLabel: "Book a portfolio company walkthrough",
   },
   {
     slug: "lps",
     label: "LPs",
+    headline: "A clearer way to manage fund legal interactions",
     description:
-      "Give limited partners a transparent view into subscriptions, notices, and fund communications.",
+      "Review fund documents, complete onboarding, make MFN elections and respond to legal requests through one secure investor workspace.",
+    heroImageSrc: "/images/solutions/lps.jpg",
+    cardImageSrc: "/images/solutions/cards/lps.jpg",
     chapters: [
       {
-        title: "Self-serve access to subscription and KYC status",
-        body:
-          "Limited partners should not need to email for updates on their subscription progress. Perry provides secure self-serve access to KYC status, outstanding items, and next steps — reducing friction for both LPs and fund teams.",
+        eyebrow: "Core use cases",
+        title: "From onboarding to ongoing investor actions",
+        body: "",
+        imageSrc: "/images/chapters/investor.jpg",
+        items: [
+          "Subscription and onboarding",
+          "KYC and AML requests",
+          "Side-letter review",
+          "MFN elections",
+          "Consent requests",
+          "Notices and investor communications",
+        ],
       },
       {
-        title: "Timely capital call and distribution notices",
-        body:
-          "Capital events require precision and timeliness. LPs receive notices generated from authoritative fund data, with clear amounts, deadlines, and supporting documentation in one secure location.",
+        eyebrow: "Investor visibility",
+        title: "Everything in one secure workspace",
+        body: "",
+        imageSrc: "/images/chapters/legal-documents.jpg",
+        items: [
+          "Outstanding actions",
+          "Available MFN rights",
+          "Submitted information",
+          "Fund documents",
+          "Elections and consents",
+          "Historical communications",
+        ],
       },
       {
-        title: "Secure document room for fund materials",
-        body:
-          "Quarterly reports, side letters, and fund updates belong in a controlled environment. LPs access materials through a secure portal with a complete history — not scattered across inboxes.",
+        eyebrow: "Outcomes",
+        title: "A complete investor legal record",
+        body: "",
+        imageSrc: "/images/chapters/governance.jpg",
+        items: [
+          "Greater transparency",
+          "Faster onboarding",
+          "Easier MFN completion",
+          "Fewer repeated requests",
+          "A complete investor legal record",
+        ],
       },
     ],
+    ctaHeadline: "Manage fund legal interactions in one secure workspace",
+    ctaLabel: "Book an investor workspace walkthrough",
   },
 ];
 
@@ -86,48 +193,112 @@ export const solutionByIndustry: SolutionPage[] = [
   {
     slug: "vc",
     label: "Venture capital",
+    headline: "Legal infrastructure for high-volume investing",
     description:
-      "Purpose-built workflows for venture capital firms across fund formation, deals, and portfolio support.",
+      "Perry helps lean venture teams review more deals, manage larger portfolios and preserve legal context across repeated investment activity.",
+    heroImageSrc: "/images/solutions/venture-capital.jpg",
+    cardImageSrc: "/images/solutions/cards/venture-capital.jpg",
     chapters: [
       {
-        title: "Streamline early-stage deal closings and SAFE conversions",
-        body:
-          "Venture deals move quickly with lightweight documentation. Perry supports fast closings and SAFE conversions with checklists, version control, and condition tracking sized for early-stage velocity.",
+        eyebrow: "Most relevant workflows",
+        title: "Built for the pace of venture investing",
+        body: "",
+        imageSrc: "/images/chapters/deal.jpg",
+        items: [
+          "Rapid investment document review",
+          "High-volume document review",
+          "Fund mandate checks",
+          "Follow-on financing",
+          "Portfolio governance requests",
+          "Rights tracking",
+          "Exit readiness",
+        ],
       },
       {
-        title: "Manage fund docs across multiple vintage vehicles",
-        body:
-          "VC firms often run parallel funds and SPVs. Perry keeps entity structures, LPAs, and side letters organized across vehicles — so terms stay consistent and teams do not rebuild context for each fund.",
+        eyebrow: "Why Perry fits VC",
+        title: "Designed for lean teams and repeated deal structures",
+        body: "",
+        imageSrc: "/images/chapters/diligence.jpg",
+        items: [
+          "Repeated deal structures",
+          "Large portfolio counts",
+          "Lean legal teams",
+          "Frequent follow-on rounds",
+          "High volume of internal questions",
+          "Need for reusable precedent",
+        ],
       },
       {
-        title: "Support portfolio companies with investor-ready portals",
-        body:
-          "Portfolio support scales when companies have clear channels for consents, reporting, and document requests. Perry gives VC legal teams portals they can extend to portfolio companies without custom tooling.",
+        eyebrow: "Outcomes",
+        title: "Scale legal support without scaling headcount",
+        body: "",
+        imageSrc: "/images/chapters/portfolio.jpg",
+        items: [
+          "Faster review across more deals",
+          "More consistent terms",
+          "Better portfolio visibility",
+          "Reduced legal administrative load",
+          "Scalable access to legal knowledge",
+        ],
       },
     ],
+    ctaHeadline: "Scale legal support across more deals without scaling headcount",
+    ctaLabel: "Book a venture capital walkthrough",
   },
   {
     slug: "pe",
     label: "Private equity",
+    headline: "Legal control across complex ownership structures",
     description:
-      "Legal infrastructure for private equity firms managing complex transactions and portfolio oversight.",
+      "Perry connects fund restrictions, transaction documents, portfolio rights and ongoing obligations from acquisition through exit.",
+    heroImageSrc: "/images/solutions/private-equity.jpg",
+    cardImageSrc: "/images/solutions/cards/private-equity.jpg",
     chapters: [
       {
-        title: "Coordinate LBO closings with granular condition tracking",
-        body:
-          "LBO closings involve dozens of conditions across legal, finance, and advisors. Perry provides granular condition tracking with ownership and status — so nothing blocks signing without visibility.",
+        eyebrow: "Most relevant workflows",
+        title: "From diligence through exit",
+        body: "",
+        imageSrc: "/images/chapters/diligence.jpg",
+        items: [
+          "Fund restriction and mandate checks",
+          "Legal diligence",
+          "Transaction review and negotiation",
+          "Holding structure management",
+          "Governance and covenant tracking",
+          "Add-ons and refinancings",
+          "Exit readiness",
+        ],
       },
       {
-        title: "Monitor portfolio covenants and board governance",
-        body:
-          "PE portfolio oversight spans credit agreements, board actions, and recurring compliance. Perry connects covenant monitoring to governance workflows, giving legal teams early warning and structured response paths.",
+        eyebrow: "Why Perry fits PE",
+        title: "Built for complexity and long hold periods",
+        body: "",
+        imageSrc: "/images/chapters/governance.jpg",
+        items: [
+          "Complex transaction structures",
+          "Large document sets",
+          "Extensive adviser involvement",
+          "Multiple holding and acquisition entities",
+          "Long-term governance obligations",
+          "Repeated portfolio events",
+        ],
       },
       {
-        title: "Prepare LP reporting and regulatory filings at scale",
-        body:
-          "Large PE platforms produce reporting at volume. Perry reuses portfolio data across LP reports and regulatory filings — reducing duplication and keeping legal, finance, and IR aligned on the numbers.",
+        eyebrow: "Outcomes",
+        title: "Continuity from deal to portfolio to exit",
+        body: "",
+        imageSrc: "/images/chapters/exit.jpg",
+        items: [
+          "Better deal-to-portfolio continuity",
+          "More consistent legal decisions",
+          "Stronger governance oversight",
+          "Clearer external counsel coordination",
+          "Earlier exit preparation",
+        ],
       },
     ],
+    ctaHeadline: "Maintain legal control from diligence through exit",
+    ctaLabel: "Book a private equity walkthrough",
   },
 ];
 

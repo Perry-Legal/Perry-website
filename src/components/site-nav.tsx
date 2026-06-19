@@ -1,55 +1,95 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronDown } from "lucide-react";
+import { useState } from "react";
 
 import { ProductNavMenu } from "@/components/product-nav-menu";
 import { SolutionNavMenu } from "@/components/solution-nav-menu";
 import {
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-} from "@/components/ui/popover";
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@/components/ui/navigation-menu";
+import type { HeaderContrast } from "@/hooks/use-adaptive-header";
 import { simpleNavLinks } from "@/lib/navigation";
 import { cn } from "@/lib/utils";
 
-const navTriggerClassName =
-  "inline-flex h-9 items-center gap-1 rounded-lg px-2.5 text-sm text-muted-foreground transition-colors outline-none hover:bg-muted hover:text-foreground data-popup-open:bg-muted/50 data-popup-open:text-foreground";
+type SiteNavProps = {
+  contrast?: HeaderContrast;
+};
 
-export function SiteNav() {
+export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
+  const onDark = contrast === "on-dark";
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+
+  const navTriggerClassName = cn(
+    "h-9 gap-1 px-2.5 py-0 text-sm font-normal transition-colors",
+    onDark
+      ? "text-white/80 hover:bg-white/10 hover:text-white focus:bg-white/10 data-popup-open:bg-white/10 data-popup-open:hover:bg-white/10 data-popup-open:text-white data-open:bg-white/10 data-open:hover:bg-white/10 data-open:focus:bg-white/10 data-open:text-white"
+      : "text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted data-popup-open:bg-muted/50 data-popup-open:hover:bg-muted data-popup-open:text-foreground data-open:bg-muted/50 data-open:hover:bg-muted data-open:focus:bg-muted data-open:text-foreground",
+  );
+
+  const navLinkClassName = cn(
+    "inline-flex h-9 items-center rounded-lg px-2.5 text-sm transition-colors",
+    onDark
+      ? "text-white/80 hover:bg-white/10 hover:text-white focus:bg-white/10"
+      : "text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted",
+  );
+
+  const menuPanelClassName = cn(
+    "rounded-lg",
+    onDark
+      ? "border border-white/10 bg-black/90 text-white shadow-none backdrop-blur-md"
+      : "bg-popover shadow ring-1 ring-foreground/10",
+  );
+
   return (
-    <nav className="hidden items-center gap-1 md:flex">
-      <Popover>
-        <PopoverTrigger className={navTriggerClassName}>
-          Product
-          <ChevronDown className="size-3" />
-        </PopoverTrigger>
-        <PopoverContent align="start" className="w-auto p-0">
-          <ProductNavMenu />
-        </PopoverContent>
-      </Popover>
+    <NavigationMenu
+      value={activeItem}
+      onValueChange={(nextValue, eventDetails) => {
+        if (eventDetails.reason === "trigger-press") {
+          return;
+        }
+        setActiveItem(nextValue);
+      }}
+      className="hidden max-w-none flex-none justify-start md:flex"
+      align="start"
+      delay={100}
+      closeDelay={250}
+    >
+      <NavigationMenuList className="gap-1">
+        <NavigationMenuItem value="product">
+          <NavigationMenuTrigger className={navTriggerClassName}>
+            Product
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="p-0">
+            <div className={menuPanelClassName}>
+              <ProductNavMenu contrast={contrast} />
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
 
-      <Popover>
-        <PopoverTrigger className={navTriggerClassName}>
-          Solution
-          <ChevronDown className="size-3" />
-        </PopoverTrigger>
-        <PopoverContent align="start" className="w-auto p-2.5">
-          <SolutionNavMenu />
-        </PopoverContent>
-      </Popover>
+        <NavigationMenuItem value="solution">
+          <NavigationMenuTrigger className={navTriggerClassName}>
+            Solution
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="p-0">
+            <div className={cn(menuPanelClassName, "p-2.5")}>
+              <SolutionNavMenu contrast={contrast} />
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
 
-      {simpleNavLinks.map((link) => (
-        <Link
-          key={link.href}
-          href={link.href}
-          className={cn(
-            "inline-flex h-9 items-center rounded-lg px-2.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
-          )}
-        >
-          {link.label}
-        </Link>
-      ))}
-    </nav>
+        {simpleNavLinks.map((link) => (
+          <NavigationMenuItem key={link.href}>
+            <Link href={link.href} className={navLinkClassName}>
+              {link.label}
+            </Link>
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
   );
 }

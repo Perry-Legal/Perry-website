@@ -9,18 +9,13 @@ type StoryChapterVisualProps = {
 };
 
 function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps) {
-  const accents = [
-    "from-primary/8 via-muted/60 to-background",
-    "from-foreground/6 via-muted/50 to-background",
-    "from-primary/6 via-muted/40 to-muted/20",
-    "from-foreground/5 via-background to-muted/30",
-  ] as const;
+  const isSquareImage = imageSrc?.includes("/platform-intelligence-square/");
 
   return (
     <div
       className={cn(
-        "relative aspect-[4/3] overflow-hidden rounded-2xl border border-border bg-gradient-to-br shadow-sm",
-        accents[index % accents.length],
+        "relative overflow-hidden rounded-sm border border-border bg-muted/30 shadow-sm",
+        isSquareImage ? "aspect-square" : "aspect-[4/5]",
       )}
     >
       {imageSrc ? (
@@ -28,7 +23,12 @@ function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps)
           src={imageSrc}
           alt=""
           fill
-          className="object-contain p-8"
+          unoptimized={
+            imageSrc.includes("/platform-intelligence/") ||
+            imageSrc.includes("/platform-intelligence-square/")
+          }
+          className="object-contain object-center"
+          sizes="(max-width: 1024px) 100vw, 560px"
         />
       ) : (
         <>
@@ -50,11 +50,21 @@ function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps)
   );
 }
 
+export type StoryItemGroup = {
+  label?: string;
+  items: string[];
+};
+
 type StoryChapterProps = {
   id?: string;
   index: number;
+  eyebrow?: string;
   title: string;
   description: string;
+  items?: string[];
+  itemsLabel?: string;
+  itemGroups?: StoryItemGroup[];
+  outcome?: string;
   outcomes?: string[];
   imageSrc?: string;
   className?: string;
@@ -63,8 +73,13 @@ type StoryChapterProps = {
 export function StoryChapter({
   id,
   index,
+  eyebrow,
   title,
   description,
+  items,
+  itemsLabel,
+  itemGroups,
+  outcome,
   outcomes,
   imageSrc,
   className,
@@ -80,17 +95,64 @@ export function StoryChapter({
         className,
       )}
     >
-      <div className="mx-auto grid max-w-7xl gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
+      <div className="section-container grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
         <div className={cn("flex flex-col justify-center", !imageOnLeft && "lg:order-2")}>
           <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
-            Chapter {String(index).padStart(2, "0")}
+            {eyebrow ?? `Chapter ${String(index).padStart(2, "0")}`}
           </p>
           <h2 className="mt-3 font-source-serif text-2xl font-medium tracking-tight text-balance sm:text-3xl">
             {title}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground text-pretty">
-            {description}
-          </p>
+          {description && (
+            <p className="mt-5 text-base leading-relaxed text-muted-foreground text-pretty">
+              {description}
+            </p>
+          )}
+          {items && items.length > 0 && (
+            <div className="mt-6">
+              {itemsLabel && (
+                <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  {itemsLabel}
+                </p>
+              )}
+              <ul className={cn("space-y-2.5", itemsLabel && "mt-3")}>
+                {items.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground">
+                    <span
+                      aria-hidden
+                      className="mt-2 size-1 shrink-0 rounded-full bg-foreground/35"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          )}
+          {itemGroups?.map((group) => (
+            <div key={group.label ?? group.items[0]} className="mt-6">
+              {group.label && (
+                <p className="text-xs font-medium tracking-wide text-muted-foreground uppercase">
+                  {group.label}
+                </p>
+              )}
+              <ul className={cn("space-y-2.5", group.label && "mt-3")}>
+                {group.items.map((item) => (
+                  <li key={item} className="flex gap-3 text-sm leading-relaxed text-foreground">
+                    <span
+                      aria-hidden
+                      className="mt-2 size-1 shrink-0 rounded-full bg-foreground/35"
+                    />
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+          {outcome && (
+            <p className="mt-6 text-sm leading-relaxed text-muted-foreground text-pretty">
+              {outcome}
+            </p>
+          )}
           {outcomes && outcomes.length > 0 && (
             <ul className="mt-6 space-y-2.5">
               {outcomes.map((outcome) => (

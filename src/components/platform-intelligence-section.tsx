@@ -1,12 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useState, type ComponentType } from "react";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  intelligenceFlowStages,
-  intelligenceLayerSteps,
-} from "@/lib/platform-intelligence-flow";
+import { intelligenceFlowStages } from "@/lib/platform-intelligence-flow";
 import { cn } from "@/lib/utils";
 
 type IllustrationProps = {
@@ -85,73 +83,56 @@ function CollaborationIllustration({ className }: IllustrationProps) {
   );
 }
 
-const pipelineColumns = [
-  {
-    fig: "FIG 01",
-    label: "Documents & entities",
-    Illustration: DocumentsIllustration,
-    getItems: (stage: (typeof intelligenceFlowStages)[number]) => stage.documents,
-  },
-  {
-    fig: "FIG 02",
-    label: "Legal intelligence",
-    Illustration: IntelligenceIllustration,
-    getItems: () => intelligenceLayerSteps,
-  },
-  {
-    fig: "FIG 03",
-    label: "Actionable outputs",
-    Illustration: OutputsIllustration,
-    getItems: (stage: (typeof intelligenceFlowStages)[number]) => stage.outputs,
-  },
-  {
-    fig: "FIG 04",
-    label: "Collaboration",
-    Illustration: CollaborationIllustration,
-    getItems: (stage: (typeof intelligenceFlowStages)[number]) => stage.collaboration,
-  },
+const columnIllustrations = [
+  DocumentsIllustration,
+  IntelligenceIllustration,
+  OutputsIllustration,
+  CollaborationIllustration,
 ] as const;
 
 type PipelineColumnProps = {
-  fig: string;
   label: string;
   items: readonly string[];
+  imageSrc?: string;
   Illustration: ComponentType<IllustrationProps>;
-  animateKey?: string;
 };
 
 function PipelineColumn({
-  fig,
   label,
   items,
+  imageSrc,
   Illustration,
-  animateKey,
 }: PipelineColumnProps) {
   return (
-    <div className="grid min-h-0 grid-rows-[auto_minmax(0,1fr)_auto_auto] px-6 py-8 lg:row-span-4 lg:grid-rows-subgrid sm:px-8">
-      <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
-        {fig}
-      </p>
-
-      <div className="flex min-h-0 items-center justify-center">
-        <Illustration />
+    <div className="flex flex-col gap-2">
+      <div className="flex items-center justify-center">
+        {imageSrc ? (
+          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-none border border-border bg-muted/30">
+            <Image
+              key={imageSrc}
+              src={imageSrc}
+              alt=""
+              fill
+              unoptimized
+              className="object-contain object-center"
+              sizes="(max-width: 1024px) 80vw, 220px"
+            />
+          </div>
+        ) : (
+          <Illustration />
+        )}
       </div>
 
-      <h4 className="text-base font-semibold tracking-tight text-foreground">{label}</h4>
-
-      <ul
-        key={animateKey}
-        className={cn(
-          "space-y-1.5",
-          animateKey && "animate-in fade-in slide-in-from-bottom-1 duration-300",
-        )}
-      >
-        {items.map((item) => (
-          <li key={item} className="text-sm leading-relaxed text-muted-foreground">
-            {item}
-          </li>
-        ))}
-      </ul>
+      <div className="space-y-1">
+        <h4 className="text-lg font-medium tracking-tight text-foreground">{label}</h4>
+        <ul className="space-y-1.5">
+          {items.map((item) => (
+            <li key={item} className="text-sm leading-relaxed text-muted-foreground">
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 }
@@ -162,19 +143,17 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
     intelligenceFlowStages[0];
 
   return (
-    <div className="grid h-full grid-cols-1 grid-rows-4 divide-y divide-border/50 lg:grid-cols-4 lg:grid-rows-[auto_minmax(0,1fr)_auto_auto] lg:divide-x lg:divide-y-0">
-      {pipelineColumns.map((column) => {
-        const items = column.getItems(stage);
-        const animates = column.fig !== "FIG 02";
+    <div className="grid grid-cols-1 gap-1 motion-reduce:animate-none lg:grid-cols-4 animate-pipeline-fade-in">
+      {stage.columns.map((column, index) => {
+        const Illustration = columnIllustrations[index];
 
         return (
           <PipelineColumn
-            key={column.fig}
-            fig={column.fig}
+            key={column.label}
             label={column.label}
-            items={items}
-            Illustration={column.Illustration}
-            animateKey={animates ? `${stageId}-${column.fig}` : undefined}
+            items={column.items}
+            imageSrc={column.imageSrc}
+            Illustration={Illustration}
           />
         );
       })}
@@ -183,6 +162,41 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
 }
 
 const TAB_AUTO_ADVANCE_MS = 8000;
+
+function LifecycleTimeline({
+  activeIndex,
+  activeTab,
+}: {
+  activeIndex: number;
+  activeTab: string;
+}) {
+  return (
+    <div
+      aria-hidden
+      className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {intelligenceFlowStages.map((stage, index) => (
+        <div
+          key={stage.id}
+          className={cn(
+            "relative h-0.5 overflow-hidden",
+            index < activeIndex && "bg-foreground/40",
+            index > activeIndex && "bg-border",
+            index === activeIndex && "bg-border",
+          )}
+        >
+          {index === activeIndex && (
+            <span
+              key={activeTab}
+              className="block h-full bg-foreground animate-tab-progress motion-reduce:animate-none"
+              style={{ animationDuration: `${TAB_AUTO_ADVANCE_MS}ms` }}
+            />
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
 
 export function PlatformIntelligenceSection() {
   const [activeTab, setActiveTab] = useState(intelligenceFlowStages[0].id);
@@ -202,65 +216,81 @@ export function PlatformIntelligenceSection() {
     return () => window.clearInterval(interval);
   }, [activeTab]);
 
+  const activeIndex = intelligenceFlowStages.findIndex((stage) => stage.id === activeTab);
+
   return (
-    <section className="px-6 py-24">
-      <div className="mx-auto max-w-7xl">
-        <div className="mx-auto max-w-2xl text-center">
-          <h2 className="font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl md:text-5xl">
+    <section className="bg-[#ffffff] px-6 py-32">
+      <div className="section-container">
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-muted-foreground">
+            <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
+            Legal OS
+          </p>
+          <h2 className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl md:text-5xl">
             One platform. Every stage of the fund lifecycle.
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-muted-foreground text-pretty sm:text-lg">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty sm:text-base">
             Legal documents and entity data move through one intelligence layer and become
             actions, insights and collaboration.
           </p>
         </div>
 
-        <div className="mt-12">
-          <Tabs
-            value={activeTab}
-            onValueChange={setActiveTab}
-            className="flex h-[650px] flex-col gap-0 overflow-hidden border border-border bg-card shadow-sm"
-          >
-            <div className="flex h-16 shrink-0 items-stretch border-b border-border px-3">
-              <TabsList className="flex h-full w-full items-stretch gap-3 bg-transparent p-0">
-                {intelligenceFlowStages.map((stage) => (
-                  <TabsTrigger
-                    key={stage.id}
-                    value={stage.id}
-                    className={cn(
-                      "relative flex h-full min-h-16 flex-1 items-center justify-center self-stretch overflow-hidden bg-transparent px-2 sm:px-3",
-                      "data-active:bg-background data-active:text-foreground data-active:shadow-md",
-                    )}
-                  >
-                    <span className="relative z-10 truncate">{stage.tabLabel}</span>
-                    {activeTab === stage.id && (
-                      <span
-                        aria-hidden
-                        className="absolute inset-x-2 bottom-0 h-0.5 bg-muted"
-                      >
-                        <span
-                          key={activeTab}
-                          className="block h-full bg-foreground animate-tab-progress motion-reduce:animate-none"
-                          style={{ animationDuration: `${TAB_AUTO_ADVANCE_MS}ms` }}
-                        />
-                      </span>
-                    )}
-                  </TabsTrigger>
-                ))}
+        <Tabs
+          value={activeTab}
+          onValueChange={setActiveTab}
+          className="mt-20 flex flex-col"
+        >
+          <div className="flex flex-col gap-3">
+            <LifecycleTimeline activeIndex={activeIndex} activeTab={activeTab} />
+
+            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
+              <TabsList variant="line" className="contents">
+                {intelligenceFlowStages.map((stage, index) => {
+                  const TabIcon = stage.icon;
+
+                  return (
+                    <TabsTrigger
+                      key={stage.id}
+                      value={stage.id}
+                      className={cn(
+                        "group relative flex h-auto w-full min-h-0 flex-none flex-col items-stretch justify-start overflow-hidden rounded-none border border-transparent bg-transparent !p-0 text-left opacity-40 !shadow-none transition-opacity",
+                        "text-muted-foreground",
+                        "data-active:!border-transparent data-active:!bg-transparent data-active:text-foreground data-active:!opacity-100 data-active:!shadow-none",
+                        "after:!hidden focus-visible:ring-2 focus-visible:ring-ring/50",
+                      )}
+                    >
+                      <div className="flex items-center gap-3 p-0">
+                        <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-muted/50 group-data-active:bg-muted">
+                          <TabIcon
+                            className="size-[16px] shrink-0 text-muted-foreground group-data-active:text-foreground"
+                            aria-hidden
+                          />
+                        </div>
+                        <p className="min-w-0 flex-1 truncate text-lg font-md leading-snug text-muted-foreground group-data-active:text-foreground">
+                          {index + 1}. {stage.tabLabel}
+                        </p>
+                      </div>
+                    </TabsTrigger>
+                  );
+                })}
               </TabsList>
             </div>
+          </div>
 
-            {intelligenceFlowStages.map((stage) => (
-              <TabsContent
-                key={stage.id}
-                value={stage.id}
-                className="min-h-0 flex-1 bg-background p-0"
-              >
-                <IntelligencePipeline stageId={stage.id} />
-              </TabsContent>
-            ))}
-          </Tabs>
-        </div>
+          {intelligenceFlowStages.map((stage) => (
+            <TabsContent
+              key={stage.id}
+              value={stage.id}
+              className="mt-6 p-0 outline-none"
+            >
+              {activeTab === stage.id ? (
+                <div className="bg-muted/30 p-3">
+                  <IntelligencePipeline key={activeTab} stageId={stage.id} />
+                </div>
+              ) : null}
+            </TabsContent>
+          ))}
+        </Tabs>
       </div>
     </section>
   );

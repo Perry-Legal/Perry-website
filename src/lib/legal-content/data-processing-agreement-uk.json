@@ -1,0 +1,526 @@
+[
+  {
+    "type": "h1",
+    "text": "Data Processing Agreement (UK)"
+  },
+  {
+    "type": "p",
+    "text": "Last updated March 2026"
+  },
+  {
+    "type": "p",
+    "text": "Introduction"
+  },
+  {
+    "type": "p",
+    "text": "1.1"
+  },
+  {
+    "type": "p",
+    "text": "This data processing agreement (the \"DPA\") governs the processing of Personal Data in the course of the provision of the Services by Photosynth AI Limited (trading as Perry AI), company number 16379930, registered at 71\u201375 Shelton Street, Covent Garden, London WC2H 9JQ (\"Perry AI\"), to the Subscriber and forms part of the Agreement between the Parties. This DPA applies to Subscribers established in the United Kingdom."
+  },
+  {
+    "type": "p",
+    "text": "1.2"
+  },
+  {
+    "type": "p",
+    "text": "This DPA regulates the Subscriber's rights and obligations in its capacity as data controller, and Perry AI's rights and obligations as data processor, when Perry AI processes Personal Data on behalf of the Subscriber under the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "1.3"
+  },
+  {
+    "type": "p",
+    "text": "The purpose of this DPA is to regulate the processing of Personal Data in accordance with the requirements of Applicable Data Protection Laws. Terms used in this DPA shall be interpreted in accordance with Applicable Data Protection Laws."
+  },
+  {
+    "type": "p",
+    "text": "1.4"
+  },
+  {
+    "type": "p",
+    "text": "In case of any conflict between the rest of the Agreement and this DPA (including its appendices), the wording of this DPA shall prevail."
+  },
+  {
+    "type": "p",
+    "text": "1.5"
+  },
+  {
+    "type": "p",
+    "text": "The following appendices form part of this DPA:"
+  },
+  {
+    "type": "li",
+    "text": "Appendix A \u2013 Specification of Data Processing"
+  },
+  {
+    "type": "li",
+    "text": "Appendix B \u2013 Pre-approved Sub-processors"
+  },
+  {
+    "type": "li",
+    "text": "Appendix C \u2013 Security Measures"
+  },
+  {
+    "type": "p",
+    "text": "1.6"
+  },
+  {
+    "type": "p",
+    "text": "Capitalised terms not defined in this DPA have the meaning given to them in the Agreement or the General Terms and Conditions. Defined terms used in this DPA are set out in clause 15."
+  },
+  {
+    "type": "p",
+    "text": "Processing of Personal Data"
+  },
+  {
+    "type": "p",
+    "text": "2.1"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI undertakes to process Personal Data for the purposes set out in this DPA (including Appendix A) and in accordance with the Subscriber's documented instructions, unless otherwise required by Applicable Data Protection Laws. The Subscriber's instructions to Perry AI regarding the subject matter, duration, nature and purpose of the processing, the type of Personal Data and categories of data subjects, and the rights and obligations of both Parties, are set out in this DPA and in Appendix A."
+  },
+  {
+    "type": "p",
+    "text": "2.2"
+  },
+  {
+    "type": "p",
+    "text": "As data processor, Perry AI undertakes to:"
+  },
+  {
+    "type": "li",
+    "text": "comply with all Applicable Data Protection Laws applicable to it as a processor;"
+  },
+  {
+    "type": "li",
+    "text": "cooperate with audits conducted by the Subscriber in accordance with clause 9; and"
+  },
+  {
+    "type": "li",
+    "text": "inform the Subscriber promptly if Perry AI considers that an instruction from the Subscriber would infringe Applicable Data Protection Laws."
+  },
+  {
+    "type": "p",
+    "text": "2.3"
+  },
+  {
+    "type": "p",
+    "text": "Any transfer of Personal Data to Perry AI using the Services shall be made using secure, reasonable, and appropriate mechanisms."
+  },
+  {
+    "type": "p",
+    "text": "2.4"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall, without undue delay, inform the Subscriber of any communication with any Data Protection Authority that relates to Perry AI's processing of Personal Data under this DPA, and will provide reasonable assistance to the Subscriber if the Subscriber receives a request from such authority or is subject to a regulatory investigation. If data subjects, competent authorities, or any other third parties request information from Perry AI regarding the processing of Personal Data covered by this DPA, Perry AI shall refer such requests to the Subscriber to the extent permissible under applicable law."
+  },
+  {
+    "type": "p",
+    "text": "2.5"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall provide reasonable assistance to the Subscriber, through appropriate technical and organisational measures, to support the Subscriber's compliance with its obligations under Applicable Data Protection Laws, including in relation to data subject rights, data protection impact assessments, and prior consultation obligations."
+  },
+  {
+    "type": "p",
+    "text": "2.6"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI's assistance under clauses 2.4 and 2.5 will be provided at the Subscriber's reasonable expense. Perry AI will invoice such costs at its standard rates from time to time."
+  },
+  {
+    "type": "p",
+    "text": "2.7"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI certifies that it will not:"
+  },
+  {
+    "type": "li",
+    "text": "retain, use, or disclose Personal Data outside the context of the relationship between Perry AI and the Subscriber, other than to provide the Services in accordance with the Agreement and this DPA, or as otherwise permitted by Applicable Data Protection Laws;"
+  },
+  {
+    "type": "li",
+    "text": "sell or share Personal Data; or"
+  },
+  {
+    "type": "li",
+    "text": "combine Personal Data obtained in the performance of the Services with any personal information collected from other sources, except as permitted by Applicable Data Protection Laws."
+  },
+  {
+    "type": "p",
+    "text": "2.8"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI will not use Personal Data to train, fine-tune, or otherwise improve any artificial intelligence or machine learning model without the Subscriber's prior written consent."
+  },
+  {
+    "type": "p",
+    "text": "Obligations of the Subscriber"
+  },
+  {
+    "type": "p",
+    "text": "3.1"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber shall ensure that it has a valid legal basis, and all necessary rights, consents, and authorisations, to provide the Personal Data to Perry AI and to authorise Perry AI to process that Personal Data in accordance with this DPA, the Agreement, and any other processing instructions provided to Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "3.2"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber shall comply with all Applicable Data Protection Laws applicable to it as controller of the Personal Data."
+  },
+  {
+    "type": "p",
+    "text": "3.3"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber shall limit the provision of Personal Data to Perry AI to what is necessary for the purpose of the Agreement. For example, the Subscriber shall not include Personal Data, other than technical contact information, in technical support tickets."
+  },
+  {
+    "type": "p",
+    "text": "Sub-processors"
+  },
+  {
+    "type": "p",
+    "text": "4.1"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI is entitled, subject to clause 4.2, to engage sub-processors, provided that they are bound by a written agreement imposing on them materially the same data protection obligations as are imposed on Perry AI under this DPA."
+  },
+  {
+    "type": "p",
+    "text": "4.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall inform the Subscriber of any intended new sub-processors by updating the sub-processor list at useperry.com/legal and giving the Subscriber the opportunity to object. Any objection must be made in writing within 14 days of posting and must be based on reasonable, documented grounds relating to the specific sub-processor's data protection compliance. Perry AI shall give reasonable consideration to the objection and may, in its discretion, propose an alternative. If the Parties cannot agree and the Subscriber's objection is not resolved within 30 days, either Party may terminate the affected part of the Agreement on 30 days' written notice. Perry AI may engage the new sub-processor if the Subscriber raises no written objection within 14 days."
+  },
+  {
+    "type": "p",
+    "text": "International Transfers"
+  },
+  {
+    "type": "p",
+    "text": "5.1"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI is incorporated in England and Wales. Perry AI\u2019s primary data storage and infrastructure is hosted by MongoDB Atlas in Ireland (EU West region), and Personal Data is stored and processed primarily in Ireland. To the extent Perry AI or its sub-processors process Personal Data outside the UK, Perry AI shall ensure that appropriate safeguards are in place in accordance with Applicable Data Protection Laws, including the UK International Data Transfer Agreement (IDTA) or the UK Addendum to the EU Standard Contractual Clauses (as applicable)."
+  },
+  {
+    "type": "p",
+    "text": "5.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI will use reasonable efforts to monitor whether the legislation or practices applicable to it or its sub-processors in any country to which Personal Data is transferred would prevent it from fulfilling its obligations under this DPA. In the event Perry AI becomes aware of any material impediment, it will notify the Subscriber without undue delay."
+  },
+  {
+    "type": "p",
+    "text": "Information Security and Confidentiality"
+  },
+  {
+    "type": "p",
+    "text": "6.1"
+  },
+  {
+    "type": "p",
+    "text": "To maintain an adequate level of security for the protection of Personal Data, Perry AI commits to the appropriate technical and organisational measures described in Appendix C."
+  },
+  {
+    "type": "p",
+    "text": "6.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall protect the Personal Data against accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to Personal Data transmitted, stored, or otherwise processed."
+  },
+  {
+    "type": "p",
+    "text": "6.3"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall ensure that only staff who require access to Personal Data to fulfil Perry AI's obligations under the Agreement are authorised to access it. All persons authorised to process Personal Data shall be subject to appropriate confidentiality obligations and shall receive adequate training covering data protection awareness."
+  },
+  {
+    "type": "p",
+    "text": "Personal Data Breach Notifications"
+  },
+  {
+    "type": "p",
+    "text": "7.1"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall inform the Subscriber without undue delay and at the latest within 72 hours from becoming aware of a Personal Data breach affecting Personal Data processed on the Subscriber's behalf, to enable the Subscriber to fulfil any applicable notification obligation to the ICO under UK GDPR Article 33."
+  },
+  {
+    "type": "p",
+    "text": "7.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall provide the Subscriber with all information reasonably required to fulfil the Subscriber's breach notification obligations under Applicable Data Protection Laws. Any costs associated with such assistance will be subject to the limitations of liability in the General Terms and Conditions."
+  },
+  {
+    "type": "p",
+    "text": "Data Protection Impact Assessments and Prior Consultations"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall, at the Subscriber's reasonable expense and taking into account the nature of the processing and the information available to Perry AI, assist the Subscriber in fulfilling its obligation to carry out data protection impact assessments and, where applicable, prior consultations with the relevant supervisory authority."
+  },
+  {
+    "type": "p",
+    "text": "Audit Rights"
+  },
+  {
+    "type": "p",
+    "text": "9.1"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber has the right to perform audits of Perry AI's processing of the Subscriber's Personal Data to verify Perry AI's compliance with this DPA and Applicable Data Protection Laws. This audit right is limited to once per 12-month period, unless the Subscriber has clear grounds to believe that Perry AI has materially breached its obligations under this DPA."
+  },
+  {
+    "type": "p",
+    "text": "9.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall make available to the Subscriber all information reasonably necessary to demonstrate compliance with this DPA. Audits, including any on-site inspections, must be: (i) conducted by a reputable independent auditor approved by Perry AI (not to be unreasonably withheld); (ii) carried out on at least 30 days' prior written notice; (iii) conducted during normal business hours and in a manner that minimises disruption to Perry AI's operations; and (iv) subject to all auditors signing a confidentiality agreement on terms acceptable to Perry AI before commencing. Perry AI reserves the right to object to any auditor who is a competitor or who poses a conflict of interest."
+  },
+  {
+    "type": "p",
+    "text": "9.3"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber acknowledges that audits under this DPA shall not include access to information pertaining to Perry AI's other customers."
+  },
+  {
+    "type": "p",
+    "text": "9.4"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber is responsible for all costs associated with audits, including Perry AI's reasonable costs in facilitating the audit. Perry AI shall only contribute to audit costs where an audit concludes, by written finding, a material breach of Perry AI's express obligations under this DPA."
+  },
+  {
+    "type": "p",
+    "text": "10"
+  },
+  {
+    "type": "p",
+    "text": "Term of Agreement"
+  },
+  {
+    "type": "p",
+    "text": "The provisions of this DPA shall apply for as long as Perry AI processes Personal Data for which the Subscriber is data controller, or until such time as this DPA is replaced with another data processing agreement."
+  },
+  {
+    "type": "p",
+    "text": "11"
+  },
+  {
+    "type": "p",
+    "text": "Measures upon Completion of Processing"
+  },
+  {
+    "type": "p",
+    "text": "11.1"
+  },
+  {
+    "type": "p",
+    "text": "On the Subscriber's written request made within 30 days following expiry or termination of the Agreement, Perry AI shall, at the Subscriber's election, return or securely delete all Personal Data, unless Applicable Data Protection Laws require Perry AI to retain it for a longer period. Perry AI shall confirm deletion in writing upon request."
+  },
+  {
+    "type": "p",
+    "text": "11.2"
+  },
+  {
+    "type": "p",
+    "text": "If return or deletion is impracticable or prohibited by a valid legal requirement, Perry AI shall inform the Subscriber and block the relevant Personal Data from any further processing (except to the extent required by applicable law) and shall continue to protect it using appropriate safeguards."
+  },
+  {
+    "type": "p",
+    "text": "11.3"
+  },
+  {
+    "type": "p",
+    "text": "Upon the Subscriber's request, Perry AI shall provide written confirmation of the measures taken regarding Personal Data upon completion of processing."
+  },
+  {
+    "type": "p",
+    "text": "12"
+  },
+  {
+    "type": "p",
+    "text": "Amendments"
+  },
+  {
+    "type": "p",
+    "text": "12.1"
+  },
+  {
+    "type": "p",
+    "text": "Any amendments to this DPA must be agreed in writing by authorised representatives of both Parties."
+  },
+  {
+    "type": "p",
+    "text": "12.2"
+  },
+  {
+    "type": "p",
+    "text": "Notwithstanding clause 12.1, Perry AI may update this DPA and its appendices unilaterally to reflect changes in Applicable Data Protection Laws, guidance from a supervisory authority, or updated standard contractual clauses. Perry AI will notify the Subscriber of material changes by email or by updating this page. Continued use of the Services following such notification constitutes acceptance of the updated DPA."
+  },
+  {
+    "type": "p",
+    "text": "13"
+  },
+  {
+    "type": "p",
+    "text": "Liability"
+  },
+  {
+    "type": "p",
+    "text": "The liability provisions and limitations set out in the General Terms and Conditions apply to this DPA. Nothing in this DPA limits or excludes either Party's liability to the extent it cannot be excluded or limited under Applicable Data Protection Laws, including liability arising from administrative fines imposed under UK GDPR Article 83."
+  },
+  {
+    "type": "p",
+    "text": "14"
+  },
+  {
+    "type": "p",
+    "text": "Governing Law and Disputes"
+  },
+  {
+    "type": "p",
+    "text": "14.1"
+  },
+  {
+    "type": "p",
+    "text": "Except as otherwise required by Applicable Data Protection Laws, this DPA shall be governed by and construed in accordance with the laws of England and Wales."
+  },
+  {
+    "type": "p",
+    "text": "14.2"
+  },
+  {
+    "type": "p",
+    "text": "Any dispute, controversy, or claim arising out of or in connection with this DPA shall be resolved in accordance with the dispute resolution provisions set out in the General Terms and Conditions."
+  },
+  {
+    "type": "p",
+    "text": "15"
+  },
+  {
+    "type": "p",
+    "text": "Definitions"
+  },
+  {
+    "type": "p",
+    "text": "\"Applicable Data Protection Laws\""
+  },
+  {
+    "type": "p",
+    "text": "The UK GDPR (as retained in UK domestic law by the European Union (Withdrawal) Act 2018 and amended by The Data Protection, Privacy and Electronic Communications (Amendments etc.) (EU Exit) Regulations 2019), the Data Protection Act 2018, and any subordinate legislation, regulatory guidance, and binding decisions of the Information Commissioner's Office."
+  },
+  {
+    "type": "p",
+    "text": "\"Data Protection Authority\""
+  },
+  {
+    "type": "p",
+    "text": "The Information Commissioner's Office (ICO), or any successor body authorised to enforce Applicable Data Protection Laws in the United Kingdom."
+  },
+  {
+    "type": "p",
+    "text": "\"Data Transfer Mechanism\""
+  },
+  {
+    "type": "p",
+    "text": "A mechanism enabling the lawful cross-border transfer of Personal Data under Applicable Data Protection Laws, including the UK International Data Transfer Agreement (IDTA) and the UK Addendum to the EU Standard Contractual Clauses."
+  },
+  {
+    "type": "p",
+    "text": "\"Personal Data\""
+  },
+  {
+    "type": "p",
+    "text": "Any Subscriber Content that relates to an identified or identifiable natural person within the meaning of Applicable Data Protection Laws."
+  },
+  {
+    "type": "p",
+    "text": "\"Personal Data Breach\""
+  },
+  {
+    "type": "p",
+    "text": "A breach of security leading to the accidental or unlawful destruction, loss, alteration, unauthorised disclosure of, or access to, Personal Data transmitted, stored, or otherwise processed by Perry AI under this DPA."
+  },
+  {
+    "type": "p",
+    "text": "\"Restricted Transfer\""
+  },
+  {
+    "type": "p",
+    "text": "Any transfer of Personal Data that requires a Data Transfer Mechanism."
+  },
+  {
+    "type": "p",
+    "text": "\"Services\""
+  },
+  {
+    "type": "p",
+    "text": "The Perry AI platform and related services as defined in the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "\"Subscriber Content\""
+  },
+  {
+    "type": "p",
+    "text": "Any data, documents, or materials uploaded or submitted by or on behalf of the Subscriber to the Perry AI platform."
+  },
+  {
+    "type": "p",
+    "text": "\"controller\", \"processor\", \"data subject\", \"personal data\", \"processing\", \"supervisory authority\""
+  },
+  {
+    "type": "p",
+    "text": "Have the meanings given to them under Applicable Data Protection Laws."
+  },
+  {
+    "type": "h3",
+    "text": "Appendix"
+  },
+  {
+    "type": "p",
+    "text": "Specification of Data Processing"
+  },
+  {
+    "type": "p",
+    "text": "Pre-approved Sub-processors"
+  },
+  {
+    "type": "p",
+    "text": "Security Measures"
+  }
+]

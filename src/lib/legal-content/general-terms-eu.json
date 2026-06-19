@@ -1,0 +1,606 @@
+[
+  {
+    "type": "h1",
+    "text": "General Terms and Conditions (EU)"
+  },
+  {
+    "type": "p",
+    "text": "Last updated March 2026"
+  },
+  {
+    "type": "p",
+    "text": "Introduction"
+  },
+  {
+    "type": "p",
+    "text": "1.1"
+  },
+  {
+    "type": "p",
+    "text": "These general terms and conditions (\"GTCs\"), as they may be amended from time to time as set out herein, govern the use and provision of the Services provided by Photosynth AI Limited (trading as Perry AI), company number 16379930 (\"Perry AI\"), to the Subscriber and form part of the Agreement between the Parties."
+  },
+  {
+    "type": "p",
+    "text": "1.2"
+  },
+  {
+    "type": "p",
+    "text": "Capitalised terms used but not defined in this document have the meaning set out in the Order Form. Defined terms are set out in clause 10."
+  },
+  {
+    "type": "p",
+    "text": "1.3"
+  },
+  {
+    "type": "p",
+    "text": "In the event of any conflict or inconsistency between these GTCs and the Order Form, the terms of the Order Form shall prevail to the extent of the inconsistency."
+  },
+  {
+    "type": "p",
+    "text": "The Services"
+  },
+  {
+    "type": "p",
+    "text": "2.1 General"
+  },
+  {
+    "type": "p",
+    "text": "2.1.1"
+  },
+  {
+    "type": "p",
+    "text": "Subject to the terms and conditions of the Agreement, the Subscriber subscribes to, and Perry AI shall supply, the Services specified in the Order Form."
+  },
+  {
+    "type": "p",
+    "text": "2.1.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall use commercially reasonable efforts consistent with prevailing industry standards to maintain the Services in a manner that minimises interruptions. The Services may be temporarily unavailable for scheduled maintenance or unscheduled emergency maintenance, either by Perry AI or by third-party providers, or due to causes beyond Perry AI\u2019s reasonable control. Perry AI shall use reasonable efforts to provide advance notice of any scheduled disruption. Perry AI does not warrant that the Services will be uninterrupted or error-free."
+  },
+  {
+    "type": "p",
+    "text": "2.1.3"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber is responsible for obtaining and maintaining, at its expense, the hardware, software, and internet connectivity necessary to access and use the Services."
+  },
+  {
+    "type": "p",
+    "text": "2.2 Account administration and access credentials"
+  },
+  {
+    "type": "p",
+    "text": "2.2.1"
+  },
+  {
+    "type": "p",
+    "text": "Personnel specified by the Subscriber will be provided with administrative privileges to manage the Subscriber\u2019s account and its end users. If an administrator or end user is no longer authorised to use the Services, the Subscriber shall promptly notify Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "2.2.2"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber is responsible for all administrators\u2019 and end users\u2019 use of the Services and for safeguarding any access credentials. In case of suspected or confirmed unauthorised access, the Subscriber shall promptly inform Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "2.2.3"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber shall assign each of its end users with an individual and specific licence, which may not be shared, transferred, or otherwise used by anyone else, unless specified otherwise in the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "2.3 Usage restrictions"
+  },
+  {
+    "type": "p",
+    "text": "2.3.1"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber agrees not to: (i) use the Services in a way that infringes, misappropriates, or violates any person\u2019s rights; (ii) sub-licence, sell, or otherwise transfer its right to access or use the Services; (iii) attempt to reverse engineer or derive the source code of the Services or any portion thereof, except as permitted by applicable law; (iv) modify, customise, port, translate, or create derivative works of the Services; (v) use any automated or programmatic method to extract data or Output from the Services, including scraping or web harvesting; (vi) use its access to the Services to build a product or service which competes with the Services; or (vii) use the Services in a manner that interferes or attempts to interfere with the proper working of the Services."
+  },
+  {
+    "type": "p",
+    "text": "2.3.2"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber is responsible for its and its Affiliates\u2019, administrators\u2019, and end users\u2019 use of the Services and adherence to the usage restrictions. Perry AI may monitor the Subscriber\u2019s use of the Services and may prohibit any use it believes may be (or may be alleged to be) in violation of clause 2.3.1 or applicable law. Perry AI reserves the right to suspend or terminate the Subscriber\u2019s access to the Services immediately upon notice where Perry AI determines, in its reasonable discretion, that a breach has occurred or is likely to occur."
+  },
+  {
+    "type": "p",
+    "text": "Term and termination"
+  },
+  {
+    "type": "p",
+    "text": "3.1 Termination for cause"
+  },
+  {
+    "type": "p",
+    "text": "In addition to any termination rights stated elsewhere in the Agreement, a Party may terminate the Agreement for cause: (i) upon 30 days\u2019 written notice of a material breach, if the breach remains uncured at the expiration of the notice period; (ii) if the other Party enters administration, receivership, or liquidation, or makes an assignment for the benefit of creditors; or (iii) if the other Party goes out of business or ceases its operations."
+  },
+  {
+    "type": "p",
+    "text": "3.2 Effects of termination and survival"
+  },
+  {
+    "type": "p",
+    "text": "3.2.1"
+  },
+  {
+    "type": "p",
+    "text": "Upon termination of the Agreement, howsoever occasioned, (i) the licences under clause 6.2 shall terminate, and (ii) all outstanding fees shall be due and payable."
+  },
+  {
+    "type": "p",
+    "text": "3.2.2"
+  },
+  {
+    "type": "p",
+    "text": "On the Subscriber\u2019s written request made within 30 days following termination or expiry, Perry AI will provide reasonable assistance to the Subscriber in retrieving Subscriber Content in a standard machine-readable format, at the Subscriber\u2019s reasonable expense. After that period, Perry AI shall have no obligation to retain Subscriber Content and may delete it in accordance with its standard data deletion policy. Both Parties shall promptly return or, if instructed, destroy any Confidential Information of the other Party."
+  },
+  {
+    "type": "p",
+    "text": "3.2.3"
+  },
+  {
+    "type": "p",
+    "text": "Provisions that by their nature are intended to survive expiration or termination shall do so. The confidentiality undertakings in clause 5.2 shall survive for 5 years from the date of termination, or such longer period as required by applicable law or professional rules."
+  },
+  {
+    "type": "p",
+    "text": "Warranties and liability"
+  },
+  {
+    "type": "p",
+    "text": "4.1 AI limitations and disclaimer"
+  },
+  {
+    "type": "p",
+    "text": "4.1.1"
+  },
+  {
+    "type": "p",
+    "text": "Given the probabilistic nature of machine learning, use of the Services may in some situations result in incorrect Output that does not accurately reflect real people, places, or facts. The Subscriber is responsible for evaluating the accuracy and appropriateness of Output for its use case, including by using human review where appropriate."
+  },
+  {
+    "type": "p",
+    "text": "4.1.2"
+  },
+  {
+    "type": "p",
+    "text": "Output generated through the Services does not constitute legal advice. Perry AI is not a law firm, does not practise law, and does not give legal advice. Perry AI does not bear legal responsibility for any Output or information derived from the Services."
+  },
+  {
+    "type": "p",
+    "text": "4.1.3"
+  },
+  {
+    "type": "p",
+    "text": "The Services are powered in part by third-party AI model providers including Anthropic, Google, and others (\u201cAI Providers\u201d). The Subscriber acknowledges that: (i) availability of the Services may depend on AI Provider infrastructure; (ii) Perry AI is not liable for any outages, errors, inaccuracies, or failures caused by AI Providers; and (iii) Subscriber Content submitted via the Services is processed by AI Providers under their respective API terms, which provide that such data is not used to train their models. Perry AI does not accept any liability on behalf of AI Providers and the AI Providers\u2019 terms of service govern their relationship with Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "4.2 Disclaimer of warranties"
+  },
+  {
+    "type": "p",
+    "text": "4.2.1"
+  },
+  {
+    "type": "p",
+    "text": "The Services are provided on an \u201cas-is\u201d and \u201cas-available\u201d basis. Perry AI disclaims all warranties, express or implied, including all implied warranties of merchantability, fitness for a particular purpose, quality, accuracy, and non-infringement. Perry AI does not represent or warrant that use of the Services will be uninterrupted, error-free, or secure, or that any Output will be accurate or complete. Perry AI reserves the right, at any time and in its sole discretion, to make improvements, modifications, or corrections to the Services."
+  },
+  {
+    "type": "p",
+    "text": "4.3 Limitations of liability"
+  },
+  {
+    "type": "p",
+    "text": "4.3.1"
+  },
+  {
+    "type": "p",
+    "text": "Neither Party shall be liable under the Agreement for any indirect, special, incidental, or consequential loss or damage, including loss of profits, loss of revenue, loss of business, loss of opportunity, or cost of substitute services, arising out of or in connection with the Agreement, even if advised of the possibility of such loss or damage."
+  },
+  {
+    "type": "p",
+    "text": "4.3.2"
+  },
+  {
+    "type": "p",
+    "text": "Other than with respect to (i) the Subscriber\u2019s payment obligations and (ii) claims based on liability which, by law, cannot be limited (including for death or personal injury caused by negligence, or fraud or fraudulent misrepresentation), each Party\u2019s aggregate liability under the Agreement shall not exceed the total fees paid or payable by the Subscriber in the 12 months prior to the event that gave rise to the claim."
+  },
+  {
+    "type": "p",
+    "text": "4.3.3"
+  },
+  {
+    "type": "p",
+    "text": "To be valid, any claims for damages shall be notified to the other Party no later than 12 months from the time the relevant Party became or should have become aware of the event giving rise to the claim, and in any event no later than 6 months after the expiration or termination of the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "4.3.4"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber is solely responsible for ensuring that its use of the Services and Output complies with applicable export control legislation and trade sanctions."
+  },
+  {
+    "type": "p",
+    "text": "Confidentiality and information security"
+  },
+  {
+    "type": "p",
+    "text": "5.1 Confidential Information"
+  },
+  {
+    "type": "p",
+    "text": "5.1.1"
+  },
+  {
+    "type": "p",
+    "text": "\u201cConfidential Information\u201d means all information disclosed by a Party (\u201cDisclosing Party\u201d) to the other Party (\u201cReceiving Party\u201d), whether orally or in writing, that (i) is designated as confidential or that, given the nature of the information and the circumstances of disclosure, should be understood to be confidential; (ii) constitutes Subscriber Content; (iii) concerns the Services; (iv) sets out the terms and conditions of the Agreement; or (v) comprises business plans, technology and technical information, product plans and designs, and business processes disclosed in connection with the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "5.1.2"
+  },
+  {
+    "type": "p",
+    "text": "The foregoing shall not apply with respect to any information after five (5) years following its disclosure, or any information that the Receiving Party can document: (a) is or becomes generally available to the public through no fault of the Receiving Party; (b) was in its possession or known by it prior to receipt from the Disclosing Party; (c) was rightfully disclosed to it without restriction by a third party; (d) was independently developed without use of any Confidential Information of the Disclosing Party; or (e) is required to be disclosed by applicable law or a binding order of a court or regulatory authority."
+  },
+  {
+    "type": "p",
+    "text": "5.2 Confidentiality undertaking and permitted disclosure"
+  },
+  {
+    "type": "p",
+    "text": "5.2.1"
+  },
+  {
+    "type": "p",
+    "text": "The Receiving Party shall: (i) keep the Disclosing Party\u2019s Confidential Information confidential; (ii) safeguard it with at least the same degree of care (but no less than reasonable care) as it uses to safeguard its own confidential information; and (iii) not use it for any purpose outside the scope of the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "5.2.2"
+  },
+  {
+    "type": "p",
+    "text": "The Receiving Party may disclose Confidential Information to those of its employees, directors, agents, subcontractors, and advisers who (i) need to know it in connection with the Agreement and (ii) are bound by confidentiality obligations no less stringent than those in this Agreement."
+  },
+  {
+    "type": "p",
+    "text": "5.2.3"
+  },
+  {
+    "type": "p",
+    "text": "Where compelled to disclose Confidential Information by applicable law or a binding order of a court or regulatory authority, the Receiving Party shall, to the extent not prevented by law, notify the Disclosing Party and cooperate in any effort to obtain confidential treatment."
+  },
+  {
+    "type": "p",
+    "text": "5.3 Information security"
+  },
+  {
+    "type": "p",
+    "text": "5.3.1"
+  },
+  {
+    "type": "p",
+    "text": "Each Party must implement reasonable and appropriate technical and organisational measures to help secure access to and use of Confidential Information."
+  },
+  {
+    "type": "p",
+    "text": "5.3.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall maintain appropriate technical and organisational security measures as described in the Security Measures document published at useperry.com/legal. Perry AI may update these measures from time to time provided such updates do not materially reduce the protections applied to Subscriber data."
+  },
+  {
+    "type": "p",
+    "text": "Intellectual property rights"
+  },
+  {
+    "type": "p",
+    "text": "6.1 Ownership"
+  },
+  {
+    "type": "p",
+    "text": "6.1.1"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI and its Affiliates and licensors own all rights, title, and interest in and to the Services, including all Intellectual Property Rights therein and all modifications, updates, and upgrades. Nothing in this Agreement constitutes a transfer or licence of those rights except as expressly stated herein."
+  },
+  {
+    "type": "p",
+    "text": "6.1.2"
+  },
+  {
+    "type": "p",
+    "text": "As between the Parties, the Subscriber and its Affiliates and licensors own all rights, title, and interest in and to the Subscriber Content."
+  },
+  {
+    "type": "p",
+    "text": "6.1.3"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber acknowledges that due to the nature of machine learning, Output may not be unique across customers; the Services may generate identical or similar Output for different customers. Questions asked by, and responses generated for, other customers are not considered Input, Output, or Subscriber Content under this Agreement."
+  },
+  {
+    "type": "p",
+    "text": "6.2 Licences"
+  },
+  {
+    "type": "p",
+    "text": "6.2.1"
+  },
+  {
+    "type": "p",
+    "text": "Subject to the Subscriber\u2019s compliance with this Agreement, Perry AI grants the Subscriber a limited, non-exclusive, non-transferable, non-sublicensable (except to Affiliates), fully revocable licence for the Term, in the jurisdictions supported by Perry AI and for the number of individual users stated in the Order Form, to access and use the Services for the Subscriber\u2019s and its Affiliates\u2019 internal business operations."
+  },
+  {
+    "type": "p",
+    "text": "6.2.2"
+  },
+  {
+    "type": "p",
+    "text": "The Subscriber grants Perry AI a limited, non-exclusive, non-transferable, non-sublicensable, fully revocable licence for the Term to use, store, copy, transmit, and display the Subscriber Content solely for the purpose of providing the Services in accordance with the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "6.3 Usage Data and Feedback"
+  },
+  {
+    "type": "p",
+    "text": "6.3.1"
+  },
+  {
+    "type": "p",
+    "text": "Feedback, comments, ideas, and suggestions for improvements (\u201cFeedback\u201d) from the Subscriber are encouraged by Perry AI. Feedback is not treated as confidential, and Perry AI may use Feedback without restriction or compensation. Any Intellectual Property Rights resulting from such Feedback shall vest exclusively in Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "6.3.2"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI shall have the right to collect and analyse data and other information relating to the provision, use, and performance of the Services and related systems and technologies (including information concerning Subscriber Content and data derived therefrom) (\u201cUsage Data\u201d). Perry AI will be free, during and after the Term, to: (i) use such Usage Data to improve and enhance the Services and for other development, diagnostic, and corrective purposes in connection with the Services and other Perry AI offerings; and (ii) disclose Usage Data solely in aggregate or other de-identified form in connection with its business."
+  },
+  {
+    "type": "p",
+    "text": "Personal data"
+  },
+  {
+    "type": "p",
+    "text": "When providing the Services, Perry AI will process any personal data contained within the Subscriber Content on behalf of the Subscriber in accordance with the Data Processing Agreement entered into between the Parties, available at useperry.com/legal."
+  },
+  {
+    "type": "p",
+    "text": "Miscellaneous"
+  },
+  {
+    "type": "p",
+    "text": "8.1 No partnership"
+  },
+  {
+    "type": "p",
+    "text": "This Agreement does not create a partnership, joint venture, or agency relationship between the Parties. The Parties are independent contractors."
+  },
+  {
+    "type": "p",
+    "text": "8.2 Notices"
+  },
+  {
+    "type": "p",
+    "text": "All notices shall be in writing and deemed given upon: (i) personal delivery; (ii) the second business day after posting; or (iii) the day of sending by email. Notices of termination shall be addressed to [email\u00a0protected] and Perry AI\u2019s account manager. All other notices shall be provided to the Parties\u2019 respective contact persons as specified in the Order Form."
+  },
+  {
+    "type": "p",
+    "text": "8.3 Waiver"
+  },
+  {
+    "type": "p",
+    "text": "No failure or delay by either Party in exercising any right under the Agreement will constitute a waiver of that right. Any waiver must be in writing and duly executed by an authorised representative of the waiving Party."
+  },
+  {
+    "type": "p",
+    "text": "8.4 Severability"
+  },
+  {
+    "type": "p",
+    "text": "If any provision of this Agreement is wholly or partly invalid or unenforceable, the validity of the Agreement as a whole shall not be affected and the remaining provisions shall remain in force."
+  },
+  {
+    "type": "p",
+    "text": "8.5 Assignment"
+  },
+  {
+    "type": "p",
+    "text": "This Agreement is not assignable, transferable, or sublicensable by the Subscriber except with Perry AI\u2019s prior written consent. Perry AI may transfer and assign any of its rights and obligations under this Agreement without the Subscriber\u2019s consent."
+  },
+  {
+    "type": "p",
+    "text": "8.6 Subcontractors"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI may use subcontractors for the provision of the Services, subject to clause 5 and, in relation to the processing of personal data, the Data Processing Agreement. Perry AI shall remain liable for its subcontractors\u2019 acts and omissions as for its own, subject always to the limitations of liability in clause 4.3."
+  },
+  {
+    "type": "p",
+    "text": "8.7 Marketing"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI may identify the Subscriber as a customer and use the Subscriber\u2019s company name, logo(s), and trademarks in marketing and public relations material. Upon the Subscriber\u2019s written request, Perry AI shall cease use of the Subscriber\u2019s name or logo in future marketing materials."
+  },
+  {
+    "type": "p",
+    "text": "8.8 Costs and enforcement"
+  },
+  {
+    "type": "p",
+    "text": "In any action or proceeding to enforce rights under this Agreement, the prevailing Party shall be entitled to recover its reasonable legal costs and attorneys\u2019 fees from the non-prevailing Party."
+  },
+  {
+    "type": "p",
+    "text": "8.9 Force majeure"
+  },
+  {
+    "type": "p",
+    "text": "Except for payment obligations, neither Party will be liable for failure to perform under the Agreement to the extent caused by circumstances beyond its reasonable control, including natural disasters, acts of war or terrorism, civil unrest, industrial action, or widespread disruption of internet or telecommunications services. If performance is substantially prevented for more than one month, either Party may terminate the Agreement upon written notice without further liability."
+  },
+  {
+    "type": "p",
+    "text": "8.10 Entire agreement"
+  },
+  {
+    "type": "p",
+    "text": "The Agreement sets out the entire agreement and understanding between the Parties with respect to its subject matter and supersedes all prior agreements, representations, and understandings, whether written or oral."
+  },
+  {
+    "type": "p",
+    "text": "8.11 Changes to these GTCs"
+  },
+  {
+    "type": "p",
+    "text": "Perry AI may amend these GTCs by posting updated terms at useperry.com/legal. Updates take effect 30 days after posting, or immediately where required by applicable law. Perry AI will use reasonable efforts to notify Subscribers of material changes by email. Continued use of the Services after an update\u2019s effective date constitutes acceptance. Perry AI may not alter its confidentiality obligations under clause 5.2 without the Subscriber\u2019s express written consent."
+  },
+  {
+    "type": "p",
+    "text": "Governing law and disputes"
+  },
+  {
+    "type": "p",
+    "text": "9.1"
+  },
+  {
+    "type": "p",
+    "text": "This Agreement and any dispute or claim arising out of or in connection with it (including non-contractual disputes or claims) shall be governed by and construed in accordance with the laws of England and Wales."
+  },
+  {
+    "type": "p",
+    "text": "9.2"
+  },
+  {
+    "type": "p",
+    "text": "Each Party irrevocably submits to the exclusive jurisdiction of the courts of England and Wales to settle any dispute or claim arising out of or in connection with this Agreement."
+  },
+  {
+    "type": "p",
+    "text": "10"
+  },
+  {
+    "type": "p",
+    "text": "Definitions"
+  },
+  {
+    "type": "p",
+    "text": "\u201cAffiliate\u201d"
+  },
+  {
+    "type": "p",
+    "text": "Any entity that directly or indirectly controls, is controlled by, or is under common control with a Party, where \u201ccontrol\u201d means ownership of more than 50% of the voting interests of such entity."
+  },
+  {
+    "type": "p",
+    "text": "\u201cAgreement\u201d"
+  },
+  {
+    "type": "p",
+    "text": "These GTCs together with the Order Form and any appendices or schedules incorporated by reference."
+  },
+  {
+    "type": "p",
+    "text": "\u201cConfidential Information\u201d"
+  },
+  {
+    "type": "p",
+    "text": "As defined in clause 5.1.1."
+  },
+  {
+    "type": "p",
+    "text": "\u201cFeedback\u201d"
+  },
+  {
+    "type": "p",
+    "text": "As defined in clause 6.3.1."
+  },
+  {
+    "type": "p",
+    "text": "\u201cInput\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The data, documents, queries, or other content that the Subscriber or its end users upload or submit to the Services."
+  },
+  {
+    "type": "p",
+    "text": "\u201cIntellectual Property Rights\u201d"
+  },
+  {
+    "type": "p",
+    "text": "Patents, utility models, rights to inventions, copyright and related rights, trade marks and service marks, trade names and domain names, rights in designs, rights in computer software, database rights, and all other intellectual property rights, whether registered or unregistered."
+  },
+  {
+    "type": "p",
+    "text": "\u201cOrder Form\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The order form, statement of work, or other commercial document signed by both Parties that incorporates these GTCs and sets out the commercial terms of the Agreement."
+  },
+  {
+    "type": "p",
+    "text": "\u201cOutput\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The output generated and returned by the Services based on the Input."
+  },
+  {
+    "type": "p",
+    "text": "\u201cServices\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The Perry AI platform \u2014 an AI-powered legal services workspace for private capital funds \u2014 comprising a cloud service accessible via a web interface and API, and any ancillary documentation and modules provided by Perry AI."
+  },
+  {
+    "type": "p",
+    "text": "\u201cSubscriber Content\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The Input and any other data, documents, or content provided by the Subscriber or its end users to Perry AI in connection with the Services."
+  },
+  {
+    "type": "p",
+    "text": "\u201cTerm\u201d"
+  },
+  {
+    "type": "p",
+    "text": "The period during which the Agreement is in force, as specified in the Order Form."
+  },
+  {
+    "type": "p",
+    "text": "\u201cUsage Data\u201d"
+  },
+  {
+    "type": "p",
+    "text": "As defined in clause 6.3.2."
+  }
+]

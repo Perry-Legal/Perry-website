@@ -19,10 +19,11 @@ export function PlatformArchitectureSection({
     <section
       id="platform"
       ref={sectionRef}
+      data-header-theme="dark"
       className={`bg-[#111113] px-6 pb-24 pt-0 text-white ${className ?? ""}`}
       aria-labelledby={showHeader ? "platform-architecture-heading" : undefined}
     >
-      <div className="mx-auto max-w-7xl">
+      <div className="section-container">
         <PlatformArchitectureExplorer sectionRef={sectionRef} showHeader={showHeader} />
       </div>
     </section>
