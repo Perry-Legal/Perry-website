@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import Image from "@/components/asset-image";
 
 import { StoryPageHero } from "@/components/story-page-hero";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";

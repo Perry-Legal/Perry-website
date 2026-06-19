@@ -12,6 +12,9 @@ const nextConfig: NextConfig = {
         trailingSlash: true,
       }
     : {}),
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? repoBasePath : "",
+  },
   images: {
     unoptimized: true,
   },

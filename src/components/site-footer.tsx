@@ -1,4 +1,4 @@
-import Image from "next/image";
+import Image from "@/components/asset-image";
 import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 
