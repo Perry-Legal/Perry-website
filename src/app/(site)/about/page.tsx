@@ -64,7 +64,7 @@ export default function AboutPage() {
         belowContent={
           <div className="grid gap-6 sm:grid-cols-3">
             {teamMembers.map((member) => (
-              <Card key={member.name} className="overflow-hidden pt-0">
+              <Card key={member.name} className="overflow-hidden rounded-sm pt-0">
                 <div className="relative h-[600px] w-full bg-muted/30">
                   <Image
                     src={member.imageSrc}
