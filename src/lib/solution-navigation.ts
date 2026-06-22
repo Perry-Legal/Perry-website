@@ -12,6 +12,7 @@ export type SolutionPage = {
   label: string;
   headline: string;
   description: string;
+  cardDescription: string;
   kpis?: string[];
   heroImageSrc: string;
   cardImageSrc: string;
@@ -25,6 +26,8 @@ export const solutionByRole: SolutionPage[] = [
     headline: "Run legal across every fund, deal and portfolio company",
     description:
       "Perry gives private capital legal teams one connected view of documents, entities, obligations, legal decisions and external collaboration.",
+    cardDescription:
+      "Your only platform for fund, deal, and portfolio legal work.",
     kpis: [
       "Less repeated legal research",
       "More consistent negotiation positions",
@@ -79,6 +82,8 @@ export const solutionByRole: SolutionPage[] = [
     headline: "Complete investor legal work without the email chain",
     description:
       "Respond to requests, share entity records, complete approvals and prepare for transactions through one controlled workspace.",
+    cardDescription:
+      "Respond to investor requests without the email chain.",
     heroImageSrc: "/images/solutions/portfolio-company.jpg",
     cardImageSrc: "/images/solutions/cards/portfolio-company.jpg",
     chapters: [
@@ -133,6 +138,8 @@ export const solutionByRole: SolutionPage[] = [
     headline: "A clearer way to manage fund legal interactions",
     description:
       "Review fund documents, complete onboarding, make MFN elections and respond to legal requests through one secure investor workspace.",
+    cardDescription:
+      "Onboarding, elections, and fund requests in one secure workspace.",
     heroImageSrc: "/images/solutions/lps.jpg",
     cardImageSrc: "/images/solutions/cards/lps.jpg",
     chapters: [
@@ -188,6 +195,8 @@ export const solutionByIndustry: SolutionPage[] = [
     headline: "Legal infrastructure for high-volume investing",
     description:
       "Perry helps lean venture teams review more deals, manage larger portfolios and preserve legal context across repeated investment activity.",
+    cardDescription:
+      "Review more deals and preserve legal context across your portfolio.",
     heroImageSrc: "/images/solutions/venture-capital.jpg",
     cardImageSrc: "/images/solutions/cards/venture-capital.jpg",
     chapters: [
@@ -241,6 +250,8 @@ export const solutionByIndustry: SolutionPage[] = [
     headline: "Legal control across complex ownership structures",
     description:
       "Perry connects fund restrictions, transaction documents, portfolio rights and ongoing obligations from acquisition through exit.",
+    cardDescription:
+      "Legal continuity from fund formation through towards exit.",
     heroImageSrc: "/images/solutions/private-equity.jpg",
     cardImageSrc: "/images/solutions/cards/private-equity.jpg",
     chapters: [

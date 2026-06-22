@@ -44,7 +44,7 @@ export function HeroSection() {
 
             <p className="mt-6 max-w-xl text-medium text-white/90 text-pretty sm:text-lg">
               Unify fund formation, deal execution, and portfolio governance in
-              one platform built for in-house legal teams.
+              one platform, intentionally built for every legal touchpoint in funds.
             </p>
 
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">

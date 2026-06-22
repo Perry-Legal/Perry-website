@@ -8,15 +8,30 @@ import { cn } from "@/lib/utils";
 
 type CtaSectionProps = {
   className?: string;
+  id?: string;
+  imageSrc?: string;
+  title?: string;
+  description?: string;
 };
 
-export function CtaSection({ className }: CtaSectionProps) {
+const defaultTitle = "Run your fund's legal work from one connected platform.";
+const defaultDescription =
+  "Book a demo to see how Perry helps in-house legal teams unify fund formation, deal execution, and portfolio governance.";
+const defaultImageSrc = "/images/cta/jaanus-jagomagi-unsplash.jpg";
+
+export function CtaSection({
+  className,
+  id = "contact",
+  imageSrc = defaultImageSrc,
+  title = defaultTitle,
+  description = defaultDescription,
+}: CtaSectionProps) {
   return (
-    <section id="contact" className={cn("px-6 pb-24", className)}>
-      <div className="relative mx-auto max-w-8xl overflow-hidden rounded-sm border border-border shadow-sm">
+    <section id={id} className={cn("px-6 pb-24", className)}>
+      <div className="relative mx-auto h-[400px] max-w-8xl overflow-hidden rounded-sm border border-border shadow-sm">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <Image
-            src="/images/cta/jaanus-jagomagi-unsplash.jpg"
+            src={imageSrc}
             alt=""
             fill
             className="object-cover object-center"
@@ -26,15 +41,14 @@ export function CtaSection({ className }: CtaSectionProps) {
           <div className="absolute inset-0 bg-[linear-gradient(to_bottom,rgb(0_0_0/0.25)_0%,transparent_45%,rgb(0_0_0/0.35)_100%)]" />
         </div>
 
-        <div className="relative px-8 py-16 text-center text-white sm:px-16 sm:py-20">
+        <div className="relative flex h-full flex-col items-center justify-center px-8 text-center text-white sm:px-16">
           <h2 className="font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-            Run your fund&apos;s legal work from one connected platform.
+            {title}
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80 text-pretty">
-            Book a demo to see how Perry helps in-house legal teams unify fund
-            formation, deal execution, and portfolio governance.
+            {description}
           </p>
-          <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+          <div className="mt-8 flex justify-center">
             <Button
               size="lg"
               className="bg-white text-black hover:bg-white/90"
@@ -48,14 +62,6 @@ export function CtaSection({ className }: CtaSectionProps) {
             >
               Book demo
               <ArrowRight />
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white/80 bg-transparent text-white hover:bg-white/10 hover:text-white"
-              render={<Link href="/#platform" />}
-            >
-              View product
             </Button>
           </div>
         </div>

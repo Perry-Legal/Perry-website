@@ -1,8 +1,11 @@
 import type { Metadata } from "next";
 import Image from "@/components/asset-image";
+import Link from "next/link";
 
+import { CtaSection } from "@/components/cta-section";
+import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
 import { StoryPageHero } from "@/components/story-page-hero";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardAction, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { aboutImages } from "@/lib/about-images";
 
 export const metadata: Metadata = {
@@ -16,89 +19,73 @@ const teamMembers = [
     name: "Shashwat Patel",
     role: "Founder & CEO",
     imageSrc: aboutImages.team.shashwatPatel,
+    linkedinUrl: "https://www.linkedin.com/in/shashwatpatel/",
   },
   {
     name: "Jacobo König",
     role: "Founder & CTO",
     imageSrc: aboutImages.team.jacoboKonig,
+    linkedinUrl: "https://www.linkedin.com/in/jacobok/",
   },
   {
     name: "Vaneesa Agrawal",
     role: "Founder & CPO",
     imageSrc: aboutImages.team.vaneesaAgrawal,
+    linkedinUrl: "https://www.linkedin.com/in/vaneesaagrawal/",
   },
 ];
 
-const values = [
-  {
-    title: "Speed",
-    description: "We want you to spend 10x less time and money on legal busywork.",
-  },
-  {
-    title: "Security",
-    description: "We build technology you can trust, guided by transparency and best practices.",
-  },
-  {
-    title: "Context",
-    description: "We get to know you, and that way serve you better after every single action.",
-  },
-  {
-    title: "Collaboration",
-    description: "Our work means little if we can't share it with the most important people.",
-  },
-  {
-    title: "Accuracy",
-    description:
-      "Every finding passes a through accuracy barrier and is cited from your sources.",
-  },
-  {
-    title: "Usability",
-    description: "We know you're tired of chatbots. We use AI without \"looking\" like AI.",
-  },
-];
+function LinkedInIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className={className}
+      aria-hidden
+    >
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+    </svg>
+  );
+}
 
 export default function AboutPage() {
   return (
     <div className="border-t border-border/60">
       <StoryPageHero
-        title="AI that speaks in your language"
-        description="Perry was founded on the belief that AI should be proactive, collaborative and have a deep knowledge of you and your practice."
+        eyebrow="Our mission"
+        title="Lorem ipsum dolor sit amet"
+        description="Consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
         imageSrc={aboutImages.hero}
         imageAlt="Perry team collaborating in the office"
         imageAspect="landscape"
-      />
-
-      <section className="border-t border-border/60 bg-muted/20 px-6 py-16 sm:py-20">
-        <div className="section-container max-w-3xl">
-          <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
-            Our mission
+      >
+        <h2 className="mt-8 font-source-serif text-2xl font-medium tracking-tight text-balance sm:text-3xl">
+          Ut enim ad minim veniam, quis nostrud exercitation.
+        </h2>
+        <div className="mt-4 space-y-4 text-base leading-relaxed text-muted-foreground text-pretty">
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor
+            incididunt ut labore et dolore magna aliqua.
           </p>
-          <h2 className="mt-3 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-            Making law simpler, smarter, and more human.
-          </h2>
-          <div className="mt-6 space-y-4 text-base leading-relaxed text-muted-foreground text-pretty">
-            <p>
-              Law is built on precision, but it&apos;s often slowed down by complexity.
-            </p>
-            <p>
-              At Perry, we use AI to remove friction, automate the repetitive, and amplify the
-              value of human-led strategy.
-            </p>
-            <p>
-              Our goal is to turn every legal process into an opportunity for clarity and
-              confidence.
-            </p>
-            <p>
-              Traditional workflows rely on manual review, fragmented tools, and processes that
-              weren&apos;t built for the pace of modern business.
-            </p>
-            <p>
-              Important decisions get delayed not because teams lack expertise, but because the
-              system around them makes it harder to move with confidence.
-            </p>
-          </div>
+          <p>
+            Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat.
+          </p>
+          <p>
+            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur.
+          </p>
+          <p>
+            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt
+            mollit anim id est laborum.
+          </p>
+          <p>
+            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+            laudantium, totam rem aperiam.
+          </p>
         </div>
-      </section>
+      </StoryPageHero>
 
       <section className="border-t border-border/60 px-6 py-16 sm:py-20">
         <div className="section-container">
@@ -116,7 +103,7 @@ export default function AboutPage() {
           <div className="mt-10 grid gap-6 sm:grid-cols-3">
             {teamMembers.map((member) => (
               <Card key={member.name} className="overflow-hidden pt-0">
-                <div className="relative aspect-[3/4] w-full bg-muted/30">
+                <div className="relative h-[600px] w-full bg-muted/30">
                   <Image
                     src={member.imageSrc}
                     alt={member.name}
@@ -128,6 +115,17 @@ export default function AboutPage() {
                 <CardHeader>
                   <CardTitle className="text-lg">{member.name}</CardTitle>
                   <CardDescription>{member.role}</CardDescription>
+                  <CardAction>
+                    <Link
+                      href={member.linkedinUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label={`${member.name} on LinkedIn`}
+                      className="inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    >
+                      <LinkedInIcon className="size-4" />
+                    </Link>
+                  </CardAction>
                 </CardHeader>
               </Card>
             ))}
@@ -135,55 +133,9 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <section className="border-t border-border/60 bg-muted/20 px-6 py-16 sm:py-20">
-        <div className="section-container">
-          <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
-            Our values
-          </p>
-          <h2 className="mt-3 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-            What we&apos;re optimizing for.
-          </h2>
+      <EnterpriseSafetySection />
 
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {values.map((value) => (
-              <Card key={value.title}>
-                <CardHeader>
-                  <CardTitle className="text-lg">{value.title}</CardTitle>
-                  <CardDescription className="text-sm leading-relaxed">
-                    {value.description}
-                  </CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="border-t border-border/60 px-6 py-16 sm:pb-24 sm:py-20">
-        <div className="section-container grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-          <div>
-            <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
-              Our offices
-            </p>
-            <h2 className="mt-3 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-              In your jurisdiction
-            </h2>
-            <p className="mt-4 text-base leading-relaxed text-muted-foreground text-pretty">
-              We work across jurisdictions to provide you with local and contextual solutions.
-            </p>
-          </div>
-
-          <div className="relative aspect-[4/3] overflow-hidden rounded-sm border border-border bg-muted/30 shadow-sm">
-            <Image
-              src={aboutImages.offices}
-              alt="Perry offices around the world"
-              fill
-              className="object-cover object-center"
-              sizes="(max-width: 1024px) 100vw, 560px"
-            />
-          </div>
-        </div>
-      </section>
+      <CtaSection className="pt-20 sm:pt-24" />
     </div>
   );
 }

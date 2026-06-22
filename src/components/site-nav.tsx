@@ -51,7 +51,7 @@ export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
         }
         setActiveItem(nextValue);
       }}
-      className="hidden max-w-none flex-none justify-start md:flex"
+      className="hidden max-w-none flex-none justify-center md:flex"
       align="start"
       delay={100}
       closeDelay={250}

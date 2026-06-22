@@ -541,17 +541,17 @@ function PlatformArchitectureHeader({ className }: { className?: string }) {
     <div className={cn("mx-auto max-w-2xl shrink-0 text-center", className)}>
       <p className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-white/60">
         <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
-        The architecture
+         architecture
       </p>
       <h2
         id="platform-architecture-heading"
         className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance text-white sm:text-4xl md:text-5xl"
       >
-        The Perry Platform
+        A deep look into the legal OS
       </h2>
       <p className="mt-3 text-base leading-relaxed text-white/50 text-pretty sm:text-base">
         Private capital legal work sits at the center of every fund lifecycle event.
-        Perry was built from first principles for in-house legal teams managing
+        Perry was built from first principles for the private capital legal needs of managing
         formation, deals, portfolio, and exit.
       </p>
     </div>

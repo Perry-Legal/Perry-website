@@ -29,8 +29,8 @@ export function SiteHeader() {
         onDark ? "text-white" : "text-foreground",
       )}
     >
-      <div className="section-container flex h-16 items-center justify-between px-6">
-        <Link href="/" className="flex h-6 shrink-0 items-center">
+      <div className="section-container grid h-16 grid-cols-[1fr_auto_1fr] items-center px-6">
+        <Link href="/" className="flex h-6 shrink-0 items-center justify-self-start">
           <Image
             src={onDark ? "/perry-logo-white.png" : "/perry-logo.png"}
             alt="Perry"
@@ -43,7 +43,7 @@ export function SiteHeader() {
 
         <SiteNav contrast={contrast} />
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center justify-self-end gap-3">
           <Button
             variant="outline"
             size="sm"

@@ -1,3 +1,5 @@
+import type { ReactNode } from "react";
+
 import Image from "@/components/asset-image";
 
 import { getImageAspectRatio } from "@/lib/image-aspect-ratios";
@@ -8,6 +10,7 @@ type StoryPageHeroProps = {
   title: string;
   description: string;
   kpis?: string[];
+  children?: ReactNode;
   imageSrc?: string;
   imageAlt?: string;
   imageAspect?: "portrait" | "landscape" | "square";
@@ -19,6 +22,7 @@ export function StoryPageHero({
   title,
   description,
   kpis,
+  children,
   imageSrc,
   imageAlt,
   imageAspect = "portrait",
@@ -65,6 +69,7 @@ export function StoryPageHero({
               ))}
             </ul>
           )}
+          {children}
         </div>
 
         <div

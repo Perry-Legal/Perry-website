@@ -227,7 +227,7 @@ export function PlatformIntelligenceSection() {
             Legal OS
           </p>
           <h2 className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl md:text-5xl">
-            One platform. Every stage of the fund lifecycle.
+            The only platform you need for all legal work in funds.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty sm:text-base">
             Legal documents and entity data move through one intelligence layer and become

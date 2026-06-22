@@ -11,7 +11,7 @@ const personaCards = [
 
 export function SolutionSection() {
   return (
-    <section id="solution" className="overflow-x-hidden py-32">
+    <section id="solution" className="overflow-x-hidden pt-12 pb-32">
       <div className="section-container px-6">
         <div className="max-w-2xl">
           <p className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground">
@@ -50,8 +50,8 @@ export function SolutionSection() {
                     <h3 className="text-sm font-medium tracking-tight">{item.label}</h3>
                     <ArrowRight className="size-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5" />
                   </div>
-                  <p className="mt-1 line-clamp-2 text-xs leading-relaxed text-muted-foreground">
-                    {item.description}
+                  <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
+                    {item.cardDescription}
                   </p>
                 </div>
               </Link>
