@@ -20,7 +20,8 @@ export function SolutionSection() {
             Connect every stakeholder around the fund
           </h2>
           <p className="mt-4 text-muted-foreground text-pretty">
-            Purpose-built experiences for every stakeholder in the private capital ecosystem.
+            One connected workflow that brings in-house teams, portfolio
+            companies, LPs, and advisers into the fund&apos;s legal work.
           </p>
         </div>
       </div>
