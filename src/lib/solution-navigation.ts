@@ -21,12 +21,12 @@ export type SolutionPage = {
 export const solutionByRole: SolutionPage[] = [
   {
     slug: "in-house-lawyer",
-    label: "In-house lawyer",
+    label: "In-house team",
     headline: "Run legal across every fund, deal and portfolio company",
     description:
       "Perry gives private capital legal teams one connected view of documents, entities, obligations, legal decisions and external collaboration.",
     cardDescription:
-      "Your only platform for fund, deal, and portfolio legal work.",
+      "Your only platform for everyone with a legal touch point in the fund.",
     heroImageSrc: "/images/solutions/in-house-lawyer.jpg",
     cardImageSrc: "/images/solutions/cards/in-house-lawyer.jpg",
     chapters: [
@@ -74,7 +74,7 @@ export const solutionByRole: SolutionPage[] = [
     description:
       "Respond to requests, share entity records, complete approvals and prepare for transactions through one controlled workspace.",
     cardDescription:
-      "Respond to investor requests without the email chain.",
+      "Bring portfolio governance, legal responses, and records into the fund's connected workflow.",
     heroImageSrc: "/images/solutions/portfolio-company.jpg",
     cardImageSrc: "/images/solutions/cards/portfolio-company.jpg",
     chapters: [
@@ -130,7 +130,7 @@ export const solutionByRole: SolutionPage[] = [
     description:
       "Review fund documents, complete onboarding, make MFN elections and respond to legal requests through one secure investor workspace.",
     cardDescription:
-      "Onboarding, elections, and fund requests in one secure workspace.",
+      "Run LP onboarding, elections, and investor requests from one fund-controlled workspace.",
     heroImageSrc: "/images/solutions/lps.jpg",
     cardImageSrc: "/images/solutions/cards/lps.jpg",
     chapters: [
@@ -187,7 +187,7 @@ export const solutionByIndustry: SolutionPage[] = [
     description:
       "Perry helps lean venture teams review more deals, manage larger portfolios and preserve legal context across repeated investment activity.",
     cardDescription:
-      "Review more deals and preserve legal context across your portfolio.",
+      "Keep high-volume deal review, portfolio events, and legal context connected across the fund.",
     heroImageSrc: "/images/solutions/venture-capital.jpg",
     cardImageSrc: "/images/solutions/cards/venture-capital.jpg",
     chapters: [

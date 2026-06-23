@@ -4,6 +4,7 @@ import { ArrowRight } from "lucide-react";
 
 import { ClientBanner } from "@/components/client-banner";
 import { Button } from "@/components/ui/button";
+import { withBasePath } from "@/lib/base-path";
 import { bookDemoUrl } from "@/lib/navigation";
 
 export function HeroSection() {
@@ -20,7 +21,7 @@ export function HeroSection() {
         aria-hidden
         className="absolute inset-0 -z-20 size-full object-cover object-center"
       >
-        <source src="/videos/hero/hero.mp4" type="video/mp4" />
+        <source src={withBasePath("/videos/hero/hero.mp4")} type="video/mp4" />
       </video>
       <div
         aria-hidden
@@ -51,8 +52,9 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 max-w-xl text-medium text-white/90 text-pretty sm:text-lg">
-              Unify fund formation, deal execution, and portfolio governance in
-              one platform, intentionally built for every legal touchpoint in funds.
+              The operating layer for legal work across the fund lifecycle -
+              formation, deal execution, and portfolio governance, in one
+              platform built for private capital.
             </p>
 
             <div className="mt-10">

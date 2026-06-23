@@ -14,10 +14,10 @@ export function SolutionSection() {
         <div className="max-w-2xl">
           <p className="flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground">
             <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
-            Solution
+            Ecosystem
           </p>
           <h2 className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl">
-            Purpose-built for every stakeholder
+            Connect every stakeholder around the fund
           </h2>
           <p className="mt-4 text-muted-foreground text-pretty">
             Purpose-built experiences for every stakeholder in the private capital ecosystem.
