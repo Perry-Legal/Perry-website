@@ -3,7 +3,7 @@
 import Image from "@/components/asset-image";
 import { useEffect, useState, type ComponentType } from "react";
 
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { intelligenceFlowStages } from "@/lib/platform-intelligence-flow";
 import { cn } from "@/lib/utils";
 
@@ -143,7 +143,7 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
     intelligenceFlowStages[0];
 
   return (
-    <div className="grid grid-cols-1 gap-8 motion-reduce:animate-none lg:grid-cols-4 lg:gap-1 animate-pipeline-fade-in">
+    <div className="grid grid-cols-1 gap-8 lg:grid-cols-4 lg:gap-1">
       {stage.columns.map((column, index) => {
         const Illustration = columnIllustrations[index];
 
@@ -248,7 +248,9 @@ export function PlatformIntelligenceSection() {
                       activeTab={activeTab}
                     />
                     <TabsTrigger
+                      id={`legal-os-tab-${stage.id}`}
                       value={stage.id}
+                      aria-controls={`legal-os-panel-${stage.id}`}
                       className={cn(
                         "group relative flex h-auto w-full min-h-0 flex-none flex-col items-stretch justify-start overflow-hidden rounded-none border border-transparent bg-transparent !p-0 text-left opacity-40 !shadow-none transition-opacity",
                         "text-muted-foreground",
@@ -274,19 +276,34 @@ export function PlatformIntelligenceSection() {
             </TabsList>
           </div>
 
-          {intelligenceFlowStages.map((stage) => (
-            <TabsContent
-              key={stage.id}
-              value={stage.id}
-              className="mt-6 p-0 outline-none"
-            >
-              {activeTab === stage.id ? (
-                <div className="bg-muted/30 p-3">
-                  <IntelligencePipeline key={activeTab} stageId={stage.id} />
+          <div className="mt-6 grid">
+            {intelligenceFlowStages.map((stage) => {
+              const isActive = activeTab === stage.id;
+
+              return (
+                <div
+                  key={stage.id}
+                  role="tabpanel"
+                  id={`legal-os-panel-${stage.id}`}
+                  aria-labelledby={`legal-os-tab-${stage.id}`}
+                  aria-hidden={!isActive}
+                  className={cn(
+                    "col-start-1 row-start-1 p-0 outline-none",
+                    !isActive && "invisible pointer-events-none",
+                  )}
+                >
+                  <div
+                    className={cn(
+                      "bg-muted/30 p-3",
+                      isActive && "animate-pipeline-fade-in motion-reduce:animate-none",
+                    )}
+                  >
+                    <IntelligencePipeline stageId={stage.id} />
+                  </div>
                 </div>
-              ) : null}
-            </TabsContent>
-          ))}
+              );
+            })}
+          </div>
         </Tabs>
       </div>
     </section>
