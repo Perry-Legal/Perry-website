@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 
+import { withBasePath } from "@/lib/base-path";
+
 import "./globals.css";
 
 const geistSans = Geist({
@@ -20,16 +22,20 @@ const sourceSerif = Source_Serif_4({
 
 export const metadata: Metadata = {
   title: {
-    default: "Perry — The modern platform for growing companies",
+    default: "Perry - The Legal OS for Private Capital",
     template: "%s | Perry",
   },
   description:
     "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
   openGraph: {
-    title: "Perry — The modern platform for growing companies",
+    title: "Perry - The Legal OS for Private Capital",
     description:
       "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
     type: "website",
+  },
+  icons: {
+    icon: withBasePath("/icon.png"),
+    apple: withBasePath("/apple-icon.png"),
   },
 };
 
