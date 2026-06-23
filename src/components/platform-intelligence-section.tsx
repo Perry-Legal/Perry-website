@@ -2,7 +2,7 @@
 
 import Image from "@/components/asset-image";
 import { Pause, Play } from "lucide-react";
-import { useEffect, useState, type ComponentType } from "react";
+import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -188,12 +188,65 @@ function StageProgressBar({
   activeIndex,
   activeTab,
   isPaused,
+  onComplete,
 }: {
   index: number;
   activeIndex: number;
   activeTab: string;
   isPaused: boolean;
+  onComplete: () => void;
 }) {
+  const isActive = index === activeIndex;
+  const [progress, setProgress] = useState(0);
+  const elapsedRef = useRef(0);
+  const lastFrameRef = useRef<number | null>(null);
+  const completedRef = useRef(false);
+
+  useEffect(() => {
+    setProgress(0);
+    elapsedRef.current = 0;
+    lastFrameRef.current = null;
+    completedRef.current = false;
+  }, [activeTab]);
+
+  useEffect(() => {
+    if (!isActive || isPaused) {
+      lastFrameRef.current = null;
+      return;
+    }
+
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (prefersReducedMotion) return;
+
+    let frameId = 0;
+
+    const tick = (now: number) => {
+      if (lastFrameRef.current === null) {
+        lastFrameRef.current = now;
+      }
+
+      const delta = now - lastFrameRef.current;
+      lastFrameRef.current = now;
+      elapsedRef.current += delta;
+
+      const nextProgress = Math.min(100, (elapsedRef.current / TAB_AUTO_ADVANCE_MS) * 100);
+      setProgress(nextProgress);
+
+      if (nextProgress >= 100) {
+        if (!completedRef.current) {
+          completedRef.current = true;
+          onComplete();
+        }
+        return;
+      }
+
+      frameId = requestAnimationFrame(tick);
+    };
+
+    frameId = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frameId);
+  }, [isActive, isPaused, activeTab, onComplete]);
+
   return (
     <div
       aria-hidden
@@ -204,16 +257,12 @@ function StageProgressBar({
         index === activeIndex && "bg-border",
       )}
     >
-      {index === activeIndex && (
+      {isActive ? (
         <span
-          key={activeTab}
-          className={cn(
-            "block h-full bg-foreground animate-tab-progress motion-reduce:animate-none",
-            isPaused && "[animation-play-state:paused]",
-          )}
-          style={{ animationDuration: `${TAB_AUTO_ADVANCE_MS}ms` }}
+          className="block h-full bg-foreground motion-reduce:hidden"
+          style={{ width: `${progress}%` }}
         />
-      )}
+      ) : null}
     </div>
   );
 }
@@ -222,20 +271,22 @@ export function PlatformIntelligenceSection() {
   const [activeTab, setActiveTab] = useState(intelligenceFlowStages[0].id);
   const [isPaused, setIsPaused] = useState(false);
 
+  const advanceTab = useCallback(() => {
+    setActiveTab((current) => {
+      const currentIndex = intelligenceFlowStages.findIndex((stage) => stage.id === current);
+      const nextIndex = (currentIndex + 1) % intelligenceFlowStages.length;
+      return intelligenceFlowStages[nextIndex].id;
+    });
+  }, []);
+
+  // Reduced-motion fallback — CSS progress animation is disabled there.
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    if (prefersReducedMotion || isPaused) return;
 
-    const interval = window.setInterval(() => {
-      setActiveTab((current) => {
-        const currentIndex = intelligenceFlowStages.findIndex((stage) => stage.id === current);
-        const nextIndex = (currentIndex + 1) % intelligenceFlowStages.length;
-        return intelligenceFlowStages[nextIndex].id;
-      });
-    }, TAB_AUTO_ADVANCE_MS);
-
-    return () => window.clearInterval(interval);
-  }, [activeTab]);
+    const timeout = window.setTimeout(advanceTab, TAB_AUTO_ADVANCE_MS);
+    return () => window.clearTimeout(timeout);
+  }, [activeTab, isPaused, advanceTab]);
 
   const activeIndex = intelligenceFlowStages.findIndex((stage) => stage.id === activeTab);
 
@@ -262,9 +313,25 @@ export function PlatformIntelligenceSection() {
         onValueChange={setActiveTab}
         className="mt-20 flex flex-col"
       >
-        <div className="section-container px-6">
-          <div className="flex items-end gap-4">
-            <div className="grid min-w-0 flex-1 grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
+        <div className="section-container flex flex-col gap-6 px-6">
+          <div>
+            <Button
+              type="button"
+              variant="ghost"
+              className="h-10 w-10 shrink-0 rounded-md bg-muted p-0 text-black hover:bg-muted/80 hover:text-black"
+              aria-label={isPaused ? "Resume tab rotation" : "Pause tab rotation"}
+              aria-pressed={isPaused}
+              onClick={() => setIsPaused((paused) => !paused)}
+            >
+              {isPaused ? (
+                <Play className="size-5 fill-black stroke-none" />
+              ) : (
+                <Pause className="size-5 fill-black stroke-none" />
+              )}
+            </Button>
+          </div>
+
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-3">
               <TabsList variant="line" className="contents">
                 {intelligenceFlowStages.map((stage, index) => {
                   const TabIcon = stage.icon;
@@ -279,6 +346,7 @@ export function PlatformIntelligenceSection() {
                         activeIndex={activeIndex}
                         activeTab={activeTab}
                         isPaused={isPaused}
+                        onComplete={advanceTab}
                       />
                       <TabsTrigger
                         id={`legal-os-tab-${stage.id}`}
@@ -308,19 +376,6 @@ export function PlatformIntelligenceSection() {
                 })}
               </TabsList>
             </div>
-
-            <Button
-              type="button"
-              variant="outline"
-              size="icon-sm"
-              className="shrink-0"
-              aria-label={isPaused ? "Resume progress indicator" : "Pause progress indicator"}
-              aria-pressed={isPaused}
-              onClick={() => setIsPaused((paused) => !paused)}
-            >
-              {isPaused ? <Play /> : <Pause />}
-            </Button>
-          </div>
         </div>
 
         <div className="mt-6">

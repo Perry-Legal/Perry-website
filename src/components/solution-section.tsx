@@ -1,5 +1,4 @@
 import Image from "@/components/asset-image";
-import { ArrowRight } from "lucide-react";
 
 import { solutionByIndustry, solutionByRole } from "@/lib/solution-navigation";
 
@@ -44,13 +43,7 @@ export function SolutionSection() {
                 </div>
 
                 <div className="shrink-0 p-4">
-                  <div className="flex items-start justify-between gap-3">
-                    <h3 className="text-sm font-medium tracking-tight">{item.label}</h3>
-                    <ArrowRight
-                      aria-hidden
-                      className="size-4 shrink-0 text-muted-foreground"
-                    />
-                  </div>
+                  <h3 className="text-sm font-medium tracking-tight">{item.label}</h3>
                   <p className="mt-1 text-xs leading-relaxed text-muted-foreground">
                     {item.cardDescription}
                   </p>
