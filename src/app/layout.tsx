@@ -34,7 +34,10 @@ export const metadata: Metadata = {
     type: "website",
   },
   icons: {
-    icon: withBasePath("/icon.png"),
+    icon: [
+      { url: withBasePath("/favicon.ico"), sizes: "any" },
+      { url: withBasePath("/icon.png"), type: "image/png" },
+    ],
     apple: withBasePath("/apple-icon.png"),
   },
 };
