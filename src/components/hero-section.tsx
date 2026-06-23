@@ -36,7 +36,7 @@ export function HeroSection() {
       <div className="section-container flex min-h-svh flex-col px-6 pb-12 pt-24">
         <div className="flex flex-1 items-center">
           <div className="w-full text-left">
-            <h1 className="font-source-serif text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl md:text-6xl">
+            <h1 className="font-source-serif text-5xl font-medium tracking-tight text-balance text-white sm:text-6xl md:text-7xl">
               The Legal OS
               <br />
               for Private Capital

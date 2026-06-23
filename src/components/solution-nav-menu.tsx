@@ -51,11 +51,12 @@ function SolutionNavSection({
 
 type SolutionNavMenuProps = {
   contrast?: HeaderContrast;
+  className?: string;
 };
 
-export function SolutionNavMenu({ contrast = "on-light" }: SolutionNavMenuProps) {
+export function SolutionNavMenu({ contrast = "on-light", className }: SolutionNavMenuProps) {
   return (
-    <div className="flex gap-8">
+    <div className={cn("flex gap-8", className)}>
       <SolutionNavSection title="By role" items={solutionByRole} contrast={contrast} />
       <SolutionNavSection
         title="By industry"

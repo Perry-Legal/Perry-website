@@ -143,7 +143,7 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
     intelligenceFlowStages[0];
 
   return (
-    <div className="grid grid-cols-1 gap-1 motion-reduce:animate-none lg:grid-cols-4 animate-pipeline-fade-in">
+    <div className="grid grid-cols-1 gap-8 motion-reduce:animate-none lg:grid-cols-4 lg:gap-1 animate-pipeline-fade-in">
       {stage.columns.map((column, index) => {
         const Illustration = columnIllustrations[index];
 
@@ -163,37 +163,32 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
 
 const TAB_AUTO_ADVANCE_MS = 8000;
 
-function LifecycleTimeline({
+function StageProgressBar({
+  index,
   activeIndex,
   activeTab,
 }: {
+  index: number;
   activeIndex: number;
   activeTab: string;
 }) {
   return (
     <div
       aria-hidden
-      className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4"
+      className={cn(
+        "relative h-0.5 w-full overflow-hidden",
+        index < activeIndex && "bg-foreground/40",
+        index > activeIndex && "bg-border",
+        index === activeIndex && "bg-border",
+      )}
     >
-      {intelligenceFlowStages.map((stage, index) => (
-        <div
-          key={stage.id}
-          className={cn(
-            "relative h-0.5 overflow-hidden",
-            index < activeIndex && "bg-foreground/40",
-            index > activeIndex && "bg-border",
-            index === activeIndex && "bg-border",
-          )}
-        >
-          {index === activeIndex && (
-            <span
-              key={activeTab}
-              className="block h-full bg-foreground animate-tab-progress motion-reduce:animate-none"
-              style={{ animationDuration: `${TAB_AUTO_ADVANCE_MS}ms` }}
-            />
-          )}
-        </div>
-      ))}
+      {index === activeIndex && (
+        <span
+          key={activeTab}
+          className="block h-full bg-foreground animate-tab-progress motion-reduce:animate-none"
+          style={{ animationDuration: `${TAB_AUTO_ADVANCE_MS}ms` }}
+        />
+      )}
     </div>
   );
 }
@@ -240,17 +235,19 @@ export function PlatformIntelligenceSection() {
           onValueChange={setActiveTab}
           className="mt-20 flex flex-col"
         >
-          <div className="flex flex-col gap-3">
-            <LifecycleTimeline activeIndex={activeIndex} activeTab={activeTab} />
+          <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4 lg:grid-cols-4 lg:gap-3">
+            <TabsList variant="line" className="contents">
+              {intelligenceFlowStages.map((stage, index) => {
+                const TabIcon = stage.icon;
 
-            <div className="grid w-full grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4">
-              <TabsList variant="line" className="contents">
-                {intelligenceFlowStages.map((stage, index) => {
-                  const TabIcon = stage.icon;
-
-                  return (
+                return (
+                  <div key={stage.id} className="flex flex-col gap-2 max-lg:gap-3 max-lg:py-2">
+                    <StageProgressBar
+                      index={index}
+                      activeIndex={activeIndex}
+                      activeTab={activeTab}
+                    />
                     <TabsTrigger
-                      key={stage.id}
                       value={stage.id}
                       className={cn(
                         "group relative flex h-auto w-full min-h-0 flex-none flex-col items-stretch justify-start overflow-hidden rounded-none border border-transparent bg-transparent !p-0 text-left opacity-40 !shadow-none transition-opacity",
@@ -259,7 +256,7 @@ export function PlatformIntelligenceSection() {
                         "after:!hidden focus-visible:ring-2 focus-visible:ring-ring/50",
                       )}
                     >
-                      <div className="flex items-center gap-3 p-0">
+                      <div className="flex items-center gap-3 p-0 max-lg:py-0">
                         <div className="flex size-7 shrink-0 items-center justify-center rounded-md bg-muted/50 group-data-active:bg-muted">
                           <TabIcon
                             className="size-[16px] shrink-0 text-muted-foreground group-data-active:text-foreground"
@@ -271,10 +268,10 @@ export function PlatformIntelligenceSection() {
                         </p>
                       </div>
                     </TabsTrigger>
-                  );
-                })}
-              </TabsList>
-            </div>
+                  </div>
+                );
+              })}
+            </TabsList>
           </div>
 
           {intelligenceFlowStages.map((stage) => (

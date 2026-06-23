@@ -4,6 +4,7 @@ import Image from "@/components/asset-image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { SiteMobileNav } from "@/components/site-mobile-nav";
 import { SiteNav } from "@/components/site-nav";
 import { Button } from "@/components/ui/button";
 import { useAdaptiveHeader } from "@/hooks/use-adaptive-header";
@@ -29,21 +30,28 @@ export function SiteHeader() {
         onDark ? "text-white" : "text-foreground",
       )}
     >
-      <div className="section-container grid h-16 grid-cols-[1fr_auto_1fr] items-center px-6">
-        <Link href="/" className="flex h-6 shrink-0 items-center justify-self-start">
-          <Image
-            src={onDark ? "/perry-logo-white.png" : "/perry-logo.png"}
-            alt="Perry"
-            width={onDark ? 1419 : 355}
-            height={onDark ? 384 : 96}
-            priority
-            className="h-6 w-auto transition-opacity duration-300"
-          />
-        </Link>
+      <div className="section-container flex h-16 items-center gap-3 px-6">
+        <div className="flex items-center gap-2">
+          <div className="md:hidden">
+            <SiteMobileNav contrast={contrast} />
+          </div>
+          <Link href="/" className="flex h-6 shrink-0 items-center">
+            <Image
+              src={onDark ? "/perry-logo-white.png" : "/perry-logo.png"}
+              alt="Perry"
+              width={onDark ? 1419 : 355}
+              height={onDark ? 384 : 96}
+              priority
+              className="h-6 w-auto transition-opacity duration-300"
+            />
+          </Link>
+        </div>
 
-        <SiteNav contrast={contrast} />
+        <div className="hidden flex-1 justify-center md:flex">
+          <SiteNav contrast={contrast} />
+        </div>
 
-        <div className="flex items-center justify-self-end gap-3">
+        <div className="ml-auto flex items-center gap-2 sm:gap-3">
           <Button
             variant="outline"
             size="sm"

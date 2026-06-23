@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CtaSection } from "@/components/cta-section";
+import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
 import { SolutionWhyPerrySection } from "@/components/solution-why-perry-section";
 import { StoryChapter } from "@/components/story-chapter";
 import { StoryPageHero } from "@/components/story-page-hero";
@@ -43,7 +44,7 @@ export default async function SolutionDetailPage({
   return (
     <div className="border-t border-border/60">
       <StoryPageHero
-        eyebrow="Solution"
+        eyebrow={page.label}
         title={page.headline}
         description={page.cardDescription}
         showBookDemoCta
@@ -65,6 +66,8 @@ export default async function SolutionDetailPage({
           imageSrc={chapter.imageSrc}
         />
       ))}
+
+      <EnterpriseSafetySection />
 
       <CtaSection className="pt-20 sm:pt-24" />
     </div>

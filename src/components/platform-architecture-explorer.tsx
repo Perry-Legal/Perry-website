@@ -664,7 +664,7 @@ export function PlatformArchitectureExplorer({
           className,
         )}
       >
-        <div className="self-center">
+        <div className="hidden self-center lg:block">
           <Sidebar floatIndex={floatIndex} onSelectLayer={scrollToLayer} />
         </div>
 
