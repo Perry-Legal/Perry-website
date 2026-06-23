@@ -130,7 +130,7 @@ export const solutionByRole: SolutionPage[] = [
     description:
       "Review fund documents, complete onboarding, make MFN elections and respond to legal requests through one secure investor workspace.",
     cardDescription:
-      "Run LP onboarding, elections, and investor requests from one fund-controlled workspace.",
+      "Run LPA review, MFN elections from one fund-controlled workspace.",
     heroImageSrc: "/images/solutions/lps.jpg",
     cardImageSrc: "/images/solutions/cards/lps.jpg",
     chapters: [

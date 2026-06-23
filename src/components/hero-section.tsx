@@ -11,7 +11,7 @@ export function HeroSection() {
   return (
     <section
       data-header-theme="dark"
-      className="relative isolate -mt-16 min-h-svh overflow-hidden"
+      className="relative isolate -mt-16 min-h-[max(100svh,42.5rem)] overflow-hidden md:min-h-svh"
     >
       <video
         autoPlay
@@ -32,7 +32,7 @@ export function HeroSection() {
         className="absolute inset-0 -z-10 bg-black/40"
       />
 
-      <div className="section-container flex min-h-svh flex-col px-6 pb-12 pt-24">
+      <div className="section-container flex min-h-[max(100svh,42.5rem)] flex-col px-6 pb-12 pt-24 md:min-h-svh">
         <div className="flex flex-1 items-center">
           <div className="w-full text-left">
             <Link href="/" className="mb-6 inline-flex md:hidden">
