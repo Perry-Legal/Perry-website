@@ -12,14 +12,16 @@ export function HeroSection() {
       data-header-theme="dark"
       className="relative isolate -mt-16 min-h-svh overflow-hidden"
     >
-      <Image
-        src="/images/hero/urban-hero.avif"
-        alt=""
-        fill
-        priority
-        className="-z-20 object-cover object-center"
-        sizes="100vw"
-      />
+      <video
+        autoPlay
+        muted
+        loop
+        playsInline
+        aria-hidden
+        className="absolute inset-0 -z-20 size-full object-cover object-center"
+      >
+        <source src="/videos/hero/hero.mp4" type="video/mp4" />
+      </video>
       <div
         aria-hidden
         className="absolute inset-0 -z-10 bg-emerald-950/12"
