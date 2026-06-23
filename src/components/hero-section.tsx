@@ -28,11 +28,7 @@ export function HeroSection() {
       />
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_right,rgb(0_0_0/0.82)_0%,rgb(0_0_0/0.55)_28%,rgb(0_0_0/0.25)_48%,transparent_72%)]"
-      />
-      <div
-        aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(to_bottom,rgb(0_0_0/0.35)_0%,transparent_40%,rgb(0_0_0/0.2)_100%)]"
+        className="absolute inset-0 -z-10 bg-black/40"
       />
 
       <div className="section-container flex min-h-svh flex-col px-6 pb-12 pt-24">
