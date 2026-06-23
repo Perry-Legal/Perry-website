@@ -1,19 +1,22 @@
 import type { NextConfig } from "next";
 
 const isGithubPages = process.env.GITHUB_PAGES === "true";
-const repoBasePath = "/Perry-website";
+const useCustomDomain = process.env.GITHUB_PAGES_CUSTOM_DOMAIN === "true";
+// Project Pages (github.io/Perry-website) need a base path; custom domains serve from /.
+const pagesBasePath = useCustomDomain ? "" : "/Perry-website";
 
 const nextConfig: NextConfig = {
   ...(isGithubPages
     ? {
         output: "export",
-        basePath: repoBasePath,
-        assetPrefix: repoBasePath,
+        ...(pagesBasePath
+          ? { basePath: pagesBasePath, assetPrefix: pagesBasePath }
+          : {}),
         trailingSlash: true,
       }
     : {}),
   env: {
-    NEXT_PUBLIC_BASE_PATH: isGithubPages ? repoBasePath : "",
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? pagesBasePath : "",
   },
   images: {
     unoptimized: true,
