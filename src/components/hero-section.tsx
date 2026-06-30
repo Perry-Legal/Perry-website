@@ -52,7 +52,7 @@ export function HeroSection() {
             </h1>
 
             <p className="mt-6 max-w-xl text-medium text-white/90 text-pretty sm:text-lg">
-              The operating layer for legal work across the fund lifecycle -
+              The AI operating layer for legal work across the fund lifecycle -
               formation, deal execution, and portfolio governance, in one
               platform built for private capital.
             </p>
