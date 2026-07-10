@@ -23,10 +23,10 @@ export function SiteHeader() {
         !hasSurface && "border-b border-transparent bg-transparent backdrop-blur-none",
         hasSurface &&
           onDark &&
-          "border-b border-white/10 bg-black/40 backdrop-blur-xl backdrop-saturate-150",
+          "border-b border-white/10 bg-black/45 backdrop-blur-md",
         hasSurface &&
           !onDark &&
-          "border-b border-border/60 bg-background/70 backdrop-blur-xl backdrop-saturate-150",
+          "border-b border-border/60 bg-background/80 backdrop-blur-md",
         onDark ? "text-white" : "text-foreground",
       )}
     >

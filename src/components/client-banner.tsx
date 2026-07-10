@@ -61,7 +61,7 @@ export function ClientBanner({ embedded = false, variant = "default" }: ClientBa
       </p>
 
       <div className="relative mt-6 sm:mt-8">
-        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_16%,black_84%,transparent_100%)]">
+        <div className="overflow-hidden [mask-image:linear-gradient(to_right,transparent_0%,black_12%,black_88%,transparent_100%)]">
           <div className="flex w-max gap-12 sm:gap-16 animate-client-marquee motion-reduce:animate-none">
             <ul className="flex shrink-0 items-center gap-12 sm:gap-16">
               <ClientLogos variant={variant} />

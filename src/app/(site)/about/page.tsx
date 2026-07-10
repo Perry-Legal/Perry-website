@@ -3,7 +3,6 @@ import Image from "@/components/asset-image";
 import Link from "next/link";
 
 import { CtaSection } from "@/components/cta-section";
-import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { aboutImages } from "@/lib/about-images";
@@ -63,16 +62,15 @@ export default function AboutPage() {
         title="Built by seasoned private capital lawyers"
         description="Perry comes from years spent inside firms and fund teams—negotiating deals, closing funds, and managing portfolio obligations. We built the platform we wished we had."
         belowContent={
-          <StaggerGroup stagger={0.1} className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-3">
             {teamMembers.map((member) => (
-              <StaggerItem key={member.name} y={28}>
-              <Card className="group h-full overflow-hidden rounded-sm pt-0 transition-shadow duration-300 hover:shadow-md">
-                <div className="relative h-[600px] w-full overflow-hidden bg-muted/30">
+              <Card key={member.name} className="overflow-hidden rounded-sm pt-0">
+                <div className="relative h-[600px] w-full bg-muted/30">
                   <Image
                     src={member.imageSrc}
                     alt={member.name}
                     fill
-                    className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.03]"
+                    className="object-cover object-top"
                     sizes="(max-width: 640px) 100vw, 320px"
                   />
                 </div>
@@ -97,9 +95,8 @@ export default function AboutPage() {
                   </p>
                 </CardContent>
               </Card>
-              </StaggerItem>
             ))}
-          </StaggerGroup>
+          </div>
         }
       />
 
