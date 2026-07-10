@@ -1,3 +1,6 @@
+import { CountUp } from "@/components/motion/count-up";
+import { Reveal } from "@/components/motion/reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { cn } from "@/lib/utils";
 
 type ParsedKpi = {
@@ -46,20 +49,23 @@ export function StoryKpiSection({
       className={cn("border-b border-border/60 bg-muted/30 px-6 py-20 sm:py-24", className)}
     >
       <div className="section-container grid gap-12 lg:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] lg:items-start lg:gap-16 xl:gap-24">
-        <h2 className="max-w-sm text-xl font-medium tracking-tight text-balance sm:text-2xl">
-          {title}
-        </h2>
+        <Reveal>
+          <h2 className="max-w-sm text-xl font-medium tracking-tight text-balance sm:text-2xl">
+            {title}
+          </h2>
+        </Reveal>
 
-        <div className="divide-y divide-border/80">
+        <StaggerGroup stagger={0.1} className="divide-y divide-border/80">
           {displayKpis.map((kpi) => {
             const { metric, description } = parseKpi(kpi);
+            const metricValue = metric ? parseInt(metric, 10) : undefined;
 
             return (
-              <div key={kpi} className="py-10 first:pt-0 last:pb-0">
-                {metric ? (
+              <StaggerItem key={kpi} y={24} className="py-10 first:pt-0 last:pb-0">
+                {metric && metricValue !== undefined && !Number.isNaN(metricValue) ? (
                   <>
                     <p className="font-source-serif text-5xl font-medium tracking-tight sm:text-6xl">
-                      {metric}
+                      <CountUp to={metricValue} suffix="%" />
                     </p>
                     <p className="mt-3 text-sm leading-relaxed text-foreground lowercase text-pretty">
                       {description}
@@ -70,10 +76,10 @@ export function StoryKpiSection({
                     {description}
                   </p>
                 )}
-              </div>
+              </StaggerItem>
             );
           })}
-        </div>
+        </StaggerGroup>
       </div>
     </section>
   );

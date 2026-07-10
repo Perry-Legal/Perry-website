@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -37,17 +38,19 @@ export default function BlogPage() {
         description="Industry insights, product updates, and best practices for private capital legal teams."
       />
 
-      <div className="mx-auto grid max-w-4xl gap-6 px-6 pb-24">
+      <StaggerGroup className="mx-auto grid max-w-4xl gap-6 px-6 pb-24">
         {posts.map((post) => (
-          <Card key={post.slug}>
-            <CardHeader>
-              <p className="text-sm text-muted-foreground">{post.date}</p>
-              <CardTitle>{post.title}</CardTitle>
-              <CardDescription>{post.description}</CardDescription>
-            </CardHeader>
-          </Card>
+          <StaggerItem key={post.slug} y={20}>
+            <Card className="transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-foreground/20 hover:shadow-md">
+              <CardHeader>
+                <p className="text-sm text-muted-foreground">{post.date}</p>
+                <CardTitle>{post.title}</CardTitle>
+                <CardDescription>{post.description}</CardDescription>
+              </CardHeader>
+            </Card>
+          </StaggerItem>
         ))}
-      </div>
+      </StaggerGroup>
     </div>
   );
 }

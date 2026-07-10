@@ -2,10 +2,14 @@
 
 import Image from "@/components/asset-image";
 import { Pause, Play } from "lucide-react";
+import { AnimatePresence, m } from "motion/react";
 import { useCallback, useEffect, useRef, useState, type ComponentType } from "react";
 
+import { Reveal } from "@/components/motion/reveal";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { DUR, EASE_OUT, STAGGER } from "@/lib/motion";
 import { intelligenceFlowStages } from "@/lib/platform-intelligence-flow";
 import { cn } from "@/lib/utils";
 
@@ -109,7 +113,16 @@ function PipelineColumn({
     <div className="flex flex-col gap-2">
       <div className="flex items-center justify-center">
         {imageSrc ? (
-          <div className="relative aspect-[4/5] w-full overflow-hidden rounded-none border border-border bg-muted/30">
+          <m.div
+            variants={{
+              hidden: { scale: 1.02 },
+              visible: {
+                scale: 1,
+                transition: { duration: DUR.slow, ease: EASE_OUT },
+              },
+            }}
+            className="relative aspect-[4/5] w-full overflow-hidden rounded-none border border-border bg-muted/30"
+          >
             <Image
               key={imageSrc}
               src={imageSrc}
@@ -119,7 +132,7 @@ function PipelineColumn({
               className="object-contain object-center"
               sizes="(max-width: 1024px) 80vw, 220px"
             />
-          </div>
+          </m.div>
         ) : (
           <Illustration />
         )}
@@ -157,8 +170,16 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
           const Illustration = columnIllustrations[index];
 
           return (
-            <div
+            <m.div
               key={column.label}
+              variants={{
+                hidden: { opacity: 0, y: 16 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: DUR.base, ease: EASE_OUT },
+                },
+              }}
               className="w-[min(80vw,18rem)] shrink-0 snap-start lg:w-full lg:shrink"
             >
               <PipelineColumn
@@ -167,7 +188,7 @@ function IntelligencePipeline({ stageId }: { stageId: string }) {
                 imageSrc={column.imageSrc}
                 Illustration={Illustration}
               />
-            </div>
+            </m.div>
           );
         })}
       </div>
@@ -291,21 +312,18 @@ export function PlatformIntelligenceSection() {
   const activeIndex = intelligenceFlowStages.findIndex((stage) => stage.id === activeTab);
 
   return (
-    <section className="overflow-x-hidden bg-[#ffffff] py-32">
+    <section className="section-padding overflow-x-hidden bg-[#ffffff]">
       <div className="section-container px-6">
-        <div className="mx-auto max-w-3xl text-center">
-          <p className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-muted-foreground">
-            <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
-            Legal OS
-          </p>
-          <h2 className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl md:text-5xl">
-            One layer for every legal workflow in a fund's ecosystem.
+        <Reveal className="mx-auto max-w-3xl text-center">
+          <SectionEyebrow align="center">Legal OS</SectionEyebrow>
+          <h2 className="mt-2 font-source-serif text-3xl font-medium tracking-tight text-balance sm:text-4xl md:text-5xl">
+            One layer for every legal workflow in a fund&apos;s ecosystem.
           </h2>
           <p className="mt-3 text-base leading-relaxed text-muted-foreground text-pretty sm:text-base">
             Legal documents and entity data move through a single intelligence
             layer and become actions, insights, and collaboration.
           </p>
-        </div>
+        </Reveal>
       </div>
 
       <Tabs
@@ -379,31 +397,33 @@ export function PlatformIntelligenceSection() {
         </div>
 
         <div className="mt-6">
-          {intelligenceFlowStages.map((stage) => {
-            const isActive = activeTab === stage.id;
-
-            return (
-              <div
-                key={stage.id}
-                role="tabpanel"
-                id={`legal-os-panel-${stage.id}`}
-                aria-labelledby={`legal-os-tab-${stage.id}`}
-                aria-hidden={!isActive}
-                className={cn("outline-none", !isActive && "hidden")}
-              >
-                <div
-                  className={cn(
-                    "lg:section-container lg:px-6",
-                    isActive && "animate-pipeline-fade-in motion-reduce:animate-none",
-                  )}
-                >
-                  <div className="lg:bg-muted/30 lg:p-3">
-                    <IntelligencePipeline stageId={stage.id} />
-                  </div>
+          <AnimatePresence mode="wait" initial={false}>
+            <m.div
+              key={activeTab}
+              role="tabpanel"
+              id={`legal-os-panel-${activeTab}`}
+              aria-labelledby={`legal-os-tab-${activeTab}`}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: STAGGER.tight } },
+                exit: {
+                  opacity: 0,
+                  y: -8,
+                  transition: { duration: 0.25, ease: EASE_OUT },
+                },
+              }}
+              className="outline-none"
+            >
+              <div className="lg:section-container lg:px-6">
+                <div className="lg:bg-muted/30 lg:bg-grid-faint lg:p-3">
+                  <IntelligencePipeline stageId={activeTab} />
                 </div>
               </div>
-            );
-          })}
+            </m.div>
+          </AnimatePresence>
         </div>
       </Tabs>
     </section>
