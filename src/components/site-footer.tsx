@@ -1,20 +1,16 @@
 import Image from "@/components/asset-image";
 import Link from "next/link";
-
-import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { Separator } from "@/components/ui/separator";
+
 import { legalPages } from "@/lib/legal-pages";
 import { productLifecycle } from "@/lib/product-navigation";
 
-const footerLinkClassName =
-  "relative w-fit text-sm text-muted-foreground transition-colors duration-300 hover:text-foreground after:absolute after:-bottom-0.5 after:left-0 after:h-px after:w-full after:origin-left after:scale-x-0 after:bg-foreground/40 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100";
-
 export function SiteFooter() {
   return (
-    <footer id="contact" className="overflow-hidden bg-muted/100">
-      <div className="section-container px-6 pt-20 pb-10">
-        <StaggerGroup className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,2fr)] lg:items-start">
-          <StaggerItem y={16}>
+    <footer id="contact" className="bg-muted/100">
+      <div className="section-container px-6 pt-20 pb-24">
+        <div className="grid gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,2fr)] lg:items-start">
+          <div>
             <Link href="/" className="inline-flex h-6 shrink-0 items-center">
               <Image
                 src="/perry-logo.png"
@@ -33,66 +29,67 @@ export function SiteFooter() {
                 alt="GDPR compliance"
                 width={48}
                 height={48}
-                className="size-12 object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
+                className="size-12 object-contain"
               />
               <Image
                 src="/compliance/iso-27001.png"
                 alt="ISO 27001 compliance"
                 width={48}
                 height={48}
-                className="size-12 object-contain opacity-70 transition-opacity duration-300 hover:opacity-100"
+                className="size-12 object-contain"
               />
             </div>
-          </StaggerItem>
+          </div>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-            <StaggerItem y={16}>
+            <div>
               <p className="text-sm font-medium">Product</p>
               <nav className="mt-3 flex flex-col gap-2">
                 {productLifecycle.map((stage) => (
                   <Link
                     key={stage.slug}
                     href={`/product/${stage.slug}`}
-                    className={footerLinkClassName}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
                   >
                     {stage.label}
                   </Link>
                 ))}
               </nav>
-            </StaggerItem>
+            </div>
 
-            <StaggerItem y={16}>
+            <div>
               <p className="text-sm font-medium">About</p>
               <nav className="mt-3 flex flex-col gap-2">
-                <Link href="/about" className={footerLinkClassName}>
+                <Link
+                  href="/about"
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
                   About
                 </Link>
               </nav>
-            </StaggerItem>
+            </div>
 
-            <StaggerItem y={16}>
+            <div>
               <p className="text-sm font-medium">Legal</p>
               <nav className="mt-3 flex flex-col gap-2">
                 {legalPages.map((page) => (
-                  <Link key={page.slug} href={page.href} className={footerLinkClassName}>
+                  <Link
+                    key={page.slug}
+                    href={page.href}
+                    className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                  >
                     {page.title}
                   </Link>
                 ))}
               </nav>
-            </StaggerItem>
+            </div>
           </div>
-        </StaggerGroup>
+        </div>
 
         <Separator className="my-8" />
 
         <p className="text-sm text-muted-foreground">
           © {new Date().getFullYear()} Perry. All rights reserved.
-        </p>
-      </div>
-
-      <div aria-hidden className="pointer-events-none -mt-[6vw] select-none">
-        <p className="translate-y-[24%] text-center font-source-serif text-[19vw] font-medium leading-none tracking-tight text-foreground/[0.04]">
-          Perry
         </p>
       </div>
     </footer>

@@ -31,11 +31,10 @@ export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
   );
 
   const navLinkClassName = cn(
-    "relative inline-flex h-9 items-center rounded-sm px-2.5 text-sm transition-colors",
-    "after:absolute after:inset-x-2.5 after:bottom-1 after:h-px after:origin-left after:scale-x-0 after:transition-transform after:duration-300 after:ease-out hover:after:scale-x-100",
+    "inline-flex h-9 items-center rounded-sm px-2.5 text-sm transition-colors",
     onDark
-      ? "text-white/80 after:bg-white/70 hover:text-white focus:bg-white/10"
-      : "text-muted-foreground after:bg-foreground/60 hover:text-foreground focus:bg-muted",
+      ? "text-white/80 hover:bg-white/10 hover:text-white focus:bg-white/10"
+      : "text-muted-foreground hover:bg-muted hover:text-foreground focus:bg-muted",
   );
 
   const menuPopupClassName = onDark

@@ -12,9 +12,6 @@ import {
   type RefObject,
 } from "react";
 
-import { Reveal } from "@/components/motion/reveal";
-import { SpotlightCard } from "@/components/motion/spotlight-card";
-import { SectionEyebrow } from "@/components/section-eyebrow";
 import { cn } from "@/lib/utils";
 import {
   getBlendedPanelTint,
@@ -562,13 +559,14 @@ function DetailPanel({ layer }: DetailPanelProps) {
 
 function PlatformArchitectureHeader({ className }: { className?: string }) {
   return (
-    <Reveal className={cn("mx-auto max-w-2xl shrink-0 text-center", className)}>
-      <SectionEyebrow align="center" onDark>
-        Architecture
-      </SectionEyebrow>
+    <div className={cn("mx-auto max-w-2xl shrink-0 text-center", className)}>
+      <p className="flex items-center justify-center gap-2 text-sm font-medium tracking-wide text-white/60">
+        <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
+         architecture
+      </p>
       <h2
         id="platform-architecture-heading"
-        className="mt-2 font-source-serif text-3xl font-medium tracking-tight text-balance text-white sm:text-4xl md:text-5xl"
+        className="mt-1 font-source-serif text-3xl font-medium tracking-tight text-balance text-white sm:text-4xl md:text-5xl"
       >
         A deep look into the legal OS
       </h2>
@@ -577,7 +575,7 @@ function PlatformArchitectureHeader({ className }: { className?: string }) {
         Perry was built from first principles for the private capital legal needs of managing
         formation, deals, portfolio, and exit.
       </p>
-    </Reveal>
+    </div>
   );
 }
 
@@ -695,10 +693,6 @@ export function PlatformArchitectureExplorer({
   }, [useDesktopScrollDrive, sectionRef]);
 
   const explorerContent = (
-    <SpotlightCard
-      className="mx-auto w-full max-w-8xl"
-      spotlightClassName="rounded-md bg-[radial-gradient(420px_circle_at_var(--spot-x,50%)_var(--spot-y,50%),rgb(255_255_255/0.05),transparent_65%)]"
-    >
     <div className="relative isolate mx-auto w-full max-w-8xl overflow-visible rounded-md border border-white/10">
       <div
         aria-hidden
@@ -748,7 +742,6 @@ export function PlatformArchitectureExplorer({
         </div>
       </div>
     </div>
-    </SpotlightCard>
   );
 
   const mobileLayerNav = (
