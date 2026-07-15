@@ -4,6 +4,11 @@ import Image from "@/components/asset-image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { HeadlineReveal } from "@/components/motion/headline-reveal";
+import { Parallax } from "@/components/motion/parallax";
+import { Reveal } from "@/components/motion/reveal";
+import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
+import { SectionEyebrow } from "@/components/section-eyebrow";
 import { Button } from "@/components/ui/button";
 import { getImageAspectRatio } from "@/lib/image-aspect-ratios";
 import { bookDemoUrl } from "@/lib/navigation";
@@ -65,26 +70,32 @@ export function StoryPageHero({
         >
         <div className={cn(imageSrc ? "max-w-xl" : "max-w-3xl")}>
           {eyebrow && (
-            <p
-              className={cn(
-                "flex items-center gap-2 text-sm font-medium tracking-wide text-muted-foreground",
-                !imageSrc && "justify-center",
-              )}
-            >
-              <span aria-hidden className="size-1.5 shrink-0 rounded-full bg-emerald-500" />
-              {eyebrow}
-            </p>
+            <Reveal y={12}>
+              <SectionEyebrow align={imageSrc ? "left" : "center"}>
+                {eyebrow}
+              </SectionEyebrow>
+            </Reveal>
           )}
-          <h1 className="mt-3 font-source-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl">
-            {title}
-          </h1>
-          <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-pretty">
-            {description}
-          </p>
+          <HeadlineReveal
+            as="h1"
+            lines={[title]}
+            delay={0.1}
+            className="mt-3 font-source-serif text-4xl font-medium tracking-tight text-balance sm:text-5xl"
+          />
+          <Reveal delay={0.25} y={16}>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground text-pretty">
+              {description}
+            </p>
+          </Reveal>
           {showBookDemoCta && (
-            <div className={cn("mt-8", !imageSrc && "flex justify-center")}>
+            <Reveal
+              delay={0.35}
+              y={16}
+              className={cn("mt-8", !imageSrc && "flex justify-center")}
+            >
               <Button
                 size="lg"
+                className="btn-shine"
                 render={
                   <Link
                     href={bookDemoUrl}
@@ -96,55 +107,64 @@ export function StoryPageHero({
                 Book demo
                 <ArrowRight />
               </Button>
-            </div>
+            </Reveal>
           )}
           {kpis && kpis.length > 0 && (
-            <ul className="mt-8 grid gap-2.5 sm:grid-cols-2">
+            <StaggerGroup as="ul" delay={0.45} className="mt-8 grid gap-2.5 sm:grid-cols-2">
               {kpis.map((kpi) => (
-                <li key={kpi} className="flex gap-3 text-sm leading-relaxed text-foreground">
+                <StaggerItem
+                  as="li"
+                  key={kpi}
+                  y={12}
+                  className="flex gap-3 text-sm leading-relaxed text-foreground"
+                >
                   <span
                     aria-hidden
                     className="mt-2 size-1 shrink-0 rounded-full bg-foreground/35"
                   />
                   {kpi}
-                </li>
+                </StaggerItem>
               ))}
-            </ul>
+            </StaggerGroup>
           )}
           {children}
         </div>
 
         {imageSrc && (
-        <div
-          className={cn(
-            "relative overflow-hidden rounded-sm border border-border bg-muted/30 shadow-sm",
-            intrinsicAspectRatio === undefined &&
-              (imageAspect === "square" || imageSrc.includes("/platform-intelligence-square/")
-                ? "aspect-square"
-                : imageAspect === "landscape"
-                  ? "aspect-[3/2]"
-                  : "aspect-[4/5]"),
-          )}
-          style={intrinsicAspectRatio ? { aspectRatio: intrinsicAspectRatio } : undefined}
-        >
-            <Image
-              src={imageSrc}
-              alt={imageAlt ?? title}
-              fill
-              unoptimized={
-                imageSrc.includes("/platform-intelligence/") ||
-                imageSrc.includes("/platform-intelligence-square/")
-              }
+        <Reveal delay={0.2} y={28}>
+          <Parallax range={[-20, 20]}>
+            <div
               className={cn(
-                "object-center",
-                intrinsicAspectRatio || imageAspect === "landscape"
-                  ? "object-cover"
-                  : "object-contain",
+                "relative overflow-hidden rounded-sm border border-border bg-muted/30 shadow-sm",
+                intrinsicAspectRatio === undefined &&
+                  (imageAspect === "square" || imageSrc.includes("/platform-intelligence-square/")
+                    ? "aspect-square"
+                    : imageAspect === "landscape"
+                      ? "aspect-[3/2]"
+                      : "aspect-[4/5]"),
               )}
-              sizes="(max-width: 1024px) 100vw, 560px"
-              priority
-            />
-        </div>
+              style={intrinsicAspectRatio ? { aspectRatio: intrinsicAspectRatio } : undefined}
+            >
+              <Image
+                src={imageSrc}
+                alt={imageAlt ?? title}
+                fill
+                unoptimized={
+                  imageSrc.includes("/platform-intelligence/") ||
+                  imageSrc.includes("/platform-intelligence-square/")
+                }
+                className={cn(
+                  "object-center",
+                  intrinsicAspectRatio || imageAspect === "landscape"
+                    ? "object-cover"
+                    : "object-contain",
+                )}
+                sizes="(max-width: 1024px) 100vw, 560px"
+                priority
+              />
+            </div>
+          </Parallax>
+        </Reveal>
         )}
 
         </div>
