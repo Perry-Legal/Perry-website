@@ -1,5 +1,6 @@
 import Image from "@/components/asset-image";
 
+import { Reveal } from "@/components/motion/reveal";
 import { getImageAspectRatio } from "@/lib/image-aspect-ratios";
 import { cn } from "@/lib/utils";
 
@@ -38,10 +39,7 @@ function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps)
         />
       ) : (
         <>
-          <div
-            aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,hsl(var(--border)/0.4)_1px,transparent_1px),linear-gradient(to_bottom,hsl(var(--border)/0.4)_1px,transparent_1px)] bg-size-[24px_24px] opacity-40"
-          />
+          <div aria-hidden className="bg-grid-faint absolute inset-0 opacity-40" />
           <div className="relative flex h-full flex-col items-center justify-center p-8 text-center">
             <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
               Figure {String(index).padStart(2, "0")}
@@ -102,7 +100,11 @@ export function StoryChapter({
       )}
     >
       <div className="section-container grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-16">
-        <div className={cn("flex flex-col justify-center", !imageOnLeft && "lg:order-2")}>
+        <Reveal
+          x={imageOnLeft ? 16 : -16}
+          y={0}
+          className={cn("flex flex-col justify-center", !imageOnLeft && "lg:order-2")}
+        >
           <p className="font-mono text-[11px] tracking-[0.2em] text-muted-foreground/60 uppercase">
             {eyebrow ?? `Chapter ${String(index).padStart(2, "0")}`}
           </p>
@@ -172,11 +174,11 @@ export function StoryChapter({
               ))}
             </ul>
           )}
-        </div>
+        </Reveal>
 
-        <div className={cn(!imageOnLeft && "lg:order-1")}>
+        <Reveal delay={0.1} y={24} className={cn(!imageOnLeft && "lg:order-1")}>
           <StoryChapterVisual index={index} title={title} imageSrc={imageSrc} />
-        </div>
+        </Reveal>
       </div>
     </section>
   );
