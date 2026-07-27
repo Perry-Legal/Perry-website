@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, MapPin } from "lucide-react";
+import { ArrowLeft, MapPin } from "lucide-react";
 
+import { CopyEmailButton } from "@/components/copy-email-button";
 import { Reveal } from "@/components/motion/reveal";
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { careerRoles, getCareerRole, type CareerRole } from "@/lib/careers";
 
@@ -86,11 +86,9 @@ function RoleListSection({
 
 function ApplyBox({
   role,
-  applyHref,
   className,
 }: {
   role: CareerRole;
-  applyHref: string;
   className?: string;
 }) {
   return (
@@ -110,16 +108,7 @@ function ApplyBox({
           </li>
         ))}
       </ul>
-      <Button
-        size="lg"
-        className="btn-shine mt-5"
-        render={
-          <Link href={applyHref} target="_blank" rel="noopener noreferrer" />
-        }
-      >
-        Email {role.applyEmail}
-        <ArrowRight />
-      </Button>
+      <CopyEmailButton email={role.applyEmail} />
     </div>
   );
 }
@@ -131,8 +120,6 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
   if (!role) {
     notFound();
   }
-
-  const applyHref = `mailto:${role.applyEmail}?subject=${encodeURIComponent(role.applySubject)}`;
 
   return (
     <div className="border-t border-border/60">
@@ -165,7 +152,10 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
               <span>{role.compensation}</span>
             </div>
 
-            <ApplyBox role={role} applyHref={applyHref} className="mt-8 border border-border/60 bg-muted/30 px-6 py-5 sm:px-7" />
+            <ApplyBox
+              role={role}
+              className="mt-8 border border-border/60 bg-muted/30 px-6 py-5 sm:px-7"
+            />
           </div>
 
           <Separator className="my-8" />
@@ -180,7 +170,6 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
           <Reveal delay={0.1} y={12} className="mt-10">
             <ApplyBox
               role={role}
-              applyHref={applyHref}
               className="border border-border/60 bg-muted/30 px-6 py-6 sm:px-8"
             />
           </Reveal>
