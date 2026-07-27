@@ -2,19 +2,29 @@
 
 import Image from "@/components/asset-image";
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Play, X } from "lucide-react";
 import { m, useReducedMotion, useScroll, useTransform } from "motion/react";
-import { useRef } from "react";
+import { useCallback, useRef, useState } from "react";
 
 import { ClientBanner } from "@/components/client-banner";
 import { HeadlineReveal } from "@/components/motion/headline-reveal";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { withBasePath } from "@/lib/base-path";
 import { DUR, EASE_OUT } from "@/lib/motion";
 import { bookDemoUrl } from "@/lib/navigation";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
+  const platformVideoRef = useRef<HTMLVideoElement>(null);
+  const [platformVideoOpen, setPlatformVideoOpen] = useState(false);
   const reducedMotion = useReducedMotion();
 
   const { scrollYProgress } = useScroll({
@@ -24,6 +34,22 @@ export function HeroSection() {
   const contentOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
   const contentY = useTransform(scrollYProgress, [0, 0.6], [0, -48]);
   const videoY = useTransform(scrollYProgress, [0, 1], [0, 80]);
+
+  const handlePlatformVideoOpenChange = useCallback((open: boolean) => {
+    setPlatformVideoOpen(open);
+
+    const video = platformVideoRef.current;
+    if (!video) return;
+
+    if (open) {
+      // Play in the same user-gesture turn so unmuted autoplay is allowed.
+      void video.play().catch(() => {});
+      return;
+    }
+
+    video.pause();
+    video.currentTime = 0;
+  }, []);
 
   return (
     <section
@@ -100,7 +126,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: DUR.base, delay: 0.7, ease: EASE_OUT }}
-              className="mt-10"
+              className="mt-10 flex flex-wrap items-center gap-3"
             >
               <Button
                 size="lg"
@@ -116,6 +142,61 @@ export function HeroSection() {
                 Book a demo
                 <ArrowRight />
               </Button>
+
+              <Dialog
+                open={platformVideoOpen}
+                onOpenChange={handlePlatformVideoOpenChange}
+              >
+                <DialogTrigger
+                  render={
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-white/35 bg-white/5 text-white hover:bg-white/12 hover:text-white"
+                    />
+                  }
+                >
+                  Watch video
+                  <Play className="size-3 fill-current" />
+                </DialogTrigger>
+                <DialogContent
+                  keepMounted
+                  showCloseButton={false}
+                  overlayClassName="bg-black/80 supports-backdrop-filter:backdrop-blur-sm"
+                  className="max-w-[calc(100%-2rem)] gap-0 overflow-hidden rounded-2xl border-0 bg-black p-0 ring-0 sm:max-w-5xl"
+                >
+                  <DialogTitle className="sr-only">
+                    Perry platform overview
+                  </DialogTitle>
+                  <DialogDescription className="sr-only">
+                    Video walkthrough of the Perry platform.
+                  </DialogDescription>
+                  <DialogClose
+                    render={
+                      <Button
+                        variant="ghost"
+                        size="icon-sm"
+                        className="absolute top-3 right-3 z-10 bg-black/40 text-white hover:bg-black/60 hover:text-white"
+                      />
+                    }
+                  >
+                    <X />
+                    <span className="sr-only">Close</span>
+                  </DialogClose>
+                  <video
+                    ref={platformVideoRef}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="aspect-video w-full bg-black"
+                  >
+                    <source
+                      src={withBasePath("/videos/platform-intro.mp4")}
+                      type="video/mp4"
+                    />
+                  </video>
+                </DialogContent>
+              </Dialog>
             </m.div>
           </m.div>
         </div>

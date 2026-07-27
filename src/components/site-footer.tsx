@@ -67,6 +67,9 @@ export function SiteFooter() {
                 <Link href="/about" className={footerLinkClassName}>
                   About
                 </Link>
+                <Link href="/career" className={footerLinkClassName}>
+                  Career
+                </Link>
               </nav>
             </StaggerItem>
 
