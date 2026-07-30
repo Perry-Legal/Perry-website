@@ -64,6 +64,9 @@ export function SiteFooter() {
             <StaggerItem y={16}>
               <p className="text-sm font-medium">About</p>
               <nav className="mt-3 flex flex-col gap-2">
+                <Link href="/law" className={footerLinkClassName}>
+                  Law Firms
+                </Link>
                 <Link href="/about" className={footerLinkClassName}>
                   About
                 </Link>
