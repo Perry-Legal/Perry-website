@@ -1,0 +1,54 @@
+import type { Metadata } from "next";
+import { CtaSection } from "@/components/cta-section";
+import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
+import { StoryChapter } from "@/components/story-chapter";
+import { StoryKpiSection } from "@/components/story-kpi-section";
+import { StoryPageHero } from "@/components/story-page-hero";
+import { lawPage } from "@/lib/law-page";
+
+export const metadata: Metadata = {
+  title: "Law Firms",
+  description:
+    "Offer Perry's Legal OS to your fund clients under your firm's own brand. White-label collaboration, AI review and drafting, and obligation management — productize your expertise and stay engaged beyond the transaction.",
+};
+
+export default function LawPage() {
+  return (
+    <div className="border-t border-border/60">
+      <StoryPageHero
+        eyebrow={lawPage.eyebrow}
+        title={lawPage.headline}
+        description={lawPage.description}
+        showBookDemoCta
+        imageSrc={lawPage.heroImageSrc}
+        imageAlt={lawPage.heroImageAlt}
+      />
+
+      <StoryKpiSection title={lawPage.kpisTitle} kpis={lawPage.kpis} />
+
+      {lawPage.chapters.map((chapter, index) => (
+        <StoryChapter
+          key={chapter.slug}
+          id={chapter.slug}
+          index={index + 1}
+          eyebrow={chapter.eyebrow}
+          title={chapter.label}
+          description={chapter.description}
+          items={chapter.items}
+          itemsLabel={chapter.itemsLabel}
+          outcome={chapter.outcome}
+          imageSrc={chapter.imageSrc}
+        />
+      ))}
+
+      <EnterpriseSafetySection />
+
+      <CtaSection
+        className="pt-20 sm:pt-24"
+        title={lawPage.cta.title}
+        description={lawPage.cta.description}
+        imageSrc={lawPage.cta.imageSrc}
+      />
+    </div>
+  );
+}
