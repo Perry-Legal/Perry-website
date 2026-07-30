@@ -31,9 +31,9 @@ export const lawPage: LawPageContent = {
   eyebrow: "Perry for Law Firms",
   headline: "Your expertise, delivered as your own platform",
   description:
-    "Perry's white-label platform lets your firm give fund clients a branded operating layer for their legal work — collaboration, AI review and drafting, and obligation management, delivered as your product. Deepen client relationships and stay engaged long after the deal closes.",
-  heroImageSrc: "/images/chapters/collaboration.jpg",
-  heroImageAlt: "Law firm collaboration",
+    "Perry's white-label platform lets your firm give fund clients a branded operating layer for their legal work — collaboration, AI review and drafting, and obligation management, delivered as your product. Stand out from firms that still bill by the hour, win more mandates, and deepen client relationships long after the deal closes.",
+  heroImageSrc: "/images/solutions/cards/private-equity.jpg",
+  heroImageAlt: "Private equity legal collaboration",
   kpisTitle: "A new engagement model for fund clients",
   kpis: [
     "Cut fund document turnaround for clients by 50%",
@@ -47,7 +47,7 @@ export const lawPage: LawPageContent = {
       eyebrow: "White label",
       label: "Your brand on every screen your clients see",
       description:
-        "Perry runs under your firm's name, identity and domain. Clients log into your platform, work in your workspace and associate every capability with your firm — the infrastructure stays invisible.",
+        "Perry runs under your firm's name, identity and domain. Clients log into your platform, work in your workspace and associate every capability with your firm — the infrastructure stays invisible. It sets your firm apart in pitches and lets you compete on service, not just rates.",
       imageSrc: platformIntelligenceProductImages.management.portfolioVisibility,
       itemsLabel: "What you control",
       items: [
@@ -90,7 +90,7 @@ export const lawPage: LawPageContent = {
         "Grounded Q&A with citations to the underlying provision",
       ],
       outcome:
-        "Your associates move faster, and your clients get answers backed by your expertise.",
+        "Your associates move faster, your clients get answers backed by your expertise, and your firm out-delivers competitors still working document by document.",
     },
     {
       slug: "obligation-management",
@@ -112,7 +112,7 @@ export const lawPage: LawPageContent = {
   cta: {
     title: "Offer your clients a platform, under your name.",
     description:
-      "Book a demo to see how Perry's white-label platform helps your firm productize its expertise and deepen every fund client relationship.",
+      "Book a demo to see how Perry's white-label platform helps your firm productize its expertise, sharpen its competitive edge and deepen every fund client relationship.",
     imageSrc: "/images/cta/michael-d-beckwith-soN9dynO5fo-unsplash.jpg",
   },
 };
