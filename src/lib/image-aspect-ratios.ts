@@ -9,6 +9,7 @@ const imageAspectRatios: Record<string, readonly [number, number]> = {
   "/images/chapters/legal-documents.jpg": [1600, 1067],
   "/images/chapters/obligations.jpg": [1600, 1060],
   "/images/chapters/portfolio.jpg": [1600, 1060],
+  "/images/solutions/cards/private-equity.jpg": [1280, 853],
 };
 
 export function getImageAspectRatio(src: string): number | undefined {
