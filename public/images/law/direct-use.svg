@@ -1,0 +1,82 @@
+<svg width="1598" height="1100" viewBox="322 424 1598 1100" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="322" y="424" width="1598" height="1100" rx="60" fill="white"/>
+  <rect x="322" y="424" width="768" height="1100" fill="white"/>
+  <path d="M1090 424V1524" stroke="#E4E7E5" stroke-width="3"/>
+
+  <!-- Brand -->
+  <rect x="382" y="472" width="96" height="96" rx="24" fill="#10B981"/>
+  <path d="M426 532V518" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M428.25 500.4C428.8 500.13 429.4 500 430 500C430.62 500 431.22 500.14 431.77 500.41L447.5 508.1C448.45 508.57 448.12 510 447.06 510H412.95C411.89 510 411.56 508.57 412.51 508.1L428.25 500.4Z" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M434 532V518" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M442 532V518" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M412 540H448" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M418 532V518" stroke="#F7F8F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="502" y="528" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="36" font-weight="600">Perry</text>
+  <text x="502" y="562" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="20" font-weight="500">Legal OS</text>
+  <path d="M993 526L1003 536L1013 526" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M993 514L1003 504L1013 514" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Upload -->
+  <rect x="358" y="640" width="693" height="108" rx="18" stroke="#E4E7E5" stroke-width="3" fill="white"/>
+  <path d="M548 676V700" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M558 686L548 676L538 686" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M566 700V708C566 709.06 565.58 710.08 564.83 710.83C564.08 711.58 563.06 712 562 712H534C532.94 712 531.92 711.58 531.17 710.83C530.42 710.08 530 709.06 530 708V700" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="590" y="706" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Upload a document</text>
+
+  <!-- Nav -->
+  <g fill="none" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M426 842C426 843.06 425.59 844.08 424.84 844.83C424.09 845.58 423.07 846 422 846H395.66C394.6 846 393.59 846.42 392.84 847.17L388.43 851.58C388.23 851.78 387.98 851.91 387.71 851.97C387.43 852.02 387.14 851.99 386.88 851.88C386.63 851.78 386.4 851.59 386.25 851.36C386.09 851.13 386 850.85 386 850.57V818C386 816.94 386.43 815.92 387.18 815.17C387.93 814.42 388.95 814 390 814H422C423.07 814 424.09 814.42 424.84 815.17C425.59 815.92 426 816.94 426 818V842Z"/>
+  </g>
+  <text x="454" y="838" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Comments</text>
+
+  <g fill="none" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M408 917H424"/>
+    <path d="M408 931H424"/>
+    <path d="M408 945H424"/>
+    <path d="M388 941L392 945L400 937"/>
+    <path d="M398 915H390C388.9 915 388 915.9 388 917V925C388 926.1 388.9 927 390 927H398C399.1 927 400 926.1 400 925V917C400 915.9 399.1 915 398 915Z"/>
+  </g>
+  <text x="454" y="936" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Tasks</text>
+
+  <g fill="none" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M394 1050C392.93 1050 391.91 1049.58 391.16 1048.83C390.41 1048.08 390 1047.06 390 1046V1014C390 1012.94 390.41 1011.92 391.16 1011.17C391.91 1010.42 392.93 1010 394 1010H410C410.63 1010 411.25 1010.13 411.84 1010.37C412.42 1010.61 412.95 1010.97 413.4 1011.41L420.58 1018.59C421.03 1019.04 421.38 1019.57 421.63 1020.15C421.87 1020.74 422 1021.37 422 1022V1046C422 1047.06 421.57 1048.08 420.82 1048.83C420.07 1049.58 419.05 1050 418 1050H394Z"/>
+    <path d="M410 1010V1020C410 1020.53 410.22 1021.04 410.59 1021.42C410.97 1021.79 411.48 1022 412 1022H422"/>
+    <path d="M402 1024H398"/>
+    <path d="M414 1032H398"/>
+    <path d="M414 1040H398"/>
+  </g>
+  <text x="454" y="1036" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Documents</text>
+
+  <g fill="none" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity="0.7">
+    <path d="M402 1150V1136"/>
+    <path d="M404.25 1118.4C404.8 1118.13 405.4 1118 406 1118C406.62 1118 407.22 1118.14 407.77 1118.41L423.5 1126.1C424.45 1126.57 424.12 1128 423.06 1128H388.95C387.89 1128 387.56 1126.57 388.51 1126.1L404.25 1118.4Z"/>
+    <path d="M410 1150V1136"/>
+    <path d="M418 1150V1136"/>
+    <path d="M388 1158H424"/>
+    <path d="M394 1150V1136"/>
+  </g>
+  <text x="454" y="1144" fill="#3C443F" fill-opacity="0.7" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Fund</text>
+
+  <g fill="none" stroke="#3C443F" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M414 1255V1251C414 1248.88 413.17 1246.84 411.67 1245.34C410.16 1243.84 408.13 1243 406 1243H394C391.89 1243 389.85 1243.84 388.35 1245.34C386.85 1246.84 386 1248.88 386 1251V1255"/>
+    <path d="M414 1219.26C415.71 1219.7 417.23 1220.7 418.31 1222.11C419.4 1223.51 419.99 1225.23 419.99 1227C419.99 1228.77 419.4 1230.5 418.31 1231.9C417.23 1233.3 415.71 1234.3 414 1234.75"/>
+    <path d="M426 1255V1251C426 1249.23 425.4 1247.5 424.32 1246.1C423.23 1244.7 421.71 1243.7 420 1243.26"/>
+    <path d="M400 1235C404.43 1235 408 1231.42 408 1227C408 1222.58 404.43 1219 400 1219C395.59 1219 392 1222.58 392 1227C392 1231.42 395.59 1235 400 1235Z"/>
+  </g>
+  <text x="454" y="1242" fill="#3C443F" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Investors</text>
+
+  <!-- Main header -->
+  <path d="M1090 616H1920" stroke="#E4E7E5" stroke-width="3"/>
+  <rect x="1126" y="464.5" width="108" height="108" rx="20" fill="white"/>
+  <path d="M1194 500.5H1166C1163.79 500.5 1162 502.29 1162 504.5V532.5C1162 534.71 1163.79 536.5 1166 536.5H1194C1196.21 536.5 1198 534.71 1198 532.5V504.5C1198 502.29 1196.21 500.5 1194 500.5Z" stroke="#101215" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1174 500.5V536.5" stroke="#101215" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="1258" y="464.5" width="3" height="108" fill="#E4E7E5"/>
+  <text x="1300" y="528" fill="#4E5751" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="500">Comments memo</text>
+  <path d="M1548 529L1558.5 518.5L1548 508" stroke="#4E5751" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="1578" y="528" fill="#101215" font-family="ui-sans-serif, system-ui, sans-serif" font-size="22" font-weight="600">Review comments memo</text>
+
+  <!-- Content well -->
+  <rect x="1234" y="760" width="626" height="704" rx="40" fill="white" stroke="#4E5751" stroke-opacity="0.25" stroke-width="3"/>
+
+  <rect x="320" y="422" width="1602" height="1104" rx="62" stroke="#D9D9D9" stroke-width="4"/>
+</svg>

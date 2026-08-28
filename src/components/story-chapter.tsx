@@ -29,7 +29,8 @@ function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps)
           fill
           unoptimized={
             imageSrc.includes("/platform-intelligence/") ||
-            imageSrc.includes("/platform-intelligence-square/")
+            imageSrc.includes("/platform-intelligence-square/") ||
+            imageSrc.endsWith(".svg")
           }
           className={cn(
             "object-center",

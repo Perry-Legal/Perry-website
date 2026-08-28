@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { CtaSection } from "@/components/cta-section";
 import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
+import { LawWaysSection } from "@/components/law-ways-section";
 import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
@@ -9,7 +10,7 @@ import { lawPage } from "@/lib/law-page";
 export const metadata: Metadata = {
   title: "Law Firms",
   description:
-    "Offer Perry's Legal OS to your fund clients under your firm's own brand. White-label collaboration, AI review and drafting, and obligation management — productize your expertise and stay engaged beyond the transaction.",
+    "Law firms can use Perry directly for their private-capital workflows, or white-label the platform for clients.",
 };
 
 export default function LawPage() {
@@ -22,9 +23,16 @@ export default function LawPage() {
         showBookDemoCta
         imageSrc={lawPage.heroImageSrc}
         imageAlt={lawPage.heroImageAlt}
+        className="border-b-0"
       />
 
-      <StoryKpiSection title={lawPage.kpisTitle} kpis={lawPage.kpis} />
+      <StoryKpiSection
+        title={lawPage.kpisTitle}
+        kpis={lawPage.kpis}
+        layout="row"
+      />
+
+      <LawWaysSection content={lawPage.ways} />
 
       {lawPage.chapters.map((chapter, index) => (
         <StoryChapter
@@ -36,6 +44,7 @@ export default function LawPage() {
           description={chapter.description}
           items={chapter.items}
           itemsLabel={chapter.itemsLabel}
+          itemGroups={chapter.itemGroups}
           outcome={chapter.outcome}
           imageSrc={chapter.imageSrc}
         />
