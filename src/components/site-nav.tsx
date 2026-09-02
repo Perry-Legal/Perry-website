@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 import { ProductNavMenu } from "@/components/product-nav-menu";
 import { SolutionNavMenu } from "@/components/solution-nav-menu";
@@ -23,6 +23,21 @@ type SiteNavProps = {
 export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
   const onDark = contrast === "on-dark";
   const [activeItem, setActiveItem] = useState<string | null>(null);
+  const ignoreHoverOpenRef = useRef(false);
+
+  useEffect(() => {
+    const closeOnScroll = () => {
+      setActiveItem((current) => {
+        if (current != null) {
+          ignoreHoverOpenRef.current = true;
+        }
+        return null;
+      });
+    };
+
+    window.addEventListener("scroll", closeOnScroll, { passive: true });
+    return () => window.removeEventListener("scroll", closeOnScroll);
+  }, []);
 
   const navTriggerClassName = cn(
     "h-9 gap-1 px-2.5 py-0 text-sm font-normal transition-colors",
@@ -50,7 +65,23 @@ export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
         if (eventDetails.reason === "trigger-press") {
           return;
         }
+
+        if (
+          nextValue != null &&
+          ignoreHoverOpenRef.current &&
+          eventDetails.reason === "trigger-hover"
+        ) {
+          return;
+        }
+
+        if (nextValue == null) {
+          ignoreHoverOpenRef.current = false;
+        }
+
         setActiveItem(nextValue);
+      }}
+      onPointerLeave={() => {
+        ignoreHoverOpenRef.current = false;
       }}
       className="max-w-none flex-none justify-center"
       align="start"

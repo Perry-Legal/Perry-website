@@ -3,7 +3,7 @@ export const loginUrl = "https://beta.useperry.com/";
 
 export const solutionLinks = [
   { href: "/law", label: "Law Firms" },
-  { href: "/fund", label: "Fund" },
+  { href: "/fund", label: "Investors" },
 ] as const;
 
 export const simpleNavLinks = [

@@ -7,7 +7,7 @@ import { StoryPageHero } from "@/components/story-page-hero";
 import { fundPage } from "@/lib/fund-page";
 
 export const metadata: Metadata = {
-  title: "Fund",
+  title: "Investors",
   description:
     "The AI operating layer for legal work across the fund lifecycle — formation, deal execution, and portfolio governance.",
 };
