@@ -4,11 +4,23 @@ import { Reveal } from "@/components/motion/reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { SectionEyebrow } from "@/components/section-eyebrow";
 import { STAGGER } from "@/lib/motion";
-import type { LawPageContent } from "@/lib/law-page";
 import { cn } from "@/lib/utils";
 
+type WaysSectionContent = {
+  eyebrow: string;
+  title: string;
+  description: string;
+  items: {
+    slug: string;
+    eyebrow: string;
+    title: string;
+    description: string;
+    imageSrc: string;
+  }[];
+};
+
 type LawWaysSectionProps = {
-  content: LawPageContent["ways"];
+  content: WaysSectionContent;
   className?: string;
 };
 

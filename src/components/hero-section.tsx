@@ -108,7 +108,7 @@ export function HeroSection() {
               inView={false}
               delay={0.2}
               lines={["The Legal OS", "for Private Capital"]}
-              className="font-source-serif text-5xl font-medium tracking-tight text-balance text-white sm:text-6xl md:text-7xl xl:text-8xl"
+              className="font-source-serif text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl md:text-6xl xl:text-7xl"
             />
 
             <m.p

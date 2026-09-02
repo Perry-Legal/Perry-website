@@ -73,9 +73,9 @@ export const lawPage: LawPageContent = {
       {
         slug: "white-label",
         eyebrow: "White-label",
-        title: "Your brand on every screen clients see",
+        title: "Keep your firm in the client’s daily work",
         description:
-          "Brand Perry as the firm’s own platform. Clients see the firm’s identity, not Perry’s, and work in a client-facing legal operating layer the firm controls.",
+          "White-label Perry as the firm’s own platform. Clients log in under your name, come back for questions and obligations, and stay connected to the firm for the life of the fund — not only when a deal is live.",
         items: [
           "The firm’s branding across the client experience",
           "Client workspaces provisioned and managed by the firm",
@@ -127,9 +127,9 @@ export const lawPage: LawPageContent = {
     {
       slug: "white-label",
       eyebrow: "White-label",
-      label: "Your brand on every screen your clients see",
+      label: "Stay in the client’s work for the life of the fund",
       description:
-        "Perry runs under your firm’s name, identity, and domain. Clients log into your platform, work in your workspace, and associate every capability with your firm — the infrastructure stays invisible. It sets the firm apart in pitches and lets you compete on service, not just rates.",
+        "Perry runs under your firm’s name, identity, and domain. Clients log into your platform and keep using it for questions, obligations, and the next matter — so the firm stays present long after closing. Branding makes it yours; the daily workspace makes the relationship harder to leave.",
       imageSrc: "/images/law/white-label.png?v=9",
       itemsLabel: "What you control",
       items: [
@@ -138,7 +138,7 @@ export const lawPage: LawPageContent = {
         "Your templates, playbooks, and precedent built in",
         "Your engagement model and commercial terms",
       ],
-      outcome: "Productize your expertise without building software.",
+      outcome: "A year-round client relationship, not a one-off engagement.",
     },
     {
       slug: "collaboration",

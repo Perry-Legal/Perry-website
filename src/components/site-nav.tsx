@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useState } from "react";
 
 import { ProductNavMenu } from "@/components/product-nav-menu";
+import { SolutionNavMenu } from "@/components/solution-nav-menu";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -39,7 +40,7 @@ export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
   );
 
   const menuPopupClassName = onDark
-    ? "border border-white/10 bg-black/70 text-white shadow-none ring-0 backdrop-blur-md"
+    ? "border border-white/10 bg-black/45 text-white shadow-none ring-0 backdrop-blur-md"
     : undefined;
 
   return (
@@ -64,6 +65,15 @@ export function SiteNav({ contrast = "on-light" }: SiteNavProps) {
           </NavigationMenuTrigger>
           <NavigationMenuContent className="p-0">
             <ProductNavMenu contrast={contrast} />
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+
+        <NavigationMenuItem value="solution">
+          <NavigationMenuTrigger className={navTriggerClassName}>
+            Solution
+          </NavigationMenuTrigger>
+          <NavigationMenuContent className="p-0">
+            <SolutionNavMenu contrast={contrast} />
           </NavigationMenuContent>
         </NavigationMenuItem>
 

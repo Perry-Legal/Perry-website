@@ -45,7 +45,7 @@ export function SiteFooter() {
             </div>
           </StaggerItem>
 
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <StaggerItem y={16}>
               <p className="text-sm font-medium">Product</p>
               <nav className="mt-3 flex flex-col gap-2">
@@ -62,11 +62,20 @@ export function SiteFooter() {
             </StaggerItem>
 
             <StaggerItem y={16}>
-              <p className="text-sm font-medium">About</p>
+              <p className="text-sm font-medium">Solution</p>
               <nav className="mt-3 flex flex-col gap-2">
                 <Link href="/law" className={footerLinkClassName}>
                   Law Firms
                 </Link>
+                <Link href="/fund" className={footerLinkClassName}>
+                  Fund
+                </Link>
+              </nav>
+            </StaggerItem>
+
+            <StaggerItem y={16}>
+              <p className="text-sm font-medium">About</p>
+              <nav className="mt-3 flex flex-col gap-2">
                 <Link href="/about" className={footerLinkClassName}>
                   About
                 </Link>

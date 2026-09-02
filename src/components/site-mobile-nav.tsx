@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 
 import { ProductNavMenu } from "@/components/product-nav-menu";
+import { SolutionNavMenu } from "@/components/solution-nav-menu";
 import { Button } from "@/components/ui/button";
 import type { HeaderContrast } from "@/hooks/use-adaptive-header";
 import { simpleNavLinks } from "@/lib/navigation";
@@ -64,10 +65,12 @@ export function SiteMobileNav({ contrast = "on-light" }: SiteMobileNavProps) {
   const [mounted, setMounted] = useState(false);
   const [open, setOpen] = useState(false);
   const [productOpen, setProductOpen] = useState(false);
+  const [solutionOpen, setSolutionOpen] = useState(false);
 
   const close = useCallback(() => {
     setOpen(false);
     setProductOpen(false);
+    setSolutionOpen(false);
   }, []);
 
   useEffect(() => {
@@ -168,6 +171,21 @@ export function SiteMobileNav({ contrast = "on-light" }: SiteMobileNavProps) {
               }}
             >
               <ProductNavMenu contrast={contrast} />
+            </div>
+          </MobileNavSection>
+
+          <MobileNavSection
+            title="Solution"
+            open={solutionOpen}
+            onToggle={() => setSolutionOpen((current) => !current)}
+            onDark={onDark}
+          >
+            <div
+              onClick={(event) => {
+                if ((event.target as HTMLElement).closest("a")) close();
+              }}
+            >
+              <SolutionNavMenu contrast={contrast} />
             </div>
           </MobileNavSection>
 
