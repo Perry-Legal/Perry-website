@@ -18,26 +18,31 @@ const teamMembers = [
   {
     name: "Shashwat Patel",
     role: "Founder & CEO",
-    intro:
-      "Former Big Law leader with 15+ years as a funds-focused corporate lawyer at Debevoise and Simmons & Simmons, qualified in New York, England & Wales, and India.",
+    intro: [
+      "Sets Perry's strategy and product direction, and runs investor and customer relationships.",
+      "Fifteen years a funds and corporate lawyer at Debevoise and Simmons & Simmons, qualified in New York, England & Wales and India.",
+    ],
     imageSrc: aboutImages.team.shashwatPatel,
     linkedinUrl: "https://www.linkedin.com/in/shashwatpatel/",
   },
   {
-    name: "Jaco Koenig",
-    role: "Founder & CTO",
-    intro:
-      "Serial founder and CTO with 14 years building products at startups including Doshi, Whering, and Binary Mango.",
-    imageSrc: aboutImages.team.jacoboKonig,
-    linkedinUrl: "https://www.linkedin.com/in/jacobok/",
-  },
-  {
     name: "Vaneesa Agrawal",
     role: "Founder & CPO",
-    intro:
-      "Senior funds and venture capital lawyer with 15+ years on cross-border deals, founder of award-winning boutique Thinking Legal, and builder of AI-powered legal workflows.",
+    intro: [
+      "Turns fund negotiating playbooks into code — the rules, prompts and evaluations Perry runs on. Owns product from user research through to the legal engineering layer.",
+      "Before this, she was a funds and venture capital lawyer for fifteen years.",
+    ],
     imageSrc: aboutImages.team.vaneesaAgrawal,
     linkedinUrl: "https://www.linkedin.com/in/vaneesaagrawal/",
+  },
+  {
+    name: "Jaco Koenig",
+    role: "Founder & CTO",
+    intro: [
+      "Serial founder and CTO with 14 years building products at startups including Doshi, Whering, and Binary Mango.",
+    ],
+    imageSrc: aboutImages.team.jacoboKonig,
+    linkedinUrl: "https://www.linkedin.com/in/jacobok/",
   },
 ];
 
@@ -85,16 +90,21 @@ export default function AboutPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label={`${member.name} on LinkedIn`}
-                      className="inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                      className="inline-flex size-8 items-center justify-center rounded-sm text-muted-foreground transition-colors hover:bg-muted hover:text-[#0A66C2]"
                     >
                       <LinkedInIcon className="size-4" />
                     </Link>
                   </CardAction>
                 </CardHeader>
-                <CardContent className="pt-0">
-                  <p className="text-sm leading-relaxed text-muted-foreground text-pretty">
-                    {member.intro}
-                  </p>
+                <CardContent className="space-y-3 pt-0">
+                  {member.intro.map((paragraph) => (
+                    <p
+                      key={paragraph}
+                      className="text-sm leading-relaxed text-muted-foreground text-pretty"
+                    >
+                      {paragraph}
+                    </p>
+                  ))}
                 </CardContent>
               </Card>
               </StaggerItem>
