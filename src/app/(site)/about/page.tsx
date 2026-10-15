@@ -35,15 +35,6 @@ const teamMembers = [
     imageSrc: aboutImages.team.vaneesaAgrawal,
     linkedinUrl: "https://www.linkedin.com/in/vaneesaagrawal/",
   },
-  {
-    name: "Jaco Koenig",
-    role: "Founder & CTO",
-    intro: [
-      "Serial founder and CTO with 14 years building products at startups including Doshi, Whering, and Binary Mango.",
-    ],
-    imageSrc: aboutImages.team.jacoboKonig,
-    linkedinUrl: "https://www.linkedin.com/in/jacobok/",
-  },
 ];
 
 function LinkedInIcon({ className }: { className?: string }) {
@@ -68,7 +59,7 @@ export default function AboutPage() {
         title="Built by seasoned private capital lawyers"
         description="Perry comes from years spent inside firms and fund teams—negotiating deals, closing funds, and managing portfolio obligations. We built the platform we wished we had."
         belowContent={
-          <StaggerGroup stagger={0.1} className="grid gap-6 sm:grid-cols-3">
+          <StaggerGroup stagger={0.1} className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
             {teamMembers.map((member) => (
               <StaggerItem key={member.name} y={28}>
               <Card className="group h-full overflow-hidden rounded-sm pt-0 transition-shadow duration-300 hover:shadow-md">
