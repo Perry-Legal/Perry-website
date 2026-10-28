@@ -146,6 +146,14 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
                 ·
               </span>
               <span>{role.type}</span>
+              {role.reportsTo ? (
+                <>
+                  <span aria-hidden className="hidden text-border sm:inline">
+                    ·
+                  </span>
+                  <span>Reports to {role.reportsTo}</span>
+                </>
+              ) : null}
               <span aria-hidden className="hidden text-border sm:inline">
                 ·
               </span>
@@ -163,9 +171,16 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
           <RoleSection title="About Perry" paragraphs={role.about} />
           <RoleSection title="The role" paragraphs={role.theRole} />
           <RoleListSection title="What you'll do" items={role.whatYoullDo} />
-          <RoleListSection title="Who you are" items={role.whoYouAre} />
+          <RoleListSection
+            title={role.whoYouAreTitle ?? "Who you are"}
+            items={role.whoYouAre}
+          />
           <RoleListSection title="Nice to have" items={role.niceToHave} />
-          <RoleSection title="Why this role" paragraphs={role.whyThisRole} />
+          {role.whyThisRole.length > 1 ? (
+            <RoleListSection title="Why this role" items={role.whyThisRole} />
+          ) : (
+            <RoleSection title="Why this role" paragraphs={role.whyThisRole} />
+          )}
 
           <Reveal delay={0.1} y={12} className="mt-10">
             <ApplyBox
