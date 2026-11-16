@@ -126,7 +126,7 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
       <div className="section-container px-6 pt-12 pb-24 sm:pt-16">
         <div className="mx-auto max-w-3xl">
           <Link
-            href="/career"
+            href="/careers"
             className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
           >
             <ArrowLeft className="size-3.5" aria-hidden />
