@@ -10,7 +10,7 @@ export default function SiteLayout({
   return (
     <MotionProvider>
       <SiteHeader />
-      <main className="min-w-0 flex-1 pt-16 selection:bg-selection">{children}</main>
+      <main className="min-w-0 flex-1 pt-(--site-header-h) selection:bg-selection">{children}</main>
       <SiteFooter />
     </MotionProvider>
   );

@@ -53,6 +53,16 @@
   --text-6xl--line-height: 1.2;
   --container-8xl: 96rem;
   --color-selection: #b8edab;
+  /* Display serif without the forced line-height of `font-source-serif`. */
+  --font-serif: var(--font-source-serif);
+  /* Seed-round announcement palette (press page + homepage announcement). */
+  --color-pine-950: #0a110e;
+  --color-pine-900: #0e3b2a;
+  --color-pine-50: #f3f6f4;
+  --color-pine-rule: #e3e6e4;
+  --color-mint: #6fe3a2;
+  --color-mist: #f2f7f4;
+  --color-sage: #a9b9b0;
 }
 
 :root {
@@ -90,6 +100,20 @@
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
   --selection-background: #b8edab;
+  /* Fixed site header = 4rem nav row + optional announcement bar. */
+  --announcement-h: 0px;
+  --site-header-h: calc(4rem + var(--announcement-h));
+}
+
+/* The bar is rendered inside the fixed header; reserve its height while it is mounted. */
+:root:has([data-announcement-bar]) {
+  --announcement-h: 3.5rem;
+}
+
+@media (min-width: 40rem) {
+  :root:has([data-announcement-bar]) {
+    --announcement-h: 2.75rem;
+  }
 }
 
 .dark {
@@ -159,6 +183,23 @@
     oklch(0.7 0.15 160 / 0.07),
     transparent 60%
   );
+}
+
+/* Dark green glow over a faint 112px grid. Tune with --glow-pos / --glow-size / --glow-alpha. */
+@utility bg-pine-glow {
+  background-color: var(--color-pine-950);
+  background-image:
+    radial-gradient(
+      ellipse var(--glow-size, 70% 55%) at var(--glow-pos, 45% 45%),
+      rgb(40 118 82 / var(--glow-alpha, 0.55)),
+      rgb(10 17 14 / 0) 72%
+    ),
+    linear-gradient(rgb(255 255 255 / 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.03) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    112px 112px,
+    112px 112px;
 }
 
 @utility btn-shine {

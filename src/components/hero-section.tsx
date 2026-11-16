@@ -7,6 +7,7 @@ import { m, useReducedMotion, useScroll, useTransform } from "motion/react";
 import { useCallback, useRef, useState } from "react";
 
 import { ClientBanner } from "@/components/client-banner";
+import { SeedHeroCard } from "@/components/seed-hero-card";
 import { HeadlineReveal } from "@/components/motion/headline-reveal";
 import { Button } from "@/components/ui/button";
 import {
@@ -20,6 +21,7 @@ import {
 import { withBasePath } from "@/lib/base-path";
 import { DUR, EASE_OUT } from "@/lib/motion";
 import { bookDemoUrl } from "@/lib/navigation";
+import { seedAnnouncement } from "@/lib/seed-announcement";
 
 export function HeroSection() {
   const sectionRef = useRef<HTMLElement>(null);
@@ -55,7 +57,7 @@ export function HeroSection() {
     <section
       ref={sectionRef}
       data-header-theme="dark"
-      className="relative isolate -mt-16 min-h-[max(100svh,42.5rem)] overflow-hidden md:min-h-svh"
+      className="relative isolate -mt-(--site-header-h) min-h-[max(100svh,42.5rem)] overflow-hidden md:min-h-svh"
     >
       <m.div
         aria-hidden
@@ -87,117 +89,130 @@ export function HeroSection() {
         <div className="absolute inset-0 bg-black/40" />
       </m.div>
 
-      <div className="section-container flex min-h-[max(100svh,42.5rem)] flex-col px-6 pb-12 pt-24 md:min-h-svh">
+      <div className="section-container flex min-h-[max(100svh,42.5rem)] flex-col px-6 pb-12 pt-[calc(6rem+var(--announcement-h))] md:min-h-svh">
         <div className="flex flex-1 items-center">
           <m.div
-            className="w-full text-left"
+            className="flex w-full flex-col gap-10 lg:flex-row lg:items-end lg:justify-between lg:gap-12"
             style={reducedMotion ? undefined : { opacity: contentOpacity, y: contentY }}
           >
-            <Link href="/" className="mb-6 inline-flex md:hidden">
-              <Image
-                src="/perry-logo-white.png"
-                alt="Perry"
-                width={1419}
-                height={384}
-                priority
-                className="h-6 w-auto"
+            <div className="min-w-0 text-left">
+              <Link href="/" className="mb-6 inline-flex md:hidden">
+                <Image
+                  src="/perry-logo-white.png"
+                  alt="Perry"
+                  width={1419}
+                  height={384}
+                  priority
+                  className="h-6 w-auto"
+                />
+              </Link>
+              <HeadlineReveal
+                as="h1"
+                inView={false}
+                delay={0.2}
+                lines={["The Legal OS", "for Private Capital"]}
+                className="font-source-serif text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl md:text-6xl xl:text-7xl"
               />
-            </Link>
-            <HeadlineReveal
-              as="h1"
-              inView={false}
-              delay={0.2}
-              lines={["The Legal OS", "for Private Capital"]}
-              className="font-source-serif text-4xl font-medium tracking-tight text-balance text-white sm:text-5xl md:text-6xl xl:text-7xl"
-            />
 
-            <m.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: DUR.base, delay: 0.55, ease: EASE_OUT }}
-              className="mt-6 max-w-xl text-medium text-white/90 text-pretty sm:text-lg"
-            >
-              The AI operating layer for legal work across the fund lifecycle -
-              formation, deal execution, and portfolio governance, in one
-              platform built for private capital.
-            </m.p>
-
-            <m.div
-              initial={{ opacity: 0, y: 16 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: DUR.base, delay: 0.7, ease: EASE_OUT }}
-              className="mt-10 flex flex-wrap items-center gap-3"
-            >
-              <Button
-                size="lg"
-                className="btn-shine bg-white text-black hover:bg-white/90"
-                render={
-                  <Link
-                    href={bookDemoUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  />
-                }
+              <m.p
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: DUR.base, delay: 0.55, ease: EASE_OUT }}
+                className="mt-6 max-w-xl text-medium text-white/90 text-pretty sm:text-lg"
               >
-                Book a demo
-                <ArrowRight />
-              </Button>
+                The AI operating layer for legal work across the fund lifecycle -
+                formation, deal execution, and portfolio governance, in one
+                platform built for private capital.
+              </m.p>
 
-              <Dialog
-                open={platformVideoOpen}
-                onOpenChange={handlePlatformVideoOpenChange}
+              <m.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: DUR.base, delay: 0.7, ease: EASE_OUT }}
+                className="mt-10 flex flex-wrap items-center gap-3"
               >
-                <DialogTrigger
+                <Button
+                  size="lg"
+                  className="btn-shine bg-white text-black hover:bg-white/90"
                   render={
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="border-white/35 bg-white/5 text-white hover:bg-white/12 hover:text-white"
+                    <Link
+                      href={bookDemoUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
                     />
                   }
                 >
-                  Watch video
-                  <Play className="size-3 fill-current" />
-                </DialogTrigger>
-                <DialogContent
-                  keepMounted
-                  showCloseButton={false}
-                  overlayClassName="bg-black/80 supports-backdrop-filter:backdrop-blur-sm"
-                  className="max-w-[calc(100%-2rem)] gap-0 overflow-hidden rounded-2xl border-0 bg-black p-0 ring-0 sm:max-w-5xl"
+                  Book a demo
+                  <ArrowRight />
+                </Button>
+
+                <Dialog
+                  open={platformVideoOpen}
+                  onOpenChange={handlePlatformVideoOpenChange}
                 >
-                  <DialogTitle className="sr-only">
-                    Perry platform overview
-                  </DialogTitle>
-                  <DialogDescription className="sr-only">
-                    Video walkthrough of the Perry platform.
-                  </DialogDescription>
-                  <DialogClose
+                  <DialogTrigger
                     render={
                       <Button
-                        variant="ghost"
-                        size="icon-sm"
-                        className="absolute top-3 right-3 z-10 bg-black/40 text-white hover:bg-black/60 hover:text-white"
+                        size="lg"
+                        variant="outline"
+                        className="border-white/35 bg-white/5 text-white hover:bg-white/12 hover:text-white"
                       />
                     }
                   >
-                    <X />
-                    <span className="sr-only">Close</span>
-                  </DialogClose>
-                  <video
-                    ref={platformVideoRef}
-                    controls
-                    playsInline
-                    preload="metadata"
-                    className="aspect-video w-full bg-black"
+                    Watch video
+                    <Play className="size-3 fill-current" />
+                  </DialogTrigger>
+                  <DialogContent
+                    keepMounted
+                    showCloseButton={false}
+                    overlayClassName="bg-black/80 supports-backdrop-filter:backdrop-blur-sm"
+                    className="max-w-[calc(100%-2rem)] gap-0 overflow-hidden rounded-2xl border-0 bg-black p-0 ring-0 sm:max-w-5xl"
                   >
-                    <source
-                      src={withBasePath("/videos/platform-intro.mp4")}
-                      type="video/mp4"
-                    />
-                  </video>
-                </DialogContent>
-              </Dialog>
-            </m.div>
+                    <DialogTitle className="sr-only">
+                      Perry platform overview
+                    </DialogTitle>
+                    <DialogDescription className="sr-only">
+                      Video walkthrough of the Perry platform.
+                    </DialogDescription>
+                    <DialogClose
+                      render={
+                        <Button
+                          variant="ghost"
+                          size="icon-sm"
+                          className="absolute top-3 right-3 z-10 bg-black/40 text-white hover:bg-black/60 hover:text-white"
+                        />
+                      }
+                    >
+                      <X />
+                      <span className="sr-only">Close</span>
+                    </DialogClose>
+                    <video
+                      ref={platformVideoRef}
+                      controls
+                      playsInline
+                      preload="metadata"
+                      className="aspect-video w-full bg-black"
+                    >
+                      <source
+                        src={withBasePath("/videos/platform-intro.mp4")}
+                        type="video/mp4"
+                      />
+                    </video>
+                  </DialogContent>
+                </Dialog>
+              </m.div>
+            </div>
+
+            {seedAnnouncement.showOnHomepage ? (
+              <m.div
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: DUR.base, delay: 0.85, ease: EASE_OUT }}
+                className="w-full lg:w-[456px] lg:shrink-0"
+              >
+                <SeedHeroCard />
+              </m.div>
+            ) : null}
           </m.div>
         </div>
 

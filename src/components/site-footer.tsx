@@ -80,7 +80,7 @@ export function SiteFooter() {
                   About
                 </Link>
                 <Link href="/career" className={footerLinkClassName}>
-                  Career
+                  Careers
                 </Link>
               </nav>
             </StaggerItem>

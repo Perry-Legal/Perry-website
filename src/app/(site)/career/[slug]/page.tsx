@@ -23,7 +23,7 @@ export async function generateMetadata({
   const role = getCareerRole(slug);
 
   if (!role) {
-    return { title: "Career" };
+    return { title: "Careers" };
   }
 
   return {

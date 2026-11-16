@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/page-header";
 import { careerRoles } from "@/lib/careers";
 
 export const metadata: Metadata = {
-  title: "Career",
+  title: "Careers",
   description:
     "Join Perry — open roles for lawyers and builders encoding private capital expertise into agentic legal infrastructure.",
 };
@@ -16,7 +16,7 @@ export default function CareerPage() {
   return (
     <div className="border-t border-border/60">
       <PageHeader
-        title="Career"
+        title="Careers"
         description="Help us encode private capital expertise into software — and set the standard for what correct looks like."
       />
 

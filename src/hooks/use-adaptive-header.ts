@@ -46,7 +46,9 @@ function getElementBackgroundLuminance(element: Element | null): number | null {
 }
 
 function sampleBackgroundContrast(): HeaderContrast {
-  const sampleY = HEADER_HEIGHT / 2;
+  // Sample the middle of the nav row, which sits below the announcement bar when it shows.
+  const header = document.querySelector<HTMLElement>(".site-header");
+  const sampleY = (header?.offsetHeight ?? HEADER_HEIGHT) - HEADER_HEIGHT / 2;
   const sampleXs = [0.15, 0.5, 0.85].map((ratio) => window.innerWidth * ratio);
   const samples: number[] = [];
 
