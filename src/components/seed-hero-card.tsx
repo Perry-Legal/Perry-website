@@ -10,7 +10,7 @@ export function SeedHeroCard({ className }: { className?: string }) {
     <Link
       href={seedAnnouncement.pressPagePath}
       className={cn(
-        "group flex flex-col gap-4 rounded-2xl border border-mint/28 bg-pine-950/72 p-6 text-mist shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-colors duration-300 hover:border-mint/50 sm:p-7",
+        "group flex flex-col gap-4 rounded-2xl border border-mint/28 bg-pine-950/40 p-6 text-mist shadow-[0_30px_80px_rgba(0,0,0,0.45)] backdrop-blur-sm transition-colors duration-300 hover:border-mint/50 sm:p-7",
         className,
       )}
     >

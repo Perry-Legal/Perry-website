@@ -90,13 +90,13 @@ const founders = [
   {
     name: "Shashwat Patel",
     role: "Co-founder and CEO",
-    focus: "22% 25%",
+    photo: "/images/news/founder-shashwat.jpg",
     bio: "15 years as a private equity and funds lawyer at Debevoise & Plimpton and Simmons & Simmons, advising asset managers including BlackRock, Brookfield, Invesco, Clayton Dubilier & Rice and HarbourVest. Qualified in New York, England & Wales, and India; LL.M., Columbia Law School.",
   },
   {
     name: "Vaneesa Agrawal",
     role: "Co-founder and CPO",
-    focus: "76% 25%",
+    photo: "/images/news/founder-vaneesa.jpg",
     bio: "12+ years as a funds lawyer and serial entrepreneur. Built a venture capital law firm from zero to 75 deals, achieving a top-tier Legal 500 ranking within three years. NYU School of Law graduate.",
   },
 ] as const;
@@ -139,21 +139,20 @@ const pressKitHref = withBasePath(seedAnnouncement.pressKitPath);
 
 function FounderAvatar({
   name,
-  focus,
+  photo,
   className,
 }: {
   name: string;
-  focus: string;
+  photo: string;
   className: string;
 }) {
   return (
     <Image
-      src={seedAnnouncement.foundersImage}
+      src={photo}
       alt={name}
-      width={2016}
-      height={1160}
+      width={640}
+      height={640}
       sizes="160px"
-      style={{ objectPosition: focus }}
       className={`block shrink-0 rounded-full object-cover ${className}`}
     />
   );
@@ -333,7 +332,7 @@ export default function SeedRoundPage() {
         >
           <FounderAvatar
             name="Shashwat Patel"
-            focus={founders[0].focus}
+            photo={founders[0].photo}
             className="size-28 sm:size-40"
           />
           <div className="flex flex-[1_1_480px] flex-col gap-[22px]">
@@ -451,7 +450,7 @@ export default function SeedRoundPage() {
           {founders.map((founder) => (
             <StaggerItem key={founder.name} y={16}>
               <div className="flex flex-col items-start gap-6 sm:flex-row">
-                <FounderAvatar name={founder.name} focus={founder.focus} className="size-28" />
+                <FounderAvatar name={founder.name} photo={founder.photo} className="size-28" />
                 <div className="flex flex-col gap-2">
                   <h3 className="font-serif text-[28px] leading-tight font-medium text-pine-950">
                     {founder.name}
