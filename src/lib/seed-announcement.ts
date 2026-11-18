@@ -14,7 +14,11 @@ export const seedAnnouncement = {
   ogImageUrl: "https://useperry.com/news/seed-round/og-image.png",
   dateLabel: "18 November 2026",
   publishedTime: "2026-11-18T00:01:00Z",
+  announcementVideo: "/videos/perry-seed-announcement.mp4",
+  announcementVideoPoster: "/videos/perry-seed-announcement-poster.jpg",
 } as const;
+
+export const seedAnnouncementVideoLabel = "Perry seed funding announcement video";
 
 export type InvestorLogo = {
   name: string;
