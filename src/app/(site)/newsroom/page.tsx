@@ -10,7 +10,6 @@ import {
   newsroomAnnouncements,
   newsroomInvestor,
   newsroomLinkedIn,
-  newsroomLinkedInInvestors,
   newsroomNews,
   newsroomX,
   type NewsroomAnnouncement,
@@ -193,17 +192,11 @@ export default function NewsroomPage() {
 
         <section aria-labelledby="newsroom-news" className="flex flex-col gap-8">
           <SectionHeading id="newsroom-news" title="News" />
-          <ArticleGrid articles={newsroomNews} />
-          <div className="flex flex-col gap-5">
-            <h3 className="font-serif text-[28px] leading-tight font-medium text-pine-950">
-              Also reported
-            </h3>
-            <ArticleGrid articles={newsroomAggregators} />
-          </div>
+          <ArticleGrid articles={[...newsroomNews, ...newsroomAggregators]} />
         </section>
 
-        <section aria-labelledby="newsroom-investors" className="flex flex-col gap-6">
-          <SectionHeading id="newsroom-investors" title="Investors" />
+        <section aria-labelledby="newsroom-investor" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-investor" title="Investors" />
           <ArticleGrid articles={newsroomInvestor} />
         </section>
 
@@ -211,12 +204,6 @@ export default function NewsroomPage() {
           <SectionHeading id="newsroom-social" title="Social" />
           <div className="flex flex-col gap-4">
             <h3 className="font-serif text-[28px] leading-tight font-medium text-pine-950">LinkedIn</h3>
-            <div className="flex flex-col gap-3">
-              <h4 className="font-serif text-[22px] leading-tight font-medium text-pine-950">
-                Investors
-              </h4>
-              <SocialList posts={newsroomLinkedInInvestors} />
-            </div>
             <SocialList posts={newsroomLinkedIn} />
           </div>
           <div className="flex flex-col gap-4">
