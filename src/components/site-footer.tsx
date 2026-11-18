@@ -79,8 +79,8 @@ export function SiteFooter() {
                 <Link href="/about" className={footerLinkClassName}>
                   About
                 </Link>
-                <Link href="/press" className={footerLinkClassName}>
-                  Press
+                <Link href="/newsroom" className={footerLinkClassName}>
+                  Newsroom
                 </Link>
                 <Link href="/careers" className={footerLinkClassName}>
                   Careers
