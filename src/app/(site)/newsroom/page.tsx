@@ -36,31 +36,32 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
       href={article.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group flex h-full flex-col overflow-hidden rounded-sm border border-pine-rule bg-white transition-[border-color,box-shadow] duration-300 hover:border-foreground/20 hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pine-900"
+      className="group relative isolate flex aspect-[4/5] overflow-hidden rounded-sm bg-pine-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
     >
-      <span className="relative aspect-video overflow-hidden bg-pine-50">
-        {article.image ? (
-          <Image
-            src={article.image}
-            alt={`Thumbnail for ${article.outlet} article`}
-            fill
-            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-          />
-        ) : (
-          <span className="flex h-full items-center justify-center px-6 text-center">
-            <span className="font-serif text-[28px] leading-tight font-medium text-pine-950">
-              {article.outlet}
-            </span>
-          </span>
-        )}
-      </span>
-      <span className="flex flex-1 flex-col gap-1.5 px-5 py-4">
-        <span className="text-sm font-medium text-pine-950">{article.outlet}</span>
-        <time dateTime={article.date} className="text-sm text-[#6B6B70]">
+      {article.image ? (
+        <Image
+          src={article.image}
+          alt={`Thumbnail for ${article.outlet} article`}
+          fill
+          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
+        />
+      ) : (
+        <span
+          aria-hidden
+          className="absolute inset-0 origin-center bg-[radial-gradient(ellipse_at_top,rgba(111,227,162,0.28),transparent_55%)] transition-transform duration-500 ease-out group-hover:scale-110"
+        />
+      )}
+      <span
+        aria-hidden
+        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/15"
+      />
+      <span className="relative mt-auto flex flex-col gap-1.5 p-5 text-white">
+        <span className="text-xs font-medium tracking-wide text-white/80">{article.outlet}</span>
+        <time dateTime={article.date} className="text-sm text-white/65">
           {formatNewsroomDate(article.date)}
         </time>
-        <span className="mt-1 font-serif text-[22px] leading-[1.3] text-pine-950 line-clamp-4">
+        <span className="mt-1 font-serif text-[22px] leading-[1.25] line-clamp-4">
           {article.headline}
         </span>
       </span>

@@ -65,6 +65,7 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     headline: "Perry AI raises $2.2M seed to give private capital a legal memory",
     href: "https://dealroom.co/news/173754-perry-ai-raises-2-2m-seed-to-give-private-capital-a-legal-memory/",
     date: seedRoundDate,
+    image: "/press/dealroom.webp",
   },
   {
     outlet: "Non-Billable",
