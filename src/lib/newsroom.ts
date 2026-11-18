@@ -1,6 +1,10 @@
 /**
  * Newsroom content. Append new items to the relevant list.
  * Each list is shown newest first. Items that share a date keep this order.
+ *
+ * Thumbnails must be landscape WebP, about 1200x630 (or 16:9), saved in
+ * public/press/. Newsroom cards stay landscape (aspect-video). Do not use
+ * portrait images or portrait card frames: object-cover would crop them.
  */
 
 export type NewsroomArticle = {
@@ -10,8 +14,8 @@ export type NewsroomArticle = {
   /** Calendar date, YYYY-MM-DD. */
   date: string;
   /**
-   * Optional locally hosted thumbnail, for example `/press/tech-eu.webp`.
-   * Cards without one use a brand fallback.
+   * Optional locally hosted landscape thumbnail, for example `/press/tech-eu.webp`.
+   * About 1200x630 WebP in public/press/. Cards without one use a brand fallback.
    */
   image?: string;
 };

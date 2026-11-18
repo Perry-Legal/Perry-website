@@ -38,7 +38,7 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
       rel="noopener noreferrer"
       className="group flex h-full flex-col gap-4 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-900"
     >
-      {/* Outlet thumbnails are ~16:9 social images, so keep them landscape and uncropped. */}
+      {/* Landscape only. Thumbnails are ~1200x630 or 16:9. Do not switch this frame to portrait. */}
       <span className="relative block aspect-video overflow-hidden rounded-xl border border-pine-rule bg-pine-950">
         {article.image ? (
           <Image
@@ -46,7 +46,7 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
             alt=""
             fill
             sizes="(min-width: 1240px) 380px, (min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw"
-            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+            className="object-cover object-center transition-transform duration-500 ease-out group-hover:scale-[1.03]"
           />
         ) : (
           <span

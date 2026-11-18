@@ -255,6 +255,7 @@ export default function SeedRoundPage() {
             <br />
             <span className="text-[#6B6B70]">Founder of Aumni</span>
           </li>
+          <li className="text-[15px] leading-snug text-[#3F4743]">+ Martin Carruthers</li>
         </InvestorLogoRow>
       </Reveal>
 
@@ -283,7 +284,8 @@ export default function SeedRoundPage() {
             The round was led by Haatch, with participation from Antler, Arāya Ventures, Syncorp
             Ventures, and other US and international investors, including Kelsey Chase, a super
             angel investor and the exited founder of Aumni, a cloud-based investment analytics
-            platform for private capital markets which was acquired by J.P. Morgan in 2023.
+            platform for private capital markets which was acquired by J.P. Morgan in 2023, and
+            Martin Carruthers.
           </p>
           <p>
             Fund legal teams work in a high-stakes, regulated and time-sensitive world, where a
