@@ -188,20 +188,6 @@ export const newsroomX: readonly NewsroomSocialPost[] = [
     date: seedRoundDate,
   },
   {
-    author: "INTJ投资笔记",
-    handle: "@INTJYAN",
-    summary: "Chinese summary of the oversubscribed $2.2 million seed round",
-    href: "https://x.com/INTJYAN/status/2122968600671625639",
-    date: seedRoundDate,
-  },
-  {
-    author: "BobSonOfBob",
-    handle: "@technewslondon",
-    summary: "84 days down to 13: London's Perry AI raised $2.2M seed from Haatch and Antler",
-    href: "https://x.com/technewslondon/status/2122971304307347505",
-    date: seedRoundDate,
-  },
-  {
     author: "Tech Funding News",
     handle: "@TFNBreakingNews",
     summary: "Perry AI has raised $2.2 million in an oversubscribed seed round",
@@ -229,24 +215,10 @@ export const newsroomX: readonly NewsroomSocialPost[] = [
     href: "https://x.com/todaystartupnws/status/2122998113740939467",
     date: seedRoundDate,
   },
-  {
-    author: "audium capital partners",
-    handle: "@audiumcp",
-    summary: "Perry AI Raises $2.2M in Seed Funding",
-    href: "https://x.com/audiumcp/status/2123016605420474561",
-    date: seedRoundDate,
-  },
-  {
-    author: "Club del Emprendimiento",
-    handle: "@Emprende_Club",
-    summary: "Spanish summary of the $2.2 million seed round led by Haatch",
-    href: "https://x.com/Emprende_Club/status/2123033332078538937",
-    date: seedRoundDate,
-  },
 ];
 
 export function byNewest<T extends { date: string }>(items: readonly T[]): T[] {
-  return [...items].sort((a, b) => b.date.localeCompare(a.date) || 0);
+  return [...items].sort((a, b) => b.date.localeCompare(a.date));
 }
 
 export function formatNewsroomDate(isoDate: string, style: "short" | "long" = "short"): string {

@@ -36,32 +36,33 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
       href={article.href}
       target="_blank"
       rel="noopener noreferrer"
-      className="group relative isolate flex aspect-[4/5] overflow-hidden rounded-sm bg-pine-950 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+      className="group flex h-full flex-col gap-4 rounded-xl focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-pine-900"
     >
-      {article.image ? (
-        <Image
-          src={article.image}
-          alt={`Thumbnail for ${article.outlet} article`}
-          fill
-          sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-          className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.04]"
-        />
-      ) : (
-        <span
-          aria-hidden
-          className="absolute inset-0 origin-center bg-[radial-gradient(ellipse_at_top,rgba(111,227,162,0.28),transparent_55%)] transition-transform duration-500 ease-out group-hover:scale-110"
-        />
-      )}
-      <span
-        aria-hidden
-        className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/15"
-      />
-      <span className="relative mt-auto flex flex-col gap-1.5 p-5 text-white">
-        <span className="text-xs font-medium tracking-wide text-white/80">{article.outlet}</span>
-        <time dateTime={article.date} className="text-sm text-white/65">
-          {formatNewsroomDate(article.date)}
-        </time>
-        <span className="mt-1 font-serif text-[22px] leading-[1.25] line-clamp-4">
+      {/* Outlet thumbnails are ~16:9 social images, so keep them landscape and uncropped. */}
+      <span className="relative block aspect-video overflow-hidden rounded-xl border border-pine-rule bg-pine-950">
+        {article.image ? (
+          <Image
+            src={article.image}
+            alt=""
+            fill
+            sizes="(min-width: 1240px) 380px, (min-width: 1024px) 31vw, (min-width: 768px) 46vw, 92vw"
+            className="object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+          />
+        ) : (
+          <span
+            aria-hidden
+            className="absolute inset-0 flex items-center justify-center bg-pine-glow px-6 text-center font-serif text-[26px] leading-tight text-mist [--glow-alpha:0.5] [--glow-pos:50%_0%] [--glow-size:90%_90%]"
+          >
+            {article.outlet}
+          </span>
+        )}
+      </span>
+      <span className="flex flex-col gap-2">
+        <span className="font-mono text-[12px] tracking-[0.12em] text-[#5F6B65] uppercase">
+          {article.outlet} ·{" "}
+          <time dateTime={article.date}>{formatNewsroomDate(article.date)}</time>
+        </span>
+        <span className="line-clamp-3 font-serif text-[21px] leading-[1.3] text-pine-950 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
           {article.headline}
         </span>
       </span>
@@ -71,7 +72,7 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
 
 function ArticleGrid({ articles }: { articles: readonly NewsroomArticle[] }) {
   return (
-    <ul className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <ul className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
       {byNewest(articles).map((article) => (
         <li key={article.href}>
           <ArticleCard article={article} />
@@ -136,11 +137,12 @@ function SocialList({ posts }: { posts: readonly NewsroomSocialPost[] }) {
             rel="noopener noreferrer"
             className="grid gap-1 py-3.5 text-[15px] leading-relaxed text-[#2A2E2C] transition-colors hover:bg-pine-50 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-8 sm:px-2"
           >
-            <span>
-              <span className="font-medium text-pine-950">{post.author}</span>
-              {post.handle ? <span className="text-[#3F4743]"> ({post.handle})</span> : null}
-              {", "}
-              {post.summary}
+            <span className="flex flex-col gap-0.5">
+              <span>
+                <span className="font-medium text-pine-950">{post.author}</span>
+                {post.handle ? <span className="text-[#5F6B65]"> {post.handle}</span> : null}
+              </span>
+              <span>{post.summary}</span>
             </span>
             <time
               dateTime={post.date}
