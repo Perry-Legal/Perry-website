@@ -11,6 +11,7 @@ import {
   newsroomInvestor,
   newsroomLinkedIn,
   newsroomNews,
+  newsroomRecognition,
   newsroomX,
   type NewsroomAnnouncement,
   type NewsroomArticle,
@@ -200,6 +201,11 @@ export default function NewsroomPage() {
         <section aria-labelledby="newsroom-news" className="flex flex-col gap-8">
           <SectionHeading id="newsroom-news" title="News" />
           <ArticleGrid articles={[...newsroomNews, ...newsroomAggregators]} />
+        </section>
+
+        <section aria-labelledby="newsroom-recognition" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-recognition" title="Recognition" />
+          <ArticleGrid articles={newsroomRecognition} />
         </section>
 
         <section aria-labelledby="newsroom-investor" className="flex flex-col gap-6">
