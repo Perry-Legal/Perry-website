@@ -162,6 +162,22 @@ export const newsroomInvestor: readonly NewsroomArticle[] = [
   },
 ];
 
+export const newsroomLinkedInInvestors: readonly NewsroomSocialPost[] = [
+  {
+    author: "Kelsey Chase (founder of Aumni)",
+    summary: "Kelsey Chase on backing Perry AI's $2.2M seed round",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7528898260736913408/",
+    date: seedRoundDate,
+  },
+  {
+    author: "Martin Carruthers (Partner, Arāya Ventures)",
+    summary:
+      "Arāya Ventures is delighted to back Perry AI in its oversubscribed $2.2M seed round.",
+    href: "https://www.linkedin.com/posts/martin-carruthers-0285339_arayaventures-verticalai-legaltech-activity-7528768540242460672-qF9M",
+    date: seedRoundDate,
+  },
+];
+
 export const newsroomLinkedIn: readonly NewsroomSocialPost[] = [
   {
     author: "Perry",
