@@ -9,7 +9,10 @@ export type NewsroomArticle = {
   href: string;
   /** Calendar date, YYYY-MM-DD. */
   date: string;
-  /** Public path to a cover image. Cards without one use the brand background. */
+  /**
+   * Optional locally hosted thumbnail, for example `/press/tech-eu.webp`.
+   * Cards without one use a brand fallback.
+   */
   image?: string;
 };
 
@@ -47,6 +50,7 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     headline: "Perry AI secures $2.2M to automate legal work across private capital",
     href: "https://tech.eu/2026/11/18/perry-ai-secures-22m-to-automate-legal-work-across-private-capital/",
     date: seedRoundDate,
+    image: "/press/tech-eu.webp",
   },
   {
     outlet: "Tech Funding News",
@@ -54,6 +58,7 @@ export const newsroomNews: readonly NewsroomArticle[] = [
       "London's Perry AI raises $2.2M from Haatch and Antler to automate legal work for private capital",
     href: "https://techfundingnews.com/londons-perry-ai-raises-2-2m-from-haatch-and-antler-to-automate-legal-work-for-private-capital/",
     date: seedRoundDate,
+    image: "/press/tech-funding-news.webp",
   },
   {
     outlet: "Dealroom News",
@@ -66,6 +71,7 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     headline: "Former City lawyer raises $2.2m for AI startup to speed up private capital deals",
     href: "https://www.nonbillable.co.uk/news/former-city-lawyer-raises-perry-ai-startup",
     date: seedRoundDate,
+    image: "/press/non-billable.webp",
   },
   {
     outlet: "EU-Startups",
@@ -79,12 +85,14 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     headline: "London-Based Perry AI Raises €2Mn Seed Funding Led by Haatch",
     href: "https://startuprise.co.uk/perry-ai-raises-e2mn/",
     date: seedRoundDate,
+    image: "/press/startuprise.webp",
   },
   {
     outlet: "The SaaS News",
     headline: "Perry AI Raises $2.2M Seed",
     href: "https://www.thesaasnews.com/news/perry-ai-raises-2-2m-seed/",
     date: seedRoundDate,
+    image: "/press/the-saas-news.webp",
   },
   {
     outlet: "FinSMEs",
@@ -109,6 +117,7 @@ export const newsroomAggregators: readonly NewsroomArticle[] = [
       "London's Perry AI Raises $2.2M Seed Led by Haatch to Give Private Capital Funds a Living Legal Memory",
     href: "https://www.todaysstartupnews.com/funding/perry-ai-raises-2-2m-seed-haatch-antler-legal-operating-system-private-capital",
     date: seedRoundDate,
+    image: "/press/todays-startup-news.webp",
   },
   {
     outlet: "Startup.eu",
@@ -116,6 +125,7 @@ export const newsroomAggregators: readonly NewsroomArticle[] = [
       "London-based Perry AI raises $2.2M seed round to automate legal work for private capital",
     href: "https://www.startup.eu/investments/perry-ai-2-2-m-seed-11-2026",
     date: seedRoundDate,
+    image: "/press/startup-eu.webp",
   },
   {
     outlet: "DropsTab News",
@@ -130,12 +140,14 @@ export const newsroomAggregators: readonly NewsroomArticle[] = [
       "Perry AI raises $2.2M from Haatch and Antler to automate legal work for private capital; platform cuts deal signing times from 84 to 13 days",
     href: "https://curiouscats.ai/breaking-news/perry-ai-raises-22m-from-haatch-and-antler-to-automate-legal-work-for",
     date: seedRoundDate,
+    image: "/press/curiouscats.webp",
   },
   {
     outlet: "Midu",
     headline: "Perry AI raises $2.2M seed led by Haatch for legal automation",
     href: "https://midu.si/story/f673d1b4-e0bc-4d1c-a5dc-794c531d8a24",
     date: seedRoundDate,
+    image: "/press/midu.webp",
   },
 ];
 
@@ -145,6 +157,7 @@ export const newsroomInvestor: readonly NewsroomArticle[] = [
     headline: "Perry AI raises $2.2M seed round, led by Haatch",
     href: "https://haatch.com/latest-news/perry-ai-raises-2-2m-seed-round-led-by-haatch",
     date: seedRoundDate,
+    image: "/press/haatch.webp",
   },
 ];
 
