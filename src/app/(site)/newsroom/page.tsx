@@ -70,10 +70,17 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
   );
 }
 
-function ArticleGrid({ articles }: { articles: readonly NewsroomArticle[] }) {
+function ArticleGrid({
+  articles,
+  preserveOrder = false,
+}: {
+  articles: readonly NewsroomArticle[];
+  preserveOrder?: boolean;
+}) {
+  const items = preserveOrder ? articles : byNewest(articles);
   return (
     <ul className="grid grid-cols-1 gap-x-6 gap-y-10 md:grid-cols-2 lg:grid-cols-3">
-      {byNewest(articles).map((article) => (
+      {items.map((article) => (
         <li key={article.href}>
           <ArticleCard article={article} />
         </li>
@@ -197,7 +204,7 @@ export default function NewsroomPage() {
 
         <section aria-labelledby="newsroom-investor" className="flex flex-col gap-6">
           <SectionHeading id="newsroom-investor" title="Investors" />
-          <ArticleGrid articles={newsroomInvestor} />
+          <ArticleGrid articles={newsroomInvestor} preserveOrder />
         </section>
 
         <section aria-labelledby="newsroom-social" className="flex flex-col gap-8">

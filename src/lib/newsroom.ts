@@ -152,13 +152,14 @@ export const newsroomAggregators: readonly NewsroomArticle[] = [
   },
 ];
 
+/** Shown in this order. Not sorted by date. */
 export const newsroomInvestor: readonly NewsroomArticle[] = [
   {
-    outlet: "Kelsey Chase (founder of Aumni)",
-    headline: "Kelsey Chase on backing Perry AI's $2.2M seed round",
-    href: "https://www.linkedin.com/feed/update/urn:li:activity:7528898260736913408/",
+    outlet: "Haatch",
+    headline: "Perry AI raises $2.2M seed round, led by Haatch",
+    href: "https://haatch.com/latest-news/perry-ai-raises-2-2m-seed-round-led-by-haatch",
     date: seedRoundDate,
-    image: "/press/kelsey-chase.webp",
+    image: "/press/haatch.webp",
   },
   {
     outlet: "Martin Carruthers (Partner, Arāya Ventures)",
@@ -168,11 +169,11 @@ export const newsroomInvestor: readonly NewsroomArticle[] = [
     image: "/press/martin-carruthers.webp",
   },
   {
-    outlet: "Haatch",
-    headline: "Perry AI raises $2.2M seed round, led by Haatch",
-    href: "https://haatch.com/latest-news/perry-ai-raises-2-2m-seed-round-led-by-haatch",
+    outlet: "Kelsey Chase (founder of Aumni)",
+    headline: "Kelsey Chase on backing Perry AI's $2.2M seed round",
+    href: "https://www.linkedin.com/feed/update/urn:li:activity:7528898260736913408/",
     date: seedRoundDate,
-    image: "/press/haatch.webp",
+    image: "/press/kelsey-chase.webp",
   },
 ];
 
