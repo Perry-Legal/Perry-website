@@ -8,6 +8,7 @@ import {
   formatNewsroomDate,
   newsroomAggregators,
   newsroomAnnouncements,
+  newsroomInterviews,
   newsroomInvestor,
   newsroomLinkedIn,
   newsroomNews,
@@ -203,14 +204,19 @@ export default function NewsroomPage() {
           <ArticleGrid articles={[...newsroomNews, ...newsroomAggregators]} />
         </section>
 
+        <section aria-labelledby="newsroom-investor" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-investor" title="Investors" />
+          <ArticleGrid articles={newsroomInvestor} preserveOrder />
+        </section>
+
         <section aria-labelledby="newsroom-recognition" className="flex flex-col gap-6">
           <SectionHeading id="newsroom-recognition" title="Recognition" />
           <ArticleGrid articles={newsroomRecognition} />
         </section>
 
-        <section aria-labelledby="newsroom-investor" className="flex flex-col gap-6">
-          <SectionHeading id="newsroom-investor" title="Investors" />
-          <ArticleGrid articles={newsroomInvestor} preserveOrder />
+        <section aria-labelledby="newsroom-interviews" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-interviews" title="Interviews and podcasts" />
+          <ArticleGrid articles={newsroomInterviews} />
         </section>
 
         <section aria-labelledby="newsroom-social" className="flex flex-col gap-8">

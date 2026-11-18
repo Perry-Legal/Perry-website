@@ -200,6 +200,9 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     date: seedRoundDate,
     image: "/press/frenchweb.webp",
   },
+];
+
+export const newsroomInterviews: readonly NewsroomArticle[] = [
   {
     outlet: "The Future Series podcast",
     headline:
