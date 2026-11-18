@@ -8,12 +8,10 @@ const vaneesaLinkedIn = "https://www.linkedin.com/in/vaneesaagrawal/";
 
 /**
  * Official company profile URLs.
- * The repo has Perry's LinkedIn post URLs and the founders' personal profiles,
- * but not a company LinkedIn page, an X profile, or Crunchbase and Dealroom
- * company profiles. Do not add those until the URLs are confirmed.
+ * An X profile, and Crunchbase and Dealroom company profiles, are not confirmed.
  * TODO: add Crunchbase and Dealroom company profile URLs when they are confirmed.
  */
-const organizationSameAs: string[] = [];
+const organizationSameAs: string[] = ["https://www.linkedin.com/company/106104738/"];
 
 export function organizationJsonLd() {
   return {
