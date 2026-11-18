@@ -200,6 +200,14 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     date: seedRoundDate,
     image: "/press/frenchweb.webp",
   },
+  {
+    outlet: "Analytics Insight",
+    headline:
+      "London's Perry AI Raises USD 2.2m from Haatch and Antler to Automate Legal Work for Private Capital",
+    href: "https://www.analyticsinsight.net/tech-news/top-news-today-hexin-raises-usd-144m-ai-hiring-demand-grows-bitcoin-faces-ai-ipo-competition",
+    date: seedRoundDate,
+    image: "/press/analytics-insight.webp",
+  },
 ];
 
 export const newsroomInterviews: readonly NewsroomArticle[] = [
