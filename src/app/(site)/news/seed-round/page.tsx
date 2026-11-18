@@ -6,6 +6,7 @@ import { ArrowDown, ArrowRight } from "lucide-react";
 import { InvestorLogoRow } from "@/components/investor-logo-row";
 import { Reveal } from "@/components/motion/reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
+import { SeedAnnouncementVideo } from "@/components/seed-announcement-video";
 import { withBasePath } from "@/lib/base-path";
 import { bookDemoUrl } from "@/lib/navigation";
 import { seedAnnouncement, seedInvestors } from "@/lib/seed-announcement";
@@ -202,15 +203,20 @@ export default function SeedRoundPage() {
         </div>
       </section>
 
-      {/* Founders photo overlapping the hero. */}
+      {/* Announcement video overlapping the hero. */}
       <div className="relative mx-auto -mt-[160px] max-w-[1240px] px-6 sm:-mt-[200px] sm:px-8">
         <Reveal delay={0.15} y={32}>
+          <SeedAnnouncementVideo />
+        </Reveal>
+      </div>
+
+      <div className="mx-auto max-w-[1240px] px-6 pt-14 sm:px-8">
+        <Reveal y={24}>
           <Image
             src={seedAnnouncement.foundersImage}
             alt="Perry co-founders Shashwat Patel and Vaneesa Agrawal"
             width={2016}
             height={1160}
-            priority
             sizes="(min-width: 1240px) 1176px, 100vw"
             className="block aspect-[2016/1160] w-full rounded-2xl object-cover shadow-[0_40px_100px_rgba(10,17,14,0.35)]"
           />
