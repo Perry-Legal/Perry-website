@@ -7,7 +7,7 @@ import { PageHeader } from "@/components/page-header";
 import { careerRoles } from "@/lib/careers";
 
 export const metadata: Metadata = {
-  title: "Career",
+  title: "Careers",
   description:
     "Join Perry — open roles for lawyers and builders encoding private capital expertise into agentic legal infrastructure.",
 };
@@ -16,7 +16,7 @@ export default function CareerPage() {
   return (
     <div className="border-t border-border/60">
       <PageHeader
-        title="Career"
+        title="Careers"
         description="Help us encode private capital expertise into software — and set the standard for what correct looks like."
       />
 
@@ -25,7 +25,7 @@ export default function CareerPage() {
           {careerRoles.map((role) => (
             <StaggerItem key={role.slug} y={20}>
               <Link
-                href={`/career/${role.slug}`}
+                href={`/careers/${role.slug}`}
                 className="group flex flex-col gap-4 border border-border/60 px-6 py-6 transition-[border-color,background-color] duration-300 hover:border-foreground/20 hover:bg-muted/30 sm:flex-row sm:items-center sm:justify-between sm:px-8"
               >
                 <div className="min-w-0">

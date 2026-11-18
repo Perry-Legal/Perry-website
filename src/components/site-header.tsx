@@ -4,6 +4,7 @@ import Image from "@/components/asset-image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
+import { AnnouncementBar } from "@/components/announcement-bar";
 import { SiteMobileNav } from "@/components/site-mobile-nav";
 import { SiteNav } from "@/components/site-nav";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ export function SiteHeader() {
         onDark ? "text-white" : "text-foreground",
       )}
     >
+      <AnnouncementBar collapsed={hasSurface} />
       <div className="section-container flex h-16 items-center gap-3 px-6 md:grid md:grid-cols-[1fr_auto_1fr]">
         <div className="flex items-center gap-2 justify-self-start">
           <div className="md:hidden">

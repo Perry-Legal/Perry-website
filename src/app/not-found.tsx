@@ -12,7 +12,7 @@ export default function NotFound() {
   return (
     <MotionProvider>
       <SiteHeader />
-      <main className="flex min-w-0 flex-1 items-center justify-center pt-16 selection:bg-selection">
+      <main className="flex min-w-0 flex-1 items-center justify-center pt-(--site-header-h) selection:bg-selection">
         <section className="relative w-full overflow-hidden px-6 py-24 sm:py-32">
           <div
             aria-hidden

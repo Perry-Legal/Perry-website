@@ -8,6 +8,6 @@ export const solutionLinks = [
 
 export const simpleNavLinks = [
   { href: "/about", label: "About" },
-  { href: "/career", label: "Career" },
+  { href: "/careers", label: "Careers" },
   { href: "/legal/privacy-policy", label: "Privacy" },
 ] as const;

@@ -2,13 +2,16 @@ import { CtaSection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
 import { PlatformArchitectureSection } from "@/components/platform-architecture-section";
 import { PlatformIntelligenceSection } from "@/components/platform-intelligence-section";
+import { SeedAnnouncementSection } from "@/components/seed-announcement-section";
 import { SolutionSection } from "@/components/solution-section";
 import { TestimonialSection } from "@/components/testimonial-section";
+import { seedAnnouncement } from "@/lib/seed-announcement";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
+      {seedAnnouncement.showOnHomepage ? <SeedAnnouncementSection /> : null}
       <PlatformIntelligenceSection />
       <PlatformArchitectureSection />
       <CtaSection
