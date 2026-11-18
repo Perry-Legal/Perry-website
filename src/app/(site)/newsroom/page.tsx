@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import Image from "@/components/asset-image";
+import { JsonLd } from "@/components/json-ld";
 import { Reveal } from "@/components/motion/reveal";
 import {
   byNewest,
@@ -18,19 +19,16 @@ import {
   type NewsroomArticle,
   type NewsroomSocialPost,
 } from "@/lib/newsroom";
+import { pageMetadata } from "@/lib/site-metadata";
+import { newsroomItemListJsonLd } from "@/lib/structured-data";
 
 const description = "News, commentary and posts about Perry.";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Newsroom",
   description,
-  alternates: { canonical: "https://useperry.com/newsroom/" },
-  openGraph: {
-    title: "Newsroom | Perry",
-    description,
-    url: "https://useperry.com/newsroom/",
-  },
-};
+  path: "/newsroom",
+});
 
 function ArticleCard({ article }: { article: NewsroomArticle }) {
   return (
@@ -177,6 +175,7 @@ function SectionHeading({ id, title }: { id: string; title: string }) {
 export default function NewsroomPage() {
   return (
     <article className="bg-white text-[#0B0B0C]">
+      <JsonLd data={newsroomItemListJsonLd()} />
       <section
         data-header-theme="dark"
         className="relative -mt-(--site-header-h) overflow-hidden bg-pine-glow text-mist [--glow-pos:70%_80%] [--glow-size:60%_70%]"

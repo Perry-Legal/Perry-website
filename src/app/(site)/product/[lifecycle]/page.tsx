@@ -5,6 +5,7 @@ import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { getProductLifecycle, productLifecycle } from "@/lib/product-navigation";
+import { pageMetadata } from "@/lib/site-metadata";
 
 type LifecyclePageProps = {
   params: Promise<{ lifecycle: string }>;
@@ -24,10 +25,11 @@ export async function generateMetadata({
     return { title: "Product" };
   }
 
-  return {
+  return pageMetadata({
     title: lifecycle.label,
     description: lifecycle.description,
-  };
+    path: `/product/${lifecycle.slug}`,
+  });
 }
 
 export default async function LifecyclePage({ params }: LifecyclePageProps) {

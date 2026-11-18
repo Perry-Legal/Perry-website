@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 
+import { JsonLd } from "@/components/json-ld";
 import { withBasePath } from "@/lib/base-path";
+import { siteGraphJsonLd } from "@/lib/structured-data";
+import { defaultOgImage, siteDescription, siteName, siteUrl } from "@/lib/site-metadata";
 
 import "./globals.css";
 
@@ -21,17 +24,26 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "Perry - The Legal OS for Private Capital",
     template: "%s | Perry",
   },
-  description:
-    "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
+  description: siteDescription,
+  alternates: { canonical: `${siteUrl}/` },
   openGraph: {
     title: "Perry - The Legal OS for Private Capital",
-    description:
-      "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
+    description: siteDescription,
+    url: `${siteUrl}/`,
+    siteName,
     type: "website",
+    images: [{ url: defaultOgImage, width: 1200, height: 630, alt: siteName }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Perry - The Legal OS for Private Capital",
+    description: siteDescription,
+    images: [defaultOgImage],
   },
   icons: {
     icon: [
@@ -52,7 +64,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} ${sourceSerif.variable} antialiased selection:bg-selection`}
     >
-      <body className="flex min-h-svh flex-col selection:bg-selection">{children}</body>
+      <body className="flex min-h-svh flex-col selection:bg-selection">
+        <JsonLd data={siteGraphJsonLd()} />
+        {children}
+      </body>
     </html>
   );
 }

@@ -5,12 +5,14 @@ import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { fundPage } from "@/lib/fund-page";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Investors",
   description:
-    "The AI operating layer for legal work across the fund lifecycle — formation, deal execution, and portfolio governance.",
-};
+    "The AI operating layer for legal work across the fund lifecycle: formation, deal execution, and portfolio governance.",
+  path: "/fund",
+});
 
 export default function FundPage() {
   return (
