@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 
 import { careerRoles } from "@/lib/careers";
+import { guides } from "@/lib/guides";
 import { legalPages } from "@/lib/legal-pages";
 import { productLifecycle } from "@/lib/product-navigation";
 
@@ -87,7 +88,11 @@ export function publicPaths(): PublicPath[] {
     { path: "/about", changeFrequency: "monthly", priority: 0.6 },
     { path: "/careers", changeFrequency: "weekly", priority: 0.6 },
     ...careerPaths,
-    { path: "/blog", changeFrequency: "weekly", priority: 0.5 },
+    ...guides.map((guide) => ({
+      path: guide.path,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
     { path: "/newsroom", changeFrequency: "weekly", priority: 0.7 },
     { path: "/news/seed-round", changeFrequency: "yearly", priority: 0.6 },
     ...legalPaths,

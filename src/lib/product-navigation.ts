@@ -16,6 +16,8 @@ export type ProductFeature = {
 export type ProductLifecycle = {
   slug: string;
   label: string;
+  /** Document title when it should differ from the navigation label. */
+  pageTitle?: string;
   headline: string;
   description: string;
   kpis?: string[];
@@ -27,9 +29,10 @@ export const productLifecycle: ProductLifecycle[] = [
   {
     slug: "fund-formation",
     label: "Fund Formation",
-    headline: "Turn fund documents into a structured operating record",
+    pageTitle: "Side letter and MFN management",
+    headline: "Side letter and MFN management",
     description:
-      "Review side letters, consolidate investor terms, manage MFN elections and convert fund documents into ongoing obligations. Perry preserves every negotiation position and investor-specific commitment for the life of the fund.",
+      "Review side letters, consolidate investor terms and manage MFN elections in one place. Perry keeps every negotiation position and investor-specific commitment for the life of the fund.",
     kpis: [
       "Reduce time to find an investor term by 70%",
       "Cut MFN election cycle time by 50%",

@@ -8,10 +8,15 @@ const vaneesaLinkedIn = "https://www.linkedin.com/in/vaneesaagrawal/";
 
 /**
  * Official company profile URLs.
- * An X profile, and Crunchbase and Dealroom company profiles, are not confirmed.
- * TODO: add Crunchbase and Dealroom company profile URLs when they are confirmed.
+ * Crunchbase organization/perry-ai lists legal name Photosynth AI Limited and website useperry.com.
+ * Dealroom companies/perry_ai lists website useperry.com.
+ * An X profile is not confirmed.
  */
-const organizationSameAs: string[] = ["https://www.linkedin.com/company/106104738/"];
+const organizationSameAs: string[] = [
+  "https://www.linkedin.com/company/106104738/",
+  "https://www.crunchbase.com/organization/perry-ai",
+  "https://app.dealroom.co/companies/perry_ai",
+];
 
 export function organizationJsonLd() {
   return {
@@ -41,6 +46,14 @@ export function peopleJsonLd() {
       "@id": `${siteUrl}/#vaneesa-agrawal`,
       name: "Vaneesa Agrawal",
       jobTitle: "Co-founder and CPO",
+      url: `${siteUrl}/about/#vaneesa-agrawal`,
+      description:
+        "Co-founder and CPO of Perry. 12+ years as a funds lawyer and serial entrepreneur. Studied at NLU Jodhpur, practised at Cyril Amarchand Mangaldas, and is an NYU School of Law graduate. Founded Thinking Legal, a venture capital law firm, and built it from zero to 75 deals, with a top-tier Legal 500 ranking within three years. Named to the Bae HQ 100 Female Founders Watchlist 2026, and a guest on The Future Series podcast.",
+      alumniOf: [
+        { "@type": "EducationalOrganization", name: "NLU Jodhpur" },
+        { "@type": "EducationalOrganization", name: "NYU School of Law" },
+      ],
+      award: "Bae HQ 100 Female Founders Watchlist 2026",
       worksFor: { "@id": organizationId },
       sameAs: [vaneesaLinkedIn],
     },
@@ -64,6 +77,25 @@ export function softwareApplicationJsonLd() {
     url: siteUrl,
     description: siteDescription,
     provider: { "@id": organizationId },
+  };
+}
+
+export function faqPageJsonLd(
+  name: string,
+  faqs: readonly { question: string; answer: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    name,
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
   };
 }
 
