@@ -1,56 +1,21 @@
 import type { Metadata } from "next";
 
-import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page-header";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { pageMetadata } from "@/lib/site-metadata";
 
 export const metadata: Metadata = {
-  title: "Blog",
-  description: "Insights and updates from the Perry team.",
+  ...pageMetadata({
+    title: "Blog",
+    description: "There are no posts yet.",
+    path: "/blog",
+  }),
+  robots: { index: false, follow: false },
 };
-
-const posts = [
-  {
-    slug: "legal-os-for-private-capital",
-    title: "Why private capital needs a legal OS",
-    description: "How modern funds are replacing fragmented tools with a single system of record.",
-    date: "Mar 12, 2026",
-  },
-  {
-    slug: "fund-formation-checklist",
-    title: "The fund formation checklist for 2026",
-    description: "A practical guide to launching a new fund without legal bottlenecks.",
-    date: "Feb 28, 2026",
-  },
-  {
-    slug: "compliance-at-scale",
-    title: "Compliance at scale",
-    description: "What breaks when your AUM doubles — and how to prepare your legal stack.",
-    date: "Feb 10, 2026",
-  },
-];
 
 export default function BlogPage() {
   return (
     <div className="border-t border-border/60">
-      <PageHeader
-        title="Blog"
-        description="Industry insights, product updates, and best practices for private capital legal teams."
-      />
-
-      <StaggerGroup className="mx-auto grid max-w-4xl gap-6 px-6 pb-24">
-        {posts.map((post) => (
-          <StaggerItem key={post.slug} y={20}>
-            <Card className="transition-[transform,box-shadow,border-color] duration-300 ease-out hover:-translate-y-1 hover:border-foreground/20 hover:shadow-md">
-              <CardHeader>
-                <p className="text-sm text-muted-foreground">{post.date}</p>
-                <CardTitle>{post.title}</CardTitle>
-                <CardDescription>{post.description}</CardDescription>
-              </CardHeader>
-            </Card>
-          </StaggerItem>
-        ))}
-      </StaggerGroup>
+      <PageHeader title="Blog" description="There are no posts yet." />
     </div>
   );
 }

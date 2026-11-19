@@ -6,12 +6,14 @@ import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { lawPage } from "@/lib/law-page";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Law Firms",
   description:
     "Law firms can use Perry directly for their private-capital workflows, or white-label the platform for clients.",
-};
+  path: "/law",
+});
 
 export default function LawPage() {
   return (

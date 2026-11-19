@@ -1,0 +1,23 @@
+# Perry
+
+> Perry is the legal OS for private capital.
+
+Perry is for law firms and in-house teams working on fund formation and private capital.
+
+## Key pages
+
+- [Home](https://useperry.com/): The legal OS for private capital, across fund formation, deal execution and portfolio governance.
+- [Law firms](https://useperry.com/law/): Perry for law firms, including private-capital workflows and white-label use.
+- [Investors](https://useperry.com/fund/): Perry for in-house legal teams at private capital funds.
+- [Fund formation](https://useperry.com/product/fund-formation/): Side letter and MFN management. Review side letters, consolidate investor terms and manage MFN elections in one place.
+- [Capital deployment](https://useperry.com/product/capital-deployment/): Review, negotiate and execute transactions with the full fund context.
+- [Portfolio management](https://useperry.com/product/fund-portfolio-management/): Turn legal history into continuous oversight.
+- [Exit](https://useperry.com/product/exit/): Enter every exit with the legal record already prepared.
+- [About](https://useperry.com/about/): Perry is built by private capital lawyers. Vaneesa Agrawal is Co-founder and CPO.
+- [AI for fund formation](https://useperry.com/ai-for-fund-formation/): What is AI for fund formation?
+- [LPA review software](https://useperry.com/lpa-review-software/): What should LPA review software do?
+- [Side letter management](https://useperry.com/side-letter-management/): How do you manage side letters and MFN elections?
+- [Careers](https://useperry.com/careers/): Open roles at Perry.
+- [Newsroom](https://useperry.com/newsroom/): News, commentary and posts about Perry.
+- [Seed round](https://useperry.com/news/seed-round/): Perry AI raises $2.2M seed funding, led by Haatch.
+- [Privacy policy](https://useperry.com/legal/privacy-policy/): How Perry handles personal data.

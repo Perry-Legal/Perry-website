@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { Separator } from "@/components/ui/separator";
+import { guides } from "@/lib/guides";
 import { legalPages } from "@/lib/legal-pages";
 import { productLifecycle } from "@/lib/product-navigation";
 
@@ -56,6 +57,14 @@ export function SiteFooter() {
                     className={footerLinkClassName}
                   >
                     {stage.label}
+                  </Link>
+                ))}
+              </nav>
+              <p className="mt-6 text-sm font-medium">Guides</p>
+              <nav className="mt-3 flex flex-col gap-2">
+                {guides.map((guide) => (
+                  <Link key={guide.path} href={guide.path} className={footerLinkClassName}>
+                    {guide.navLabel}
                   </Link>
                 ))}
               </nav>

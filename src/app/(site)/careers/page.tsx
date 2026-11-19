@@ -5,12 +5,14 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page-header";
 import { careerRoles } from "@/lib/careers";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Careers",
   description:
-    "Join Perry — open roles for lawyers and builders encoding private capital expertise into agentic legal infrastructure.",
-};
+    "Join Perry. Open roles for lawyers and builders encoding private capital expertise into agentic legal infrastructure.",
+  path: "/careers",
+});
 
 export default function CareerPage() {
   return (

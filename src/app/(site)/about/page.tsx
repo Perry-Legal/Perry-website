@@ -7,12 +7,14 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { aboutImages } from "@/lib/about-images";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Perry is built by private capital lawyers who spent years inside firms and fund teams—and built the platform they wished they had.",
-};
+    "Perry is built by private capital lawyers who spent years inside firms and fund teams, and built the platform they wished they had.",
+  path: "/about",
+});
 
 const teamMembers = [
   {
@@ -27,10 +29,12 @@ const teamMembers = [
   },
   {
     name: "Vaneesa Agrawal",
-    role: "Founder & CPO",
+    role: "Co-founder and CPO",
     intro: [
-      "Turns fund negotiating playbooks into code — the rules, prompts and evaluations Perry runs on. Owns product from user research through to the legal engineering layer.",
-      "Before this, she was a funds and venture capital lawyer for fifteen years.",
+      "Turns fund negotiating playbooks into code: the rules, prompts and evaluations Perry runs on. Owns product from user research through to the legal engineering layer.",
+      "12+ years as a funds lawyer and serial entrepreneur. Studied at NLU Jodhpur, practised at Cyril Amarchand Mangaldas, and is an NYU School of Law graduate.",
+      "Founded Thinking Legal, a venture capital law firm, and built it from zero to 75 deals, with a top-tier Legal 500 ranking within three years.",
+      "Named to the Bae HQ 100 Female Founders Watchlist 2026. Guest on The Future Series podcast.",
     ],
     imageSrc: aboutImages.team.vaneesaAgrawal,
     linkedinUrl: "https://www.linkedin.com/in/vaneesaagrawal/",
@@ -57,12 +61,15 @@ export default function AboutPage() {
       <StoryPageHero
         eyebrow="About Perry"
         title="Built by seasoned private capital lawyers"
-        description="Perry comes from years spent inside firms and fund teams—negotiating deals, closing funds, and managing portfolio obligations. We built the platform we wished we had."
+        description="Perry comes from years spent inside firms and fund teams, negotiating deals, closing funds and managing portfolio obligations. We built the platform we wished we had."
         belowContent={
           <StaggerGroup stagger={0.1} className="mx-auto grid max-w-4xl gap-6 sm:grid-cols-2">
             {teamMembers.map((member) => (
               <StaggerItem key={member.name} y={28}>
-              <Card className="group h-full overflow-hidden rounded-sm pt-0 transition-shadow duration-300 hover:shadow-md">
+              <Card
+                id={member.name === "Vaneesa Agrawal" ? "vaneesa-agrawal" : undefined}
+                className="group h-full overflow-hidden rounded-sm pt-0 transition-shadow duration-300 hover:shadow-md"
+              >
                 <div className="relative h-[600px] w-full overflow-hidden bg-muted/30">
                   <Image
                     src={member.imageSrc}
