@@ -7,12 +7,14 @@ import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { aboutImages } from "@/lib/about-images";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Perry is built by private capital lawyers who spent years inside firms and fund teams—and built the platform they wished they had.",
-};
+    "Perry is built by private capital lawyers who spent years inside firms and fund teams, and built the platform they wished they had.",
+  path: "/about",
+});
 
 const teamMembers = [
   {

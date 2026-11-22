@@ -7,6 +7,7 @@ import { CopyEmailButton } from "@/components/copy-email-button";
 import { Reveal } from "@/components/motion/reveal";
 import { Separator } from "@/components/ui/separator";
 import { careerRoles, getCareerRole, type CareerRole } from "@/lib/careers";
+import { pageMetadata } from "@/lib/site-metadata";
 
 type CareerRolePageProps = {
   params: Promise<{ slug: string }>;
@@ -26,10 +27,11 @@ export async function generateMetadata({
     return { title: "Careers" };
   }
 
-  return {
+  return pageMetadata({
     title: role.title,
     description: role.summary,
-  };
+    path: `/careers/${role.slug}`,
+  });
 }
 
 function RoleSection({

@@ -1,0 +1,20 @@
+# Perry
+
+> Perry is the legal OS for private capital.
+
+Perry is for law firms and in-house teams working on fund formation and private capital.
+
+## Key pages
+
+- [Home](https://useperry.com/): The legal OS for private capital, across fund formation, deal execution and portfolio governance.
+- [Law firms](https://useperry.com/law/): Perry for law firms, including private-capital workflows and white-label use.
+- [Investors](https://useperry.com/fund/): Perry for in-house legal teams at private capital funds.
+- [Fund formation](https://useperry.com/product/fund-formation/): Turn fund documents into a structured operating record.
+- [Capital deployment](https://useperry.com/product/capital-deployment/): Review, negotiate and execute transactions with the full fund context.
+- [Portfolio management](https://useperry.com/product/fund-portfolio-management/): Turn legal history into continuous oversight.
+- [Exit](https://useperry.com/product/exit/): Enter every exit with the legal record already prepared.
+- [About](https://useperry.com/about/): Perry is built by private capital lawyers.
+- [Careers](https://useperry.com/careers/): Open roles at Perry.
+- [Newsroom](https://useperry.com/newsroom/): News, commentary and posts about Perry.
+- [Seed round](https://useperry.com/news/seed-round/): Perry AI raises $2.2M seed funding, led by Haatch.
+- [Privacy policy](https://useperry.com/legal/privacy-policy/): How Perry handles personal data.

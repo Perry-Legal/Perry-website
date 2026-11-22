@@ -5,6 +5,7 @@ import { LegalDocument } from "@/components/legal-document";
 import { PageHeader } from "@/components/page-header";
 import { getLegalContent } from "@/lib/legal-content";
 import { getLegalPage, legalPages, type LegalPageSlug } from "@/lib/legal-pages";
+import { pageMetadata } from "@/lib/site-metadata";
 
 type LegalPageProps = {
   params: Promise<{ slug: string }>;
@@ -22,10 +23,11 @@ export async function generateMetadata({ params }: LegalPageProps): Promise<Meta
     return { title: "Legal" };
   }
 
-  return {
+  return pageMetadata({
     title: page.title,
-    description: `${page.title} for Perry AI.`,
-  };
+    description: `${page.title} for Perry.`,
+    path: page.href,
+  });
 }
 
 export default async function LegalPage({ params }: LegalPageProps) {
