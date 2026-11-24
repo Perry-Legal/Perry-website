@@ -26,9 +26,10 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "https://useperry.com/newsroom/" },
   openGraph: {
-    title: "Newsroom | Perry",
+    title: "Newsroom | Perry AI",
     description,
     url: "https://useperry.com/newsroom/",
+    siteName: "Perry AI",
   },
 };
 

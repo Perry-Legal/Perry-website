@@ -17,7 +17,7 @@ const description =
 export const metadata: Metadata = {
   title: {
     absolute:
-      "Perry AI raises $2.2M seed funding to build the AI legal operating system for private capital | Perry",
+      "Perry AI raises $2.2M seed funding to build the AI legal operating system for private capital | Perry AI",
   },
   description,
   alternates: { canonical: seedAnnouncement.canonicalUrl },
@@ -27,6 +27,7 @@ export const metadata: Metadata = {
     description:
       "The AI legal operating system for private capital. Oversubscribed seed round led by Haatch alongside Antler, Arāya Ventures and Syncorp Ventures.",
     url: seedAnnouncement.canonicalUrl,
+    siteName: "Perry AI",
     publishedTime: seedAnnouncement.publishedTime,
     images: [{ url: seedAnnouncement.ogImageUrl, width: 1200, height: 630 }],
   },
