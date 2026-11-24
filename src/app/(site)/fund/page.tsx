@@ -1,20 +1,25 @@
 import type { Metadata } from "next";
 import { CtaSection } from "@/components/cta-section";
 import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
+import { JsonLd } from "@/components/json-ld";
 import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { fundPage } from "@/lib/fund-page";
+import { pageMetadata } from "@/lib/site-metadata";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Investors",
   description:
     "The AI operating layer for legal work across the fund lifecycle — formation, deal execution, and portfolio governance.",
-};
+  path: "/fund",
+});
 
 export default function FundPage() {
   return (
     <div className="border-t border-border/60">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Investors", path: "/fund" }])} />
       <StoryPageHero
         eyebrow={fundPage.eyebrow}
         title={fundPage.headline}

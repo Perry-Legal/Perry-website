@@ -1,29 +1,28 @@
+import type { Metadata } from "next";
+
 import { CtaSection } from "@/components/cta-section";
 import { HeroSection } from "@/components/hero-section";
+import { JsonLd } from "@/components/json-ld";
 import { PlatformArchitectureSection } from "@/components/platform-architecture-section";
 import { PlatformIntelligenceSection } from "@/components/platform-intelligence-section";
 import { SeedAnnouncementSection } from "@/components/seed-announcement-section";
 import { SolutionSection } from "@/components/solution-section";
 import { TestimonialSection } from "@/components/testimonial-section";
 import { seedAnnouncement } from "@/lib/seed-announcement";
+import { pageMetadata, siteDescription, siteTitle } from "@/lib/site-metadata";
+import { homeJsonLd } from "@/lib/structured-data";
 
-const websiteJsonLd = {
-  "@context": "https://schema.org",
-  "@type": "WebSite",
-  name: "Perry AI",
-  alternateName: "Perry",
-  url: "https://useperry.com/",
-};
+export const metadata: Metadata = pageMetadata({
+  title: siteTitle,
+  absoluteTitle: siteTitle,
+  description: siteDescription,
+  path: "/",
+});
 
 export default function Home() {
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
-        }}
-      />
+      <JsonLd data={homeJsonLd()} />
       <HeroSection />
       {seedAnnouncement.showOnHomepage ? <SeedAnnouncementSection /> : null}
       <PlatformIntelligenceSection />

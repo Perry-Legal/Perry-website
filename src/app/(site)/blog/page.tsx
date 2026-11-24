@@ -3,11 +3,15 @@ import type { Metadata } from "next";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page-header";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { pageMetadata } from "@/lib/site-metadata";
 
-export const metadata: Metadata = {
+// Placeholder posts with no article pages yet: keep out of search until real posts exist.
+export const metadata: Metadata = pageMetadata({
   title: "Blog",
   description: "Insights and updates from the Perry team.",
-};
+  path: "/blog",
+  noindex: true,
+});
 
 const posts = [
   {

@@ -3,6 +3,10 @@ export type CareerRole = {
   title: string;
   location: string;
   type: string;
+  /** Date the role was first posted (YYYY-MM-DD). Used for JobPosting structured data. */
+  datePosted: string;
+  /** Structured location for JobPosting structured data. Not shown on the page. */
+  jobLocation: { locality: string; region?: string; country: "GB" | "US" };
   reportsTo?: string;
   compensation: string;
   summary: string;
@@ -35,6 +39,8 @@ export const careerRoles: CareerRole[] = [
     title: "Founding Commercial Hire",
     location: "London, in office, with regular travel to Europe and the US",
     type: "Full-time",
+    datePosted: "2026-10-27",
+    jobLocation: { locality: "London", country: "GB" },
     reportsTo: "Founder & CEO",
     compensation: "Competitive salary and commission, plus meaningful equity",
     summary:
@@ -85,6 +91,8 @@ export const careerRoles: CareerRole[] = [
     title: "Founding Account Executive, US",
     location: "New York, with travel to fund clients and London",
     type: "Full-time",
+    datePosted: "2026-10-27",
+    jobLocation: { locality: "New York", region: "NY", country: "US" },
     reportsTo: "Founder & CEO",
     compensation: "Competitive salary and commission, plus meaningful equity",
     summary:
@@ -135,6 +143,8 @@ export const careerRoles: CareerRole[] = [
     title: "Product Designer",
     location: "London, in office",
     type: "Full-time",
+    datePosted: "2026-10-27",
+    jobLocation: { locality: "London", country: "GB" },
     reportsTo: "Founder & CPO",
     compensation: "Competitive salary, plus meaningful equity",
     summary:
@@ -185,6 +195,8 @@ export const careerRoles: CareerRole[] = [
     title: "Legal Engineer",
     location: "London (Full time)",
     type: "Full-time",
+    datePosted: "2026-07-27",
+    jobLocation: { locality: "London", country: "GB" },
     compensation: "Competitive, benchmarked to experience, plus equity",
     summary:
       "Own the legal ground truth behind Perry — build Q&A eval sets, rubrics, and extraction standards across fund formation and transactions.",

@@ -4,9 +4,12 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, MapPin } from "lucide-react";
 
 import { CopyEmailButton } from "@/components/copy-email-button";
+import { JsonLd } from "@/components/json-ld";
 import { Reveal } from "@/components/motion/reveal";
 import { Separator } from "@/components/ui/separator";
 import { careerRoles, getCareerRole, type CareerRole } from "@/lib/careers";
+import { pageMetadata } from "@/lib/site-metadata";
+import { breadcrumbJsonLd, jobPostingJsonLd } from "@/lib/structured-data";
 
 type CareerRolePageProps = {
   params: Promise<{ slug: string }>;
@@ -26,10 +29,11 @@ export async function generateMetadata({
     return { title: "Careers" };
   }
 
-  return {
+  return pageMetadata({
     title: role.title,
     description: role.summary,
-  };
+    path: `/careers/${role.slug}`,
+  });
 }
 
 function RoleSection({
@@ -123,6 +127,13 @@ export default async function CareerRolePage({ params }: CareerRolePageProps) {
 
   return (
     <div className="border-t border-border/60">
+      <JsonLd data={jobPostingJsonLd(role)} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Careers", path: "/careers" },
+          { name: role.title, path: `/careers/${role.slug}` },
+        ])}
+      />
       <div className="section-container px-6 pt-12 pb-24 sm:pt-16">
         <div className="mx-auto max-w-3xl">
           <Link

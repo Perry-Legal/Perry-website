@@ -4,36 +4,49 @@ import Link from "next/link";
 import { ArrowDown, ArrowRight } from "lucide-react";
 
 import { InvestorLogoRow } from "@/components/investor-logo-row";
+import { JsonLd } from "@/components/json-ld";
 import { Reveal } from "@/components/motion/reveal";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { SeedAnnouncementVideo } from "@/components/seed-announcement-video";
 import { withBasePath } from "@/lib/base-path";
 import { bookDemoUrl } from "@/lib/navigation";
 import { seedAnnouncement, seedInvestors } from "@/lib/seed-announcement";
+import { siteLocale, siteName } from "@/lib/site-metadata";
+import { breadcrumbJsonLd, seedRoundArticleJsonLd } from "@/lib/structured-data";
 
 const description =
   "Oversubscribed seed round led by Haatch alongside Antler, Arāya Ventures, Syncorp Ventures, and other US and international investors.";
 
+/** Matches the page h1. */
+const articleHeadline =
+  "Perry AI raises $2.2M seed funding to build the AI legal operating system for private capital";
+
+const socialTitle = "Perry AI raises $2.2M seed, led by Haatch";
+
 export const metadata: Metadata = {
   title: {
-    absolute:
-      "Perry AI raises $2.2M seed funding to build the AI legal operating system for private capital | Perry AI",
+    absolute: `${articleHeadline} | ${siteName}`,
   },
   description,
   alternates: { canonical: seedAnnouncement.canonicalUrl },
   openGraph: {
     type: "article",
-    title: "Perry AI raises $2.2M seed, led by Haatch",
+    title: socialTitle,
     description:
       "The AI legal operating system for private capital. Oversubscribed seed round led by Haatch alongside Antler, Arāya Ventures and Syncorp Ventures.",
     url: seedAnnouncement.canonicalUrl,
-    siteName: "Perry AI",
+    siteName,
+    locale: siteLocale,
     publishedTime: seedAnnouncement.publishedTime,
-    images: [{ url: seedAnnouncement.ogImageUrl, width: 1200, height: 630 }],
+    authors: [siteName],
+    section: "News",
+    images: [
+      { url: seedAnnouncement.ogImageUrl, width: 1200, height: 630, alt: socialTitle },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Perry AI raises $2.2M seed, led by Haatch",
+    title: socialTitle,
     description,
     images: [seedAnnouncement.ogImageUrl],
   },
@@ -163,6 +176,13 @@ function FounderAvatar({
 export default function SeedRoundPage() {
   return (
     <article className="bg-white text-[#0B0B0C]">
+      <JsonLd data={seedRoundArticleJsonLd({ headline: articleHeadline, description })} />
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: "Newsroom", path: "/newsroom" },
+          { name: articleHeadline, path: seedAnnouncement.pressPagePath },
+        ])}
+      />
       {/* Hero: sits under the transparent fixed header. */}
       <section
         data-header-theme="dark"
