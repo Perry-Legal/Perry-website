@@ -7,9 +7,23 @@ import { SolutionSection } from "@/components/solution-section";
 import { TestimonialSection } from "@/components/testimonial-section";
 import { seedAnnouncement } from "@/lib/seed-announcement";
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Perry AI",
+  alternateName: "Perry",
+  url: "https://useperry.com/",
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(websiteJsonLd).replace(/</g, "\\u003c"),
+        }}
+      />
       <HeroSection />
       {seedAnnouncement.showOnHomepage ? <SeedAnnouncementSection /> : null}
       <PlatformIntelligenceSection />

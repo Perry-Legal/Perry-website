@@ -21,16 +21,18 @@ const sourceSerif = Source_Serif_4({
 });
 
 export const metadata: Metadata = {
+  applicationName: "Perry AI",
   title: {
-    default: "Perry - The Legal OS for Private Capital",
-    template: "%s | Perry",
+    default: "Perry AI - The Legal OS for Private Capital",
+    template: "%s | Perry AI",
   },
   description:
     "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
   openGraph: {
-    title: "Perry - The Legal OS for Private Capital",
+    title: "Perry AI - The Legal OS for Private Capital",
     description:
       "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
+    siteName: "Perry AI",
     type: "website",
   },
   icons: {
