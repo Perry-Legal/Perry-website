@@ -126,7 +126,7 @@ function PipelineColumn({
             <Image
               key={imageSrc}
               src={imageSrc}
-              alt=""
+              alt={label}
               fill
               unoptimized
               className="object-contain object-center"

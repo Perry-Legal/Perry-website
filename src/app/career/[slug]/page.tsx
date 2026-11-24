@@ -11,7 +11,7 @@ export function generateStaticParams() {
 
 export const metadata: Metadata = {
   title: "Careers",
-  robots: { index: false },
+  robots: { index: false, follow: true },
 };
 
 /** Old role URLs (/career/<slug>) forward to /careers/<slug>. */

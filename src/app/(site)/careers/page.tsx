@@ -2,19 +2,24 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRight, MapPin } from "lucide-react";
 
+import { JsonLd } from "@/components/json-ld";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { PageHeader } from "@/components/page-header";
 import { careerRoles } from "@/lib/careers";
+import { pageMetadata } from "@/lib/site-metadata";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Careers",
   description:
     "Join Perry — open roles for lawyers and builders encoding private capital expertise into agentic legal infrastructure.",
-};
+  path: "/careers",
+});
 
 export default function CareerPage() {
   return (
     <div className="border-t border-border/60">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Careers", path: "/careers" }])} />
       <PageHeader
         title="Careers"
         description="Help us encode private capital expertise into software — and set the standard for what correct looks like."

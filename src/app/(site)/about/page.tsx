@@ -3,16 +3,20 @@ import Image from "@/components/asset-image";
 import Link from "next/link";
 
 import { CtaSection } from "@/components/cta-section";
+import { JsonLd } from "@/components/json-ld";
 import { StaggerGroup, StaggerItem } from "@/components/motion/stagger";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { Card, CardAction, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { aboutImages } from "@/lib/about-images";
+import { pageMetadata } from "@/lib/site-metadata";
+import { aboutJsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
     "Perry is built by private capital lawyers who spent years inside firms and fund teams—and built the platform they wished they had.",
-};
+  path: "/about",
+});
 
 const teamMembers = [
   {
@@ -54,6 +58,7 @@ function LinkedInIcon({ className }: { className?: string }) {
 export default function AboutPage() {
   return (
     <div className="border-t border-border/60">
+      <JsonLd data={aboutJsonLd()} />
       <StoryPageHero
         eyebrow="About Perry"
         title="Built by seasoned private capital lawyers"

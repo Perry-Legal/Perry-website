@@ -1,7 +1,15 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono, Source_Serif_4 } from "next/font/google";
 
 import { withBasePath } from "@/lib/base-path";
+import {
+  defaultOgImage,
+  siteDescription,
+  siteLocale,
+  siteName,
+  siteTitle,
+  siteUrl,
+} from "@/lib/site-metadata";
 
 import "./globals.css";
 
@@ -20,20 +28,46 @@ const sourceSerif = Source_Serif_4({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  themeColor: "#0a110e",
+};
+
+// No root `alternates.canonical`: it would be inherited by any page that forgot
+// its own and point it at the homepage. Pages set theirs via `pageMetadata`.
 export const metadata: Metadata = {
-  applicationName: "Perry AI",
+  metadataBase: new URL(siteUrl),
+  applicationName: siteName,
   title: {
-    default: "Perry AI - The Legal OS for Private Capital",
-    template: "%s | Perry AI",
+    default: siteTitle,
+    template: `%s | ${siteName}`,
   },
-  description:
-    "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
+  description: siteDescription,
+  authors: [{ name: siteName, url: `${siteUrl}/` }],
+  creator: siteName,
+  publisher: siteName,
+  formatDetection: { telephone: false, address: false, email: false },
+  // Preview directives only: index/follow is the default, and leaving it out
+  // keeps it from clashing with the 404's automatic noindex.
+  robots: {
+    googleBot: {
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "Perry AI - The Legal OS for Private Capital",
-    description:
-      "Perry helps your team launch faster, communicate clearly, and scale without the operational overhead.",
-    siteName: "Perry AI",
+    title: siteTitle,
+    description: siteDescription,
+    siteName,
+    locale: siteLocale,
     type: "website",
+    images: [defaultOgImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteTitle,
+    description: siteDescription,
+    images: [defaultOgImage.url],
   },
   icons: {
     icon: [

@@ -65,7 +65,7 @@ export function LawWaysSection({ content, className }: LawWaysSectionProps) {
 
                 <Image
                   src={way.imageSrc}
-                  alt=""
+                  alt={way.title}
                   width={1504}
                   height={690}
                   className="mt-auto h-auto w-full"

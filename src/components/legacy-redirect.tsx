@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 
 import { withBasePath } from "@/lib/base-path";
+import { absoluteUrl } from "@/lib/site-url";
 
 /**
  * Forwards an old URL to its new home. The site is a static export (no server
@@ -18,7 +19,7 @@ export function LegacyRedirect({ to }: { to: string }) {
   return (
     <>
       <meta httpEquiv="refresh" content={`0; url=${href}`} />
-      <link rel="canonical" href={href} />
+      <link rel="canonical" href={absoluteUrl(to)} />
       <p className="p-6 text-sm text-muted-foreground">
         This page has moved to <a href={href}>{href}</a>.
       </p>

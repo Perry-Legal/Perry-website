@@ -1,21 +1,26 @@
 import type { Metadata } from "next";
 import { CtaSection } from "@/components/cta-section";
 import { EnterpriseSafetySection } from "@/components/enterprise-safety-section";
+import { JsonLd } from "@/components/json-ld";
 import { LawWaysSection } from "@/components/law-ways-section";
 import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { lawPage } from "@/lib/law-page";
+import { pageMetadata } from "@/lib/site-metadata";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
   title: "Law Firms",
   description:
     "Law firms can use Perry directly for their private-capital workflows, or white-label the platform for clients.",
-};
+  path: "/law",
+});
 
 export default function LawPage() {
   return (
     <div className="border-t border-border/60">
+      <JsonLd data={breadcrumbJsonLd([{ name: "Law Firms", path: "/law" }])} />
       <StoryPageHero
         eyebrow={lawPage.eyebrow}
         title={lawPage.headline}

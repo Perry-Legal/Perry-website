@@ -25,7 +25,7 @@ function StoryChapterVisual({ index, title, imageSrc }: StoryChapterVisualProps)
       {imageSrc ? (
         <Image
           src={imageSrc}
-          alt=""
+          alt={title}
           fill
           unoptimized={
             imageSrc.includes("/platform-intelligence/") ||

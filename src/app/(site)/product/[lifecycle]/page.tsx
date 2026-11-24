@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { CtaSection } from "@/components/cta-section";
+import { JsonLd } from "@/components/json-ld";
 import { StoryChapter } from "@/components/story-chapter";
 import { StoryKpiSection } from "@/components/story-kpi-section";
 import { StoryPageHero } from "@/components/story-page-hero";
 import { getProductLifecycle, productLifecycle } from "@/lib/product-navigation";
+import { pageMetadata } from "@/lib/site-metadata";
+import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 type LifecyclePageProps = {
   params: Promise<{ lifecycle: string }>;
@@ -24,10 +27,11 @@ export async function generateMetadata({
     return { title: "Product" };
   }
 
-  return {
+  return pageMetadata({
     title: lifecycle.label,
     description: lifecycle.description,
-  };
+    path: `/product/${lifecycle.slug}`,
+  });
 }
 
 export default async function LifecyclePage({ params }: LifecyclePageProps) {
@@ -40,6 +44,11 @@ export default async function LifecyclePage({ params }: LifecyclePageProps) {
 
   return (
     <div className="border-t border-border/60">
+      <JsonLd
+        data={breadcrumbJsonLd([
+          { name: lifecycle.label, path: `/product/${lifecycle.slug}` },
+        ])}
+      />
       <StoryPageHero
         eyebrow={lifecycle.label}
         title={lifecycle.headline}
