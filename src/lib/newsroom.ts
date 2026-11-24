@@ -200,6 +200,65 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     date: seedRoundDate,
     image: "/press/frenchweb.webp",
   },
+  {
+    outlet: "Analytics Insight",
+    headline:
+      "London's Perry AI Raises USD 2.2m from Haatch and Antler to Automate Legal Work for Private Capital",
+    href: "https://www.analyticsinsight.net/tech-news/top-news-today-hexin-raises-usd-144m-ai-hiring-demand-grows-bitcoin-faces-ai-ipo-competition",
+    date: seedRoundDate,
+    image: "/press/analytics-insight.webp",
+  },
+  {
+    outlet: "Startuply VC",
+    headline:
+      "Perry AI's Legal Memory Is Already Tracking $1.5 Billion in Fund Commitments",
+    href: "https://startuply.vc/article/perry-ai-s-legal-memory-is-already-tracking-1-5-billion-in-fund-commitments-beuxfe",
+    date: "2026-11-20",
+    image: "/press/startuply.webp",
+  },
+  {
+    outlet: "Law360 Pulse",
+    headline: "Legal Tech Roundup: Datasite, Perry AI, Clio, Reveal, HIKE2",
+    href: "https://www.law360.com/pulse/articles/2554486/legal-tech-roundup-datasite-perry-ai-clio-reveal-hike2",
+    date: "2026-11-20",
+  },
+  {
+    outlet: "Techopia",
+    headline: "Perry AI raises $2.2m for legal automation",
+    href: "https://techopia.co.uk/perry-ai-raises-2-2m-for-legal-automation/",
+    date: "2026-11-20",
+    image: "/press/techopia.webp",
+  },
+  {
+    outlet: "Sesamers",
+    headline: "Perry AI raises $2.2M seed from Haatch for legal AI",
+    href: "https://www.sesamers.com/funding/perry-ai-raises-2-2m-seed-private-capital-legal-work/",
+    date: "2026-11-20",
+    image: "/press/sesamers.webp",
+  },
+  {
+    outlet: "The Cap Table",
+    headline:
+      "Perry AI raises $2.2m seed led by Haatch to automate legal work for private capital funds",
+    href: "https://www.thecaptable.co.uk/article/perry-ai-raises-2-2m-seed-led-by-haatch-to-automate-legal-work-for-private-capital-funds",
+    date: "2026-11-19",
+    image: "/press/the-cap-table.webp",
+  },
+  {
+    outlet: "Tech.eu",
+    headline: "European tech weekly recap: More than 65 tech funding deals worth over €6B",
+    href: "https://tech.eu/2026/11/23/european-tech-weekly-recap-more-than-65-tech-funding-deals-worth-over-eur18b/",
+    date: "2026-11-23",
+    image: "/press/tech-eu-weekly.webp",
+  },
+  {
+    outlet: "Bar & Bench",
+    headline:
+      "Perry AI raises $2.2 million in seed funding to expand AI-powered legal platform",
+    href: "https://www.barandbench.com/law-firms/dealstreet/perry-ai-raises-22-million-in-seed-funding-to-expand-ai-powered-legal-platform",
+    date: "2026-11-24",
+    image: "/press/bar-and-bench.webp",
+  },
 ];
 
 export const newsroomInterviews: readonly NewsroomArticle[] = [
@@ -344,6 +403,70 @@ export const newsroomLinkedIn: readonly NewsroomSocialPost[] = [
     href: "https://www.linkedin.com/posts/amardeepsparmar_introducing-the-bae-hq-100-female-founder-activity-7528027748657954816-mog5",
     date: "2026-11-16",
   },
+  {
+    author: "Founders500",
+    summary:
+      "JUST IN: Two lawyers with nearly THREE DECADES of experience inside the deals have built the tool they always wished they had.",
+    href: "https://www.linkedin.com/posts/founders500_founders500-ukstartups-activity-7529506402067783681-evwg",
+    date: "2026-11-20",
+  },
+  {
+    author: "Haatch",
+    summary: "Delighted to lead Perry AI's oversubscribed $2.2M seed round.",
+    href: "https://www.linkedin.com/posts/haatch_haatch-verticalai-legalai-activity-7528728918455975936-S3hc",
+    date: seedRoundDate,
+  },
+  {
+    author: "Bae HQ",
+    summary: "Perry AI raises a $2.2m seed round to give private capital a legal memory.",
+    href: "https://www.linkedin.com/posts/the-bae-hq_perry-ai-raises-a-22m-seed-round-to-activity-7528803005568143360-Vkos",
+    date: seedRoundDate,
+  },
+  {
+    author: "Tech Lens Media",
+    summary: "Perry AI has raised $2.2 million in oversubscribed seed funding, led by Haatch.",
+    href: "https://www.linkedin.com/posts/tech-lens-media_techlensmedia-legaltech-agenticai-activity-7528760592375898112-ug3J",
+    date: seedRoundDate,
+  },
+  {
+    author: "startupmag.co.uk",
+    summary: "Perry AI just raised £1.7m to stop missed fund commitments.",
+    href: "https://www.linkedin.com/posts/startupmaguk_perry-ai-just-raised-17m-to-stop-missed-activity-7528835084464893952-7uDC",
+    date: seedRoundDate,
+  },
+  {
+    author: "Grishin Robotics",
+    summary:
+      "Perry AI has raised $2.2 million to help private capital teams track commitments after signing.",
+    href: "https://www.linkedin.com/posts/grishinrobotics_perry-ai-has-raised-22-million-in-an-oversubscribed-activity-7529106136176721921-ZfbQ",
+    date: "2026-11-19",
+  },
+  {
+    author: "Vestor Club",
+    summary: "Perry AI raises $2.2 million in an oversubscribed seed round led by Haatch.",
+    href: "https://www.linkedin.com/posts/vestorclub_vestorclub-investment-businessgrowth-activity-7529202890461208577-f5U-",
+    date: "2026-11-19",
+  },
+  {
+    author: "Fridtjof Berge",
+    summary:
+      "Shares Tech.eu: London-based Perry AI has raised $2.2 million in an oversubscribed seed round.",
+    href: "https://www.linkedin.com/posts/fridtjof-berge-15058625_london-based-perry-ai-has-raised-22-million-activity-7529010015735824386-mVYU",
+    date: "2026-11-19",
+  },
+  {
+    author: "The Global Legal Post",
+    summary: "Perry AI has secured $2.2m in a seed funding round led by Haatch.",
+    href: "https://www.linkedin.com/posts/thegloballegalpost_uk-ai-powered-legal-software-start-up-perry-activity-7528890449638432768-vl8c",
+    date: seedRoundDate,
+  },
+  {
+    author: "Soapbox",
+    summary:
+      "Perry AI raises a £1.7m seed round led by Haatch to automate legal work for private capital.",
+    href: "https://www.linkedin.com/posts/soapboxhq_perry-ai-raises-a-17m-seed-round-led-activity-7528863079850364931-SlY4",
+    date: seedRoundDate,
+  },
 ];
 
 export const newsroomX: readonly NewsroomSocialPost[] = [
@@ -474,6 +597,36 @@ export const newsroomX: readonly NewsroomSocialPost[] = [
     summary:
       "London startup Perry AI has raised $2.2M from Haatch and Antler to automate legal work for private equity and venture capital funds.",
     href: "https://x.com/andyhq/status/2122986274248151157",
+    date: seedRoundDate,
+  },
+  {
+    author: "START",
+    handle: "@thestartpod",
+    summary:
+      "Perry AI raises $2.2M seed led by Haatch, with Antler, Syncorp Ventures and Arāya Ventures.",
+    href: "https://x.com/thestartpod/status/2123242358028267558",
+    date: "2026-11-19",
+  },
+  {
+    author: "IVCA",
+    handle: "@IndianVCA",
+    summary:
+      "London's Perry AI raises €2 million to bring AI-powered legal intelligence to private capital funds.",
+    href: "https://x.com/IndianVCA/status/2123447144338108535",
+    date: "2026-11-19",
+  },
+  {
+    author: "Startuply VC",
+    handle: "@startuplyvc",
+    summary: "Perry AI turns a fund's legal history into searchable memory. $2.2M seed.",
+    href: "https://x.com/startuplyvc/status/2123635107294753069",
+    date: "2026-11-20",
+  },
+  {
+    author: "Startup Researcher",
+    handle: "@SR_Researcher_",
+    summary: "Perry AI raised US$2.2 million in seed funding led by Haatch.",
+    href: "https://x.com/SR_Researcher_/status/2123194729118540164",
     date: seedRoundDate,
   },
 ];
