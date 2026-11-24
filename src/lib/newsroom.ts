@@ -217,6 +217,41 @@ export const newsroomNews: readonly NewsroomArticle[] = [
     image: "/press/startuply.webp",
   },
   {
+    outlet: "Law360 Pulse",
+    headline: "Legal Tech Roundup: Datasite, Perry AI, Clio, Reveal, HIKE2",
+    href: "https://www.law360.com/pulse/articles/2554486/legal-tech-roundup-datasite-perry-ai-clio-reveal-hike2",
+    date: "2026-11-20",
+  },
+  {
+    outlet: "Techopia",
+    headline: "Perry AI raises $2.2m for legal automation",
+    href: "https://techopia.co.uk/perry-ai-raises-2-2m-for-legal-automation/",
+    date: "2026-11-20",
+    image: "/press/techopia.webp",
+  },
+  {
+    outlet: "Sesamers",
+    headline: "Perry AI raises $2.2M seed from Haatch for legal AI",
+    href: "https://www.sesamers.com/funding/perry-ai-raises-2-2m-seed-private-capital-legal-work/",
+    date: "2026-11-20",
+    image: "/press/sesamers.webp",
+  },
+  {
+    outlet: "The Cap Table",
+    headline:
+      "Perry AI raises $2.2m seed led by Haatch to automate legal work for private capital funds",
+    href: "https://www.thecaptable.co.uk/article/perry-ai-raises-2-2m-seed-led-by-haatch-to-automate-legal-work-for-private-capital-funds",
+    date: "2026-11-19",
+    image: "/press/the-cap-table.webp",
+  },
+  {
+    outlet: "Tech.eu",
+    headline: "European tech weekly recap: More than 65 tech funding deals worth over €6B",
+    href: "https://tech.eu/2026/11/23/european-tech-weekly-recap-more-than-65-tech-funding-deals-worth-over-eur18b/",
+    date: "2026-11-23",
+    image: "/press/tech-eu-weekly.webp",
+  },
+  {
     outlet: "Bar & Bench",
     headline:
       "Perry AI raises $2.2 million in seed funding to expand AI-powered legal platform",
@@ -367,6 +402,13 @@ export const newsroomLinkedIn: readonly NewsroomSocialPost[] = [
     summary: "Introducing the Bae HQ 100",
     href: "https://www.linkedin.com/posts/amardeepsparmar_introducing-the-bae-hq-100-female-founder-activity-7528027748657954816-mog5",
     date: "2026-11-16",
+  },
+  {
+    author: "Founders500",
+    summary:
+      "JUST IN: Two lawyers with nearly THREE DECADES of experience inside the deals have built the tool they always wished they had.",
+    href: "https://www.linkedin.com/posts/founders500_founders500-ukstartups-activity-7529506402067783681-evwg",
+    date: "2026-11-20",
   },
   {
     author: "Haatch",
