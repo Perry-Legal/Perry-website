@@ -9,12 +9,14 @@ import { SeedAnnouncementSection } from "@/components/seed-announcement-section"
 import { SolutionSection } from "@/components/solution-section";
 import { TestimonialSection } from "@/components/testimonial-section";
 import { seedAnnouncement } from "@/lib/seed-announcement";
-import { pageMetadata, siteDescription, siteTitle } from "@/lib/site-metadata";
+import { pageMetadata, siteDescription } from "@/lib/site-metadata";
 import { homeJsonLd } from "@/lib/structured-data";
 
+const homepageTitle = "Perry AI: Legal OS for VC, PE and Credit Funds";
+
 export const metadata: Metadata = pageMetadata({
-  title: siteTitle,
-  absoluteTitle: siteTitle,
+  title: homepageTitle,
+  absoluteTitle: homepageTitle,
   description: siteDescription,
   path: "/",
 });

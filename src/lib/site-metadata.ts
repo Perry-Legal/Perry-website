@@ -10,9 +10,9 @@ export { absoluteUrl, siteUrl };
 
 export const siteName = "Perry AI";
 export const siteTitle = "Perry AI - The Legal OS for Private Capital";
-/** Mirrors the homepage hero line. */
+/** Default description for the homepage and any page that does not set its own. */
 export const siteDescription =
-  "The AI operating layer for legal work across the fund lifecycle — formation, deal execution, and portfolio governance, in one platform built for private capital.";
+  "Perry is the legal OS for VC, PE and credit funds. AI agents handle fund formation, transactions and side letters, so nothing is missed before or after close.";
 export const siteLocale = "en_GB";
 
 export const defaultOgImage = {
