@@ -10,16 +10,16 @@ import { pageMetadata } from "@/lib/site-metadata";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Investors",
+  title: "Legal OS for Funds",
   description:
-    "The AI operating layer for legal work across the fund lifecycle — formation, deal execution, and portfolio governance.",
+    "Perry is the legal OS for VC, PE and credit funds. AI agents handle fund formation, transactions and side letters, so nothing is missed.",
   path: "/fund",
 });
 
 export default function FundPage() {
   return (
     <div className="border-t border-border/60">
-      <JsonLd data={breadcrumbJsonLd([{ name: "Investors", path: "/fund" }])} />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Funds", path: "/fund" }])} />
       <StoryPageHero
         eyebrow={fundPage.eyebrow}
         title={fundPage.headline}

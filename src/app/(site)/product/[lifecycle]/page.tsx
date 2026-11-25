@@ -13,6 +13,28 @@ type LifecyclePageProps = {
   params: Promise<{ lifecycle: string }>;
 };
 
+/** Search titles and descriptions. Hero copy stays on the lifecycle record. */
+const productPageSeo: Record<string, { title?: string; description: string }> = {
+  "fund-formation": {
+    title: "Fund Formation and Side Letters",
+    description:
+      "Side letter management, MFN elections and LPA review for fund formation. Perry preserves every investor term for the life of the fund.",
+  },
+  "capital-deployment": {
+    description:
+      "AI for transactional work at funds: diligence, document review, negotiation and post-closing obligations, all with the full fund context.",
+  },
+  "fund-portfolio-management": {
+    description:
+      "Track obligations, transaction rights and legal decisions in one operating view. See what needs attention and what the fund has already decided.",
+  },
+  exit: {
+    title: "Fund Exits",
+    description:
+      "Enter every exit with the legal record already prepared. Documents, obligations and transaction history are ready before diligence begins.",
+  },
+};
+
 export async function generateStaticParams() {
   return productLifecycle.map((stage) => ({ lifecycle: stage.slug }));
 }
@@ -27,9 +49,11 @@ export async function generateMetadata({
     return { title: "Product" };
   }
 
+  const seo = productPageSeo[lifecycle.slug];
+
   return pageMetadata({
-    title: lifecycle.label,
-    description: lifecycle.description,
+    title: seo?.title ?? lifecycle.label,
+    description: seo?.description ?? lifecycle.description,
     path: `/product/${lifecycle.slug}`,
   });
 }

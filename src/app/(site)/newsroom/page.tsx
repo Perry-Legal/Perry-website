@@ -26,7 +26,8 @@ const description = "News, commentary and posts about Perry.";
 
 export const metadata: Metadata = pageMetadata({
   title: "Newsroom",
-  description,
+  description:
+    "Press coverage, announcements and posts about Perry, the legal OS for VC, PE and credit funds.",
   path: "/newsroom",
 });
 

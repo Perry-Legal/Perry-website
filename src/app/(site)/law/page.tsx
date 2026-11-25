@@ -11,9 +11,9 @@ import { pageMetadata } from "@/lib/site-metadata";
 import { breadcrumbJsonLd } from "@/lib/structured-data";
 
 export const metadata: Metadata = pageMetadata({
-  title: "Law Firms",
+  title: "Legal OS for Law Firms",
   description:
-    "Law firms can use Perry directly for their private-capital workflows, or white-label the platform for clients.",
+    "White-label Perry for your private-capital practice, or use it internally for fund formation, transactions and side-letter review.",
   path: "/law",
 });
 
