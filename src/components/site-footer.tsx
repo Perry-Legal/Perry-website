@@ -68,7 +68,7 @@ export function SiteFooter() {
                   Law Firms
                 </Link>
                 <Link href="/fund" className={footerLinkClassName}>
-                  Investors
+                  Funds
                 </Link>
               </nav>
             </StaggerItem>

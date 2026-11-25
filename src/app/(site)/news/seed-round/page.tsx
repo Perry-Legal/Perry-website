@@ -21,17 +21,17 @@ const description =
 const articleHeadline =
   "Perry AI raises $2.2M seed funding to build the AI legal operating system for private capital";
 
-const socialTitle = "Perry AI raises $2.2M seed, led by Haatch";
+const documentTitle = `Perry AI raises $2.2M seed funding | ${siteName}`;
 
 export const metadata: Metadata = {
   title: {
-    absolute: `${articleHeadline} | ${siteName}`,
+    absolute: documentTitle,
   },
   description,
   alternates: { canonical: seedAnnouncement.canonicalUrl },
   openGraph: {
     type: "article",
-    title: socialTitle,
+    title: documentTitle,
     description:
       "The AI legal operating system for private capital. Oversubscribed seed round led by Haatch alongside Antler, Arāya Ventures and Syncorp Ventures.",
     url: seedAnnouncement.canonicalUrl,
@@ -41,12 +41,12 @@ export const metadata: Metadata = {
     authors: [siteName],
     section: "News",
     images: [
-      { url: seedAnnouncement.ogImageUrl, width: 1200, height: 630, alt: socialTitle },
+      { url: seedAnnouncement.ogImageUrl, width: 1200, height: 630, alt: documentTitle },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: socialTitle,
+    title: documentTitle,
     description,
     images: [seedAnnouncement.ogImageUrl],
   },
