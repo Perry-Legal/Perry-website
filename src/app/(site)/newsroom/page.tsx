@@ -9,7 +9,7 @@ import {
   formatNewsroomDate,
   newsroomAggregators,
   newsroomAnnouncements,
-  newsroomInterviews,
+  newsroomSpeaking,
   newsroomInvestor,
   newsroomLinkedIn,
   newsroomNews,
@@ -65,6 +65,9 @@ function ArticleCard({ article }: { article: NewsroomArticle }) {
         <span className="line-clamp-3 font-serif text-[21px] leading-[1.3] text-pine-950 group-hover:underline group-hover:decoration-1 group-hover:underline-offset-4">
           {article.headline}
         </span>
+        {article.summary ? (
+          <span className="text-[15px] leading-relaxed text-[#2A2E2C]">{article.summary}</span>
+        ) : null}
       </span>
     </a>
   );
@@ -213,9 +216,9 @@ export default function NewsroomPage() {
           <ArticleGrid articles={newsroomRecognition} />
         </section>
 
-        <section aria-labelledby="newsroom-interviews" className="flex flex-col gap-6">
-          <SectionHeading id="newsroom-interviews" title="Interviews and podcasts" />
-          <ArticleGrid articles={newsroomInterviews} />
+        <section aria-labelledby="newsroom-speaking" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-speaking" title="Speaking, interviews and events" />
+          <ArticleGrid articles={newsroomSpeaking} />
         </section>
 
         <section aria-labelledby="newsroom-social" className="flex flex-col gap-8">

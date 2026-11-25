@@ -14,6 +14,8 @@ export type NewsroomArticle = {
    * Cards without one use a brand fallback.
    */
   image?: string;
+  /** Optional one-line note under the headline. */
+  summary?: string;
 };
 
 export type NewsroomSocialPost = {
@@ -261,7 +263,17 @@ export const newsroomNews: readonly NewsroomArticle[] = [
   },
 ];
 
-export const newsroomInterviews: readonly NewsroomArticle[] = [
+export const newsroomSpeaking: readonly NewsroomArticle[] = [
+  {
+    outlet: "Crafty Counsel",
+    headline:
+      "Perry AI selected for the Next Gen in Legal Tech Spotlight at Legal Tech Buyers' Club: Live",
+    summary:
+      "Perry booth and a one-minute Spotlight pitch at Together, 88 Wood Street, London.",
+    href: "https://crafty-counsel.com/events/legal-tech-buyers-club-live/",
+    date: "2026-11-24",
+    image: "/press/crafty-counsel.webp",
+  },
   {
     outlet: "The Future Series podcast",
     headline:
@@ -276,6 +288,14 @@ export const newsroomInterviews: readonly NewsroomArticle[] = [
     href: "https://www.uktech.news/news/founder-interviews/perry-ai-founder-sell-before-you-build-20260508",
     date: "2026-05-08",
     image: "/press/uktn-interview.webp",
+  },
+  {
+    outlet: "International Bar Association",
+    headline: "Shashwat Patel speaks at the IBA India Technology Law Symposium",
+    summary: "Session one: AI and the modern-day lawyer.",
+    href: "https://www.ibanet.org/conference/CONF2611/speaker-details/CONF2611_403236",
+    date: "2026-01-28",
+    image: "/press/iba.webp",
   },
 ];
 
@@ -328,14 +348,6 @@ export const newsroomRecognition: readonly NewsroomArticle[] = [
     href: "https://www.thebaehq.com/watchlist/card/4f005339-6d2e-48bb-b62f-1541a32f0398",
     date: "2026-11-16",
     image: "/press/bae-hq-watchlist.webp",
-  },
-  {
-    outlet: "Crafty Counsel",
-    headline:
-      "Perry selected for the Next Gen in Legal Tech Spotlight at Legal Tech Buyers' Club: Live",
-    href: "https://crafty-counsel.com/events/legal-tech-buyers-club-live/",
-    date: "2026-10-29",
-    image: "/press/crafty-counsel.webp",
   },
 ];
 
