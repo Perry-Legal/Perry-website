@@ -9,7 +9,7 @@ import {
   formatNewsroomDate,
   newsroomAggregators,
   newsroomAnnouncements,
-  newsroomSpeaking,
+  newsroomInterviewsEvents,
   newsroomInvestor,
   newsroomLinkedIn,
   newsroomNews,
@@ -216,9 +216,9 @@ export default function NewsroomPage() {
           <ArticleGrid articles={newsroomRecognition} />
         </section>
 
-        <section aria-labelledby="newsroom-speaking" className="flex flex-col gap-6">
-          <SectionHeading id="newsroom-speaking" title="Speaking, interviews and events" />
-          <ArticleGrid articles={newsroomSpeaking} />
+        <section aria-labelledby="newsroom-interviews-events" className="flex flex-col gap-6">
+          <SectionHeading id="newsroom-interviews-events" title="Interviews and events" />
+          <ArticleGrid articles={newsroomInterviewsEvents} />
         </section>
 
         <section aria-labelledby="newsroom-social" className="flex flex-col gap-8">

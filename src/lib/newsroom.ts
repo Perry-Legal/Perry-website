@@ -263,7 +263,7 @@ export const newsroomNews: readonly NewsroomArticle[] = [
   },
 ];
 
-export const newsroomSpeaking: readonly NewsroomArticle[] = [
+export const newsroomInterviewsEvents: readonly NewsroomArticle[] = [
   {
     outlet: "Crafty Counsel",
     headline:
