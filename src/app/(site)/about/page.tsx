@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import Image from "@/components/asset-image";
 import Link from "next/link";
 
@@ -18,13 +19,38 @@ export const metadata: Metadata = pageMetadata({
   path: "/about",
 });
 
-const teamMembers = [
+/**
+ * In-app routes omit the trailing slash (`/newsroom` in the footer and nav).
+ * `trailingSlash` is on only for the GitHub Pages export, and Next.js `Link`
+ * adds the slash itself in that build.
+ */
+function NewsroomCoverageLink() {
+  return (
+    <Link
+      href="/newsroom"
+      className="font-medium text-foreground underline decoration-foreground/35 underline-offset-[3px] transition-colors hover:decoration-foreground focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+    >
+      Read the coverage in our newsroom
+    </Link>
+  );
+}
+
+const teamMembers: {
+  name: string;
+  role: string;
+  intro: ReactNode[];
+  imageSrc: string;
+  linkedinUrl: string;
+}[] = [
   {
     name: "Shashwat Patel",
     role: "Founder & CEO",
     intro: [
       "Sets Perry's strategy and product direction, and runs investor and customer relationships.",
-      "Fifteen years a funds and corporate lawyer at Debevoise and Simmons & Simmons, qualified in New York, England & Wales and India.",
+      <>
+        Shashwat Patel is the founder and CEO of Perry AI, the legal OS for private capital. He spent 15 years as a private equity and funds lawyer at Debevoise & Plimpton and Simmons & Simmons, and is qualified in New York, England and Wales, and India, with an LL.M. from Columbia Law School. In November 2026 Perry raised an oversubscribed $2.2m seed round led by Haatch.{" "}
+        <NewsroomCoverageLink />.
+      </>,
     ],
     imageSrc: aboutImages.team.shashwatPatel,
     linkedinUrl: "https://www.linkedin.com/in/shashwatpatel/",
@@ -34,7 +60,10 @@ const teamMembers = [
     role: "Founder & CPO",
     intro: [
       "Turns fund negotiating playbooks into code — the rules, prompts and evaluations Perry runs on. Owns product from user research through to the legal engineering layer.",
-      "Before this, she was a funds and venture capital lawyer for fifteen years.",
+      <>
+        Vaneesa Agrawal is the co-founder and Chief Product Officer of Perry AI, the legal OS for private capital. A funds and venture capital lawyer for more than 12 years, she founded a Legal 500 ranked boutique law firm and grew it to 75 deals. She is a graduate of NYU School of Law. In November 2026 Perry raised an oversubscribed $2.2m seed round led by Haatch.{" "}
+        <NewsroomCoverageLink />.
+      </>,
     ],
     imageSrc: aboutImages.team.vaneesaAgrawal,
     linkedinUrl: "https://www.linkedin.com/in/vaneesaagrawal/",
@@ -93,9 +122,9 @@ export default function AboutPage() {
                   </CardAction>
                 </CardHeader>
                 <CardContent className="space-y-3 pt-0">
-                  {member.intro.map((paragraph) => (
+                  {member.intro.map((paragraph, index) => (
                     <p
-                      key={paragraph}
+                      key={index}
                       className="text-sm leading-relaxed text-muted-foreground text-pretty"
                     >
                       {paragraph}
